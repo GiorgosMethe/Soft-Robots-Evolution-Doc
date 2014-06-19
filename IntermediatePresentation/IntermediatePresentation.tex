@@ -1,6 +1,11 @@
 \documentclass{beamer}
+\usepackage[numberedbib]{apacite}
+\usepackage[english]{babel}
 \usepackage{graphicx}
+\usepackage{multimedia}
+\usepackage{hyperref}
 
+\newcommand{\putat}[3]{\begin{picture}(0,0)(0,0)\put(#1,#2){#3}\end{picture}}
 % Choose how your presentation looks.
 %
 % For more themes, color themes and font themes, see:
@@ -51,9 +56,60 @@ Soft robots can be actuated through air pressure tubes, environmental changes ( 
 \end{frame}
 
 \begin{frame}{Related Material}
+\begin{block}{\includegraphics[scale=0.35]{figures/voxcad_logo.png}\	VoxCad Simulator~\cite{hiller2012dynamic}}
+\begin{itemize}
+\item Created by Jonathan Hiller and Hod Lipson
+\item Voxel modeling and analyzing software
+\item Capable of developing new kinds of locomotion
+\end{itemize}
+\end{block}
 \end{frame}
 
-\begin{frame}{Related Work}
+\begin{frame}[allowframebreaks]{Related Work}
+\textit{Evolving virtual creature}s~\cite{sims1994evolving}
+\begin{itemize}
+\item Rigid body parts, joints
+\item Evolution of the morphology and the control
+\end{itemize}
+\includegraphics[scale=0.5]{figures/evolvingVirtualCreatures.png}\\
+\textit{Evolving a diversity of virtual creatures through novelty search and local competition} ~\cite{lehman2011evolving}
+\begin{itemize}
+\item Same experiment
+\item Novelty $<$ Fitness
+\item Novelty search with global competition has the best average fitness.
+\end{itemize}
+\newpage
+\textit{Evolving soft robots with multiple materials and a powerful generative encoding.}~\cite{cheney2013unshackling}
+\begin{itemize}
+\item Generative encoding, Compositional pattern-producing network, CPPN.
+\item Neuroevolution of augmenting topologies, NEAT.
+\end{itemize}
+\vspace{0.3cm}
+\includegraphics[width=0.3\textwidth,height=0.25\textheight]{figures/unshacklingEvolutionFigure1.png}\	\	\	
+\includegraphics[width=0.3\textwidth,height=0.25\textheight]{figures/unshacklingEvolutionFigure2.png}\	\	\	
+\includegraphics[width=0.3\textwidth,height=0.25\textheight]{figures/unshacklingEvolutionFigure3.png}
+\end{frame}
+
+
+
+\begin{frame}{Compositional pattern-producing network}
+\begin{itemize}
+\item Similar to artificial neural networks
+\item Different set of activation functions
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.25]{figures/cppnNetwork.png}
+\end{center}
+\end{figure}
+\item Produce symmetrical and repetitive patterns
+\item Appropriate for problems with geometrical structure (Board games).
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{References}
+\bibliographystyle{apacite}
+\bibliography{ref}
 \end{frame}
 
 
