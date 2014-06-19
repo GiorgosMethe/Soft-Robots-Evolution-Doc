@@ -63,6 +63,13 @@ Soft robots can be actuated through air pressure tubes, environmental changes ( 
 \item Capable of developing new kinds of locomotion
 \end{itemize}
 \end{block}
+\putat{95}{-115}{\includegraphics[scale=0.12]{figures/voxcad.png}}
+\begin{itemize}
+\item Lattice
+\item Voxels
+\item Structure
+\item Materials
+\end{itemize}
 \end{frame}
 
 \begin{frame}[allowframebreaks]{Related Work}
@@ -92,7 +99,7 @@ Soft robots can be actuated through air pressure tubes, environmental changes ( 
 
 
 
-\begin{frame}{Compositional pattern-producing network}
+\begin{frame}{Compositional pattern-producing network~\cite{stanley2007compositional}}
 \begin{itemize}
 \item Similar to artificial neural networks
 \item Different set of activation functions
@@ -104,10 +111,84 @@ Soft robots can be actuated through air pressure tubes, environmental changes ( 
 \item Produce symmetrical and repetitive patterns
 \item Appropriate for problems with geometrical structure (Board games).
 \end{itemize}
-
 \end{frame}
 
-\begin{frame}{References}
+
+\begin{frame}{NeuroEvolution through Augmented Topologies (NEAT)~\cite{stanley2002evolving}}
+\begin{block}{Some key points of this method are:}
+\begin{itemize}
+\item Evolving neural network topologies along with weights
+\item Crossover between different topologies
+\item Structural innovation through speciation (New species have time to improve)
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Research Topics}
+\begin{itemize}
+\item Gravity
+\begin{itemize}
+\item Performance under different conditions of gravity
+\end{itemize}
+\item Novelty search
+\begin{itemize}
+\item Performance, in respect to the original fitness
+\item Performance, in behavior space
+\item Behavior, what is a good behavior metric?
+\end{itemize}
+\item Other evolutionary algorithms
+\begin{itemize}
+\item Genetic algorithm with direct coding
+\item Random generative encoding
+\item CMA-ES
+\item jDE
+\end{itemize}
+\item Can we evolve CPPNs with other evolutionary algorithms?
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Things completed so far\ldots}
+\begin{itemize}
+%\item All tools documented
+\item Replication of the results from~\cite{cheney2013unshackling}
+\item Generative random encoding
+\item Simple genetic algorithm
+\item Own implementation of CPPN-NEAT experiment (HyperNEAT~C++~library)
+\item Novelty search
+\item Competition between species (novelty, fitness)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Generative Random Encoding}
+Only two parameters can change in this encoding.
+\begin{enumerate}
+\item The probability of adding a new voxel into the structure.
+\item The probability that the new voxel introduced will use the same kind of material as its connection.
+\end{enumerate}
+We start with a random voxel inserted into the lattice.
+\begin{itemize}
+\item Choose whether a new voxel is going to be inserted.
+\item Choose randomly its connection.
+\item Choose its material.
+\item Iterate
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Simple genetic algorithm}
+\begin{itemize}
+\item Each genome is represented by a stream of real numbers in $[ 0,1 ]$.
+\item The length of this stream is equal to:
+\begin{equation*}
+l = n \times (m + 1)
+\end{equation*}
+, where $n$, is the number of total voxels and $m$ is the number of materials.
+\item For a lattice's dimensions of $10 \times 10 \times 10$, the length is $5000$.
+\item Simple genetic algorithm fails to produce locomotion.
+\item No structure knowledge.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{References}
 \bibliographystyle{apacite}
 \bibliography{ref}
 \end{frame}
