@@ -1,5 +1,4 @@
 \documentclass{beamer}
-\usepackage[numberedbib]{apacite}
 \usepackage[english]{babel}
 \usepackage{graphicx}
 \usepackage{multimedia}
@@ -34,12 +33,17 @@
   \titlepage
 \end{frame}
 
-% Uncomment these lines for an automatically generated outline.
 %\begin{frame}{Outline}
 %  \tableofcontents
 %\end{frame}
 
+
+
 \section{Introduction}
+
+
+
+
 \begin{frame}{Introduction}
 \begin{block}{Soft Robots}
 \begin{itemize}
@@ -55,15 +59,22 @@
 Soft robots can be actuated through air pressure tubes, environmental changes ( temperature, pressure ), even explosions.
 \end{frame}
 
+
+
+
+
+\section{Related Work}
+
+
+
 \begin{frame}{Related Material}
 \begin{block}{\includegraphics[scale=0.35]{figures/voxcad_logo.png}\	VoxCad Simulator~\cite{hiller2012dynamic}}
 \begin{itemize}
 \item Created by Jonathan Hiller and Hod Lipson
 \item Voxel modeling and analyzing software
-\item Capable of developing new kinds of locomotion
 \end{itemize}
 \end{block}
-\putat{95}{-115}{\includegraphics[scale=0.12]{figures/voxcad.png}}
+\putat{75}{-110}{\includegraphics[scale=0.12]{figures/voxcad.png}}
 \begin{itemize}
 \item Lattice
 \item Voxels
@@ -97,8 +108,6 @@ Soft robots can be actuated through air pressure tubes, environmental changes ( 
 \includegraphics[width=0.3\textwidth,height=0.25\textheight]{figures/unshacklingEvolutionFigure3.png}
 \end{frame}
 
-
-
 \begin{frame}{Compositional pattern-producing network~\cite{stanley2007compositional}}
 \begin{itemize}
 \item Similar to artificial neural networks
@@ -124,6 +133,26 @@ Soft robots can be actuated through air pressure tubes, environmental changes ( 
 \end{block}
 \end{frame}
 
+
+\begin{frame}{Novelty Search}
+\putat{230}{-170}{\includegraphics[scale=0.5]{figures/noveltyMaze.png}}
+\begin{block}{What novelty means:}
+\begin{itemize}
+\item Fitness traditionally measures how good an individual is (Objective function).
+\item Objective function can prevent evolution reaching each target.
+\item Thus we can abandon the objective.
+\item Try finding novelty in behavior space.
+\item Random?
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+
+\section{Research Question}
+
+
+
 \begin{frame}{Research Topics}
 \begin{itemize}
 \item Gravity
@@ -140,12 +169,20 @@ Soft robots can be actuated through air pressure tubes, environmental changes ( 
 \begin{itemize}
 \item Genetic algorithm with direct coding
 \item Random generative encoding
-\item CMA-ES
-\item jDE
+\item Covariance Matrix Adaptation Evolution Strategy (CMA-ES)
+\item Differential Evolution (jDE)
 \end{itemize}
 \item Can we evolve CPPNs with other evolutionary algorithms?
 \end{itemize}
 \end{frame}
+
+
+
+
+
+
+\section{Approach}
+
 
 \begin{frame}{Things completed so far\ldots}
 \begin{itemize}
@@ -158,6 +195,9 @@ Soft robots can be actuated through air pressure tubes, environmental changes ( 
 \item Competition between species (novelty, fitness)
 \end{itemize}
 \end{frame}
+
+
+
 
 \begin{frame}{Generative Random Encoding}
 Only two parameters can change in this encoding.
@@ -176,20 +216,105 @@ We start with a random voxel inserted into the lattice.
 
 \begin{frame}{Simple genetic algorithm}
 \begin{itemize}
+\item GAlib C++ library
 \item Each genome is represented by a stream of real numbers in $[ 0,1 ]$.
 \item The length of this stream is equal to:
 \begin{equation*}
 l = n \times (m + 1)
 \end{equation*}
 , where $n$, is the number of total voxels and $m$ is the number of materials.
-\item For a lattice's dimensions of $10 \times 10 \times 10$, the length is $5000$.
+\item For a lattice's dimensions of $10 \times 10 \times 10$ and $4$ materials the length of the genome is $5000$.
 \item Simple genetic algorithm fails to produce locomotion.
 \item No structure knowledge.
 \end{itemize}
 \end{frame}
 
+
+\begin{frame}{CPPN-NEAT}
+\begin{itemize}
+\item HyperNEAT C++
+\item Each genome is represented by a CPPN.
+\item This CPPN is queried for each input coordinate to output the existance and the type of the material.
+\item NEAT evolves these CPPNs.
+\item In each generation, speciation. Population is split into species, new species can survive easier than old.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{CPPN-NEAT with Novelty Search~\cite{lehman2011abandoning}}
+\begin{itemize}
+\item Same implementation
+\item Novelty takes the place of fitness.
+\item Novel individuals stored in a list.
+\item For each new individual in the population, check its novelty in respect to the stored novel individuals.
+\begin{itemize}
+\item Minimum distance from a novel individual.
+\item Average distance from K nearest individuals.
+\end{itemize}
+\item If distance less than a threshold store the individual.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Behavior}
+How can we go from fitness to behavior:\\
+\vspace{0.2cm}
+\begin{center}
+\includegraphics[height=0.15\textheight]{figures/cppnNetwork.png}\	
+\includegraphics[height=0.05\textheight]{figures/Arrow_east.eps}\	
+\includegraphics[height=0.15\textheight]{figures/unshacklingEvolutionFigure2.png}\	
+\includegraphics[height=0.05\textheight]{figures/Arrow_east.eps}\	
+{\huge $F(x)$ }\	
+\includegraphics[height=0.05\textheight]{figures/Arrow_east.eps}\	
+{\huge $B(x)$ }\\
+\end{center}
+\vspace{0.25cm}
+Examples:\\
+\begin{center}
+\includegraphics[height=0.15\textheight]{figures/unshacklingEvolutionFigure2.png}\	
+\includegraphics[height=0.05\textheight]{figures/Arrow_east.eps}\	
+\includegraphics[height=0.15\textheight]{figures/behaviorTrajectory.pdf}
+\\
+\includegraphics[height=0.15\textheight]{figures/unshacklingEvolutionFigure2.png}\	
+\includegraphics[height=0.05\textheight]{figures/Arrow_east.eps}\	
+\includegraphics[height=0.15\textheight]{figures/behaviorPaceDFT.pdf}
+\\
+\includegraphics[height=0.15\textheight]{figures/unshacklingEvolutionFigure2.png}\	
+\includegraphics[height=0.05\textheight]{figures/Arrow_east.eps}\	
+\includegraphics[height=0.15\textheight]{figures/behaviorPace.pdf}
+\end{center}
+\end{frame}
+
+
+\begin{frame}{Behavior}
+\begin{block}{Behavior types used are:}
+\begin{itemize}
+\item Trajectory 3D, 2D
+\item Pace
+\item Voxels touching ground
+\item Kinetic energy
+\item Maximum pressure
+\end{itemize}
+\end{block}
+\begin{block}{Behavior similarity can be computed:}
+\begin{itemize}
+\item Absolute difference between normalized trajectories
+\item Cross correlation of discrete Fourier transformation
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section{Results}
+
+\begin{frame}{Primilinary results}
+\begin{center}
+\putat{-190}{-130}{\includegraphics[scale=0.29]{figures/noveltyFitnessDirect.eps}}
+\end{center}
+\end{frame}
+
+\section{References}
+
 \begin{frame}[allowframebreaks]{References}
-\bibliographystyle{apacite}
+\bibliographystyle{plain}
 \bibliography{ref}
 \end{frame}
 
