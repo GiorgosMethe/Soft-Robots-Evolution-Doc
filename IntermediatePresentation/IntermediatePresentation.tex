@@ -3,6 +3,7 @@
 \usepackage{graphicx}
 \usepackage{multimedia}
 \usepackage{hyperref}
+\usepackage{subfigure}
 
 \newcommand{\putat}[3]{\begin{picture}(0,0)(0,0)\put(#1,#2){#3}\end{picture}}
 % Choose how your presentation looks.
@@ -24,7 +25,7 @@
 
 \title[Simultaneous Evolution of Morphology and Locomotion of Soft Robots by Novelty Search]{Simultaneous Evolution of Morphology and Locomotion of Soft Robots by Novelty Search}
 \author{Georgios Methenitis}
-\institute{University of Amsterdam}
+\institute{UvA, ACT}
 \date{\today}
 
 \begin{document}
@@ -52,12 +53,17 @@
 \item Capable of developing new kinds of locomotion
 \end{itemize}
 \end{block}
-\includegraphics[width=0.3\textwidth,height=0.25\textheight]{figures/soft_robotics_figure.png}\	
-\includegraphics[width=0.3\textwidth,height=0.25\textheight]{figures/ExplodingRobot.jpg}\	
-\includegraphics[width=0.3\textwidth,height=0.25\textheight]{figures/hillerPressureChamber.png}\\
+\includegraphics[width=0.3\textwidth,height=0.25\textheight]{figures/soft_robotics_figure.png}\		
+\includegraphics[width=0.3\textwidth,height=0.25\textheight]{figures/hillerPressureChamber.png}\	
+\includegraphics[width=0.3\textwidth,height=0.25\textheight]{figures/ExplodingRobot.jpg}\\
 \vspace{0.3cm}
 Soft robots can be actuated through air pressure tubes, environmental changes ( temperature, pressure ), even explosions.
 \end{frame}
+
+
+
+
+
 
 
 
@@ -67,14 +73,16 @@ Soft robots can be actuated through air pressure tubes, environmental changes ( 
 
 
 
+
 \begin{frame}{Related Material}
+\vspace{-1.5cm}
 \begin{block}{\includegraphics[scale=0.35]{figures/voxcad_logo.png}\	VoxCad Simulator~\cite{hiller2012dynamic}}
 \begin{itemize}
 \item Created by Jonathan Hiller and Hod Lipson
 \item Voxel modeling and analyzing software
 \end{itemize}
 \end{block}
-\putat{75}{-110}{\includegraphics[scale=0.12]{figures/voxcad.png}}
+\putat{75}{-120}{\includegraphics[scale=0.12]{figures/voxcad.png}}
 \begin{itemize}
 \item Lattice
 \item Voxels
@@ -92,7 +100,7 @@ Soft robots can be actuated through air pressure tubes, environmental changes ( 
 \includegraphics[scale=0.5]{figures/evolvingVirtualCreatures.png}\\
 \textit{Evolving a diversity of virtual creatures through novelty search and local competition} ~\cite{lehman2011evolving}
 \begin{itemize}
-\item Same experiment
+\item Same experimental framework
 \item Novelty $<$ Fitness
 \item Novelty search with global competition has the best average fitness.
 \end{itemize}
@@ -118,7 +126,7 @@ Soft robots can be actuated through air pressure tubes, environmental changes ( 
 \end{center}
 \end{figure}
 \item Produce symmetrical and repetitive patterns
-\item Appropriate for problems with geometrical structure (Board games).
+\item Appropriate for problems with geometrical structure
 \end{itemize}
 \end{frame}
 
@@ -138,8 +146,8 @@ Soft robots can be actuated through air pressure tubes, environmental changes ( 
 \putat{230}{-170}{\includegraphics[scale=0.5]{figures/noveltyMaze.png}}
 \begin{block}{What novelty means:}
 \begin{itemize}
-\item Fitness traditionally measures how good an individual is (Objective function).
-\item Objective function can prevent evolution reaching each target.
+\item Traditionally fitness measures how good an individual is (Objective function).
+\item Objective function can prevent evolution reaching the global maximum.
 \item Thus we can abandon the objective.
 \item Try finding novelty in behavior space.
 \item Random?
@@ -150,8 +158,6 @@ Soft robots can be actuated through air pressure tubes, environmental changes ( 
 
 
 \section{Research Question}
-
-
 
 \begin{frame}{Research Topics}
 \begin{itemize}
@@ -243,15 +249,15 @@ l = n \times (m + 1)
 
 \begin{frame}{CPPN-NEAT with Novelty Search~\cite{lehman2011abandoning}}
 \begin{itemize}
-\item Same implementation
-\item Novelty takes the place of fitness.
-\item Novel individuals stored in a list.
+\item Same code base
+\item Novelty takes the place of fitness
+\item Novel individuals stored in a list
 \item For each new individual in the population, check its novelty in respect to the stored novel individuals.
 \begin{itemize}
-\item Minimum distance from a novel individual.
-\item Average distance from K nearest individuals.
+\item Minimum distance from a novel individual
+\item Average distance from K nearest individuals
 \end{itemize}
-\item If distance less than a threshold store the individual.
+\item Store novel enough individuals
 \end{itemize}
 \end{frame}
 
@@ -298,18 +304,25 @@ Examples:\\
 \begin{block}{Behavior similarity can be computed:}
 \begin{itemize}
 \item Absolute difference between normalized trajectories
-\item Cross correlation of discrete Fourier transformation
+\item Cross-correlation of discrete Fourier transformation
 \end{itemize}
 \end{block}
 \end{frame}
 
 \section{Results}
 
-\begin{frame}{Primilinary results}
-\begin{center}
-\putat{-190}{-130}{\includegraphics[scale=0.29]{figures/noveltyFitnessDirect.eps}}
-\end{center}
+\begin{frame}[allowframebreaks]{Primilinary results}
+$5 \times 5 \times 5$
+\includegraphics[width=1.0\textwidth,height=0.8\textheight]{figures/noveltyFitnessDirect.eps}\\
+\newpage
+\ldots same experiment, more stable simulation settings, 5 runs
+\includegraphics[width=1.0\textwidth,height=0.8\textheight]{figures/noveltyFitnessDirect2.eps}
+\newpage
+\ldots same settings but size: $10 \times 10 \times 10$
+\includegraphics[width=1.0\textwidth,height=0.8\textheight]{figures/noveltyFitnessDirect10_uncompleted.eps}
 \end{frame}
+
+
 
 \section{References}
 
