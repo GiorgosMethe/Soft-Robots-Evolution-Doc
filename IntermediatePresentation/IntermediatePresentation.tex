@@ -66,13 +66,7 @@ Soft robots can be actuated through air pressure tubes, environmental changes ( 
 
 
 
-
-
-
-
 \section{Related Work}
-
-
 
 
 \begin{frame}{Related Material}
@@ -145,15 +139,20 @@ Soft robots can be actuated through air pressure tubes, environmental changes ( 
 
 \begin{frame}{Novelty Search}
 \putat{230}{-170}{\includegraphics[scale=0.5]{figures/noveltyMaze.png}}
-\begin{block}{What novelty means:}
+\begin{block}{What is novelty search:}
 \begin{itemize}
 \item Traditionally fitness measures how good an individual is (Objective function).
 \item Objective function can prevent evolution reaching the global maximum.
-\item Thus we can abandon the objective.
+\item Abandon the objective.
 \item Try finding novelty in behavior space.
 \item Random?
 \end{itemize}
 \end{block}
+\begin{definition}[Sparsity]
+\begin{equation*}
+s(x) = \cfrac{1}{k} \sum_{i=0}^k dist(x, b_i)
+\end{equation*}
+\end{definition}
 \end{frame}
 
 
@@ -195,9 +194,10 @@ Soft robots can be actuated through air pressure tubes, environmental changes ( 
 \item Replication of the results from~\cite{cheney2013unshackling}
 \item Generative random encoding
 \item Simple genetic algorithm
-\item Own implementation of CPPN-NEAT experiment (HyperNEAT~C++~library)
+\item Implementation of CPPN-NEAT experiment (HyperNEAT~C++~library)
 \item Novelty search
 \item Competition between species (novelty, fitness)
+\item Combination of novelty and fitness
 \end{itemize}
 \end{frame}
 
@@ -253,8 +253,7 @@ l = n \times (m + 1)
 \item Novel individuals stored in a list
 \item For each new individual in the population, check its novelty in respect to the stored novel individuals.
 \begin{itemize}
-\item Minimum distance from a novel individual
-\item Average distance from K nearest individuals
+\item Sparsity
 \end{itemize}
 \item Store novel enough individuals
 \end{itemize}
