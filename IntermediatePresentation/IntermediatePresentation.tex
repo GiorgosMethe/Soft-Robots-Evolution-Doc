@@ -4,6 +4,7 @@
 \usepackage{multimedia}
 \usepackage{hyperref}
 \usepackage{subfigure}
+\usecolortheme{beaver}
 
 \newcommand{\putat}[3]{\begin{picture}(0,0)(0,0)\put(#1,#2){#3}\end{picture}}
 % Choose how your presentation looks.
@@ -186,9 +187,7 @@ Soft robots can be actuated through air pressure tubes, environmental changes ( 
 
 
 
-
 \section{Approach}
-
 
 \begin{frame}{Things completed so far\ldots}
 \begin{itemize}
@@ -311,6 +310,7 @@ Examples:\\
 
 \begin{frame}[allowframebreaks]{Behavior Examples}
 
+\begin{minipage}{\textwidth}
 \begin{block}{2D - Trajectories:}
 \begin{center}
 \includegraphics[width=0.25\textwidth]{figures/behaviors/00.pdf}
@@ -327,7 +327,9 @@ Examples:\\
 \includegraphics[width=0.25\textwidth]{figures/behaviors/13.pdf}
 \end{center}
 \end{block}
-\newpage
+\end{minipage}
+
+\begin{minipage}{\textwidth}
 \begin{block}{Pace per timestep}
 \begin{center}
 \includegraphics[width=0.25\textwidth]{figures/behaviors/20.pdf}
@@ -344,7 +346,9 @@ Examples:\\
 \includegraphics[width=0.25\textwidth]{figures/behaviors/33.pdf}
 \end{center}
 \end{block}
-\newpage
+\end{minipage}
+
+\begin{minipage}{\textwidth}
 \begin{block}{Voxels touching ground per timestep}
 \begin{center}
 \includegraphics[width=0.25\textwidth]{figures/behaviors/40.pdf}
@@ -361,7 +365,9 @@ Examples:\\
 \includegraphics[width=0.25\textwidth]{figures/behaviors/53.pdf}
 \end{center}
 \end{block}
-\newpage
+\end{minipage}
+
+\begin{minipage}{\textwidth}
 \begin{block}{Maximum pressure per timestep}
 \begin{center}
 \includegraphics[width=0.25\textwidth]{figures/behaviors/60.pdf}
@@ -370,12 +376,133 @@ Examples:\\
 \includegraphics[width=0.25\textwidth]{figures/behaviors/63.pdf}
 \end{center}
 \end{block}
+\end{minipage}
+
 \end{frame}
 
 
 
 \section{Results}
 
+\begin{frame}[allowframebreaks]{Results}
+
+\begin{minipage}{\textwidth}
+\begin{block}{Fitness, Novelty, Random, Direct GA}
+\includegraphics[width=1.0\textwidth]{figures/results/FitNovRandomDirectSize5.pdf}
+\end{block}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\begin{block}{Fitness, Novelty, Direct GA}
+\includegraphics[width=1.0\textwidth]{figures/results/FitvsNovVsDirSize10.pdf}
+\end{block}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\begin{block}{Best so far fitness in body lengths displacement of softbot's center of mass from $10$ individual runs for fitness-novelty based search.}
+\includegraphics[width=0.5\textwidth]{figures/results/indRunsSize10Fitness.pdf}	
+\includegraphics[width=0.5\textwidth]{figures/results/indRunsSize10Novelty.pdf}
+\end{block}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\begin{block}{Novelty Search - Best individuals every 100 generations:}
+\includegraphics[width=0.2\textwidth]{figures/Robots/n_3_g_100.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/n_3_g_200.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/n_3_g_300.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/n_3_g_400.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/n_3_g_500.jpg}\\
+\includegraphics[width=0.2\textwidth]{figures/Robots/n_3_g_600.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/n_3_g_700.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/n_3_g_800.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/n_3_g_900.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/n_3_g_1000.jpg}
+\end{block}
+
+\begin{block}{Fitness-based Search - Best individuals every 100 generations:}
+\includegraphics[width=0.2\textwidth]{figures/Robots/f_3_g_100.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/f_3_g_200.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/f_3_g_300.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/f_3_g_400.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/f_3_g_500.jpg}\\
+\includegraphics[width=0.2\textwidth]{figures/Robots/f_3_g_600.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/f_3_g_700.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/f_3_g_800.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/f_3_g_900.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/f_3_g_1000.jpg}
+\end{block}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\begin{block}{Novelty Search - Best individuals every 100 generations:}
+\includegraphics[width=0.2\textwidth]{figures/Robots/n_4_g_100.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/n_4_g_200.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/n_4_g_300.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/n_4_g_400.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/n_4_g_500.jpg}\\
+\includegraphics[width=0.2\textwidth]{figures/Robots/n_4_g_600.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/n_4_g_700.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/n_4_g_800.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/n_4_g_900.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/n_4_g_1000.jpg}
+\end{block}
+
+\begin{block}{Fitness-based Search - Best individuals every 100 generations:}
+\includegraphics[width=0.2\textwidth]{figures/Robots/f_4_g_100.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/f_4_g_200.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/f_4_g_300.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/f_4_g_400.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/f_4_g_500.jpg}\\
+\includegraphics[width=0.2\textwidth]{figures/Robots/f_4_g_600.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/f_4_g_700.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/f_4_g_800.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/f_4_g_900.jpg}
+\includegraphics[width=0.2\textwidth]{figures/Robots/f_4_g_1000.jpg}
+\end{block}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\begin{block}{Fitness of the generation champion (best individual) per generation}
+\includegraphics[width=1.0\textwidth]{figures/results/AvgGenerChampNoveltyFitnessSize5.pdf}
+\end{block}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\begin{block}{Novelty Vs. Fitness, distributions of average population fitness per generation}
+\includegraphics[width=1.0\textwidth]{figures/results/ViolinPlotsAvgGenFitSize5.pdf}
+\end{block}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\begin{block}{Novelty Vs. Fitness, number of novel behaviors}
+\includegraphics[width=1.0\textwidth]{figures/results/novelIndividualsFitNovComp.pdf}
+\end{block}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\begin{block}{Penalizing actuated materials}
+\includegraphics[width=1.0\textwidth]{figures/results/FitNovSize5Pen2.pdf}
+\end{block}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\begin{block}{Novelty search - The novelty is computed as the average distance from the $K$-nearest behaviors for $K \in \lbrace 1,2,5,10,20 \rbrace $.}
+\includegraphics[width=1.0\textwidth]{figures/results/KnnExperimentSize5.pdf}
+\end{block}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\begin{block}{Local competition (global fitness, global novelty, local novelty)}
+\includegraphics[width=1.0\textwidth]{figures/results/NoveltyCompetitionsSize5.pdf}
+\end{block}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\begin{block}{Local competition is held among the complete population of each species.}
+\includegraphics[width=1.0\textwidth]{figures/results/fitComp100percent.pdf}
+\end{block}
+\end{minipage}
+\end{frame}
 
 
 \section{References}
