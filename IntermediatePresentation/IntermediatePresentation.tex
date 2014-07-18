@@ -255,7 +255,6 @@ l = n \times (m + 1)
 \begin{itemize}
 \item Sparsity
 \end{itemize}
-\item Store novel enough individuals
 \end{itemize}
 \end{frame}
 
@@ -271,26 +270,26 @@ How can we go from fitness to behavior:\\
 \includegraphics[height=0.05\textheight]{figures/Arrow_east.eps}\	
 {\huge $B(x)$ }\\
 \end{center}
-\vspace{0.25cm}
+\vspace{0.10cm}
 Examples:\\
 \begin{center}
 \includegraphics[height=0.15\textheight]{figures/unshacklingEvolutionFigure2.png}\	
 \includegraphics[height=0.05\textheight]{figures/Arrow_east.eps}\	
-\includegraphics[height=0.15\textheight]{figures/behaviorTrajectory.pdf}
+\includegraphics[height=0.15\textwidth]{figures/behaviors/03.pdf}
 \\
 \includegraphics[height=0.15\textheight]{figures/unshacklingEvolutionFigure2.png}\	
 \includegraphics[height=0.05\textheight]{figures/Arrow_east.eps}\	
-\includegraphics[height=0.15\textheight]{figures/behaviorPaceDFT.pdf}
+\includegraphics[height=0.15\textwidth]{figures/behaviors/11.pdf}
 \\
 \includegraphics[height=0.15\textheight]{figures/unshacklingEvolutionFigure2.png}\	
 \includegraphics[height=0.05\textheight]{figures/Arrow_east.eps}\	
-\includegraphics[height=0.15\textheight]{figures/behaviorPace.pdf}
+\includegraphics[height=0.15\textwidth]{figures/behaviors/22.pdf}
 \end{center}
 \end{frame}
 
 
 \begin{frame}{Behavior}
-\begin{block}{Behavior types used are:}
+\begin{block}{Behavior types can be used:}
 \begin{itemize}
 \item Trajectory 3D, 2D
 \item Pace
@@ -398,11 +397,13 @@ Examples:\\
 \end{minipage}
 
 \begin{minipage}{\textwidth}
-\begin{block}{Best so far fitness in body lengths displacement of softbot's center of mass from $10$ individual runs for fitness-novelty based search.}
+\vspace{0.5cm}
+\begin{block}{$10$ individual runs for fitness-novelty based search.}
 \includegraphics[width=0.5\textwidth]{figures/results/indRunsSize10Fitness.pdf}	
 \includegraphics[width=0.5\textwidth]{figures/results/indRunsSize10Novelty.pdf}
 \end{block}
 \end{minipage}
+
 
 \begin{minipage}{\textwidth}
 \begin{block}{Novelty Search - Best individuals every 100 generations:}
@@ -467,7 +468,7 @@ Examples:\\
 \end{minipage}
 
 \begin{minipage}{\textwidth}
-\begin{block}{Novelty Vs. Fitness, distributions of average population fitness per generation}
+\begin{block}{Novelty Vs. Fitness, distributions of average population's fitness per generation}
 \includegraphics[width=1.0\textwidth]{figures/results/ViolinPlotsAvgGenFitSize5.pdf}
 \end{block}
 \end{minipage}
@@ -479,7 +480,7 @@ Examples:\\
 \end{minipage}
 
 \begin{minipage}{\textwidth}
-\begin{block}{Penalizing actuated materials}
+\begin{block}{Penalizing actuated materials, \textit{Behavior}: 2D trajectories}
 \includegraphics[width=1.0\textwidth]{figures/results/FitNovSize5Pen2.pdf}
 \end{block}
 \end{minipage}
