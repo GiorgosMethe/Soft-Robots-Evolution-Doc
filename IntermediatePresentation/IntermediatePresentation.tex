@@ -4,7 +4,6 @@
 \usepackage{multimedia}
 \usepackage{hyperref}
 \usepackage{subfigure}
-\usecolortheme{beaver}
 
 \newcommand{\putat}[3]{\begin{picture}(0,0)(0,0)\put(#1,#2){#3}\end{picture}}
 % Choose how your presentation looks.
@@ -204,19 +203,20 @@ s(x) = \cfrac{1}{k} \sum_{i=0}^k dist(x, b_i)
 
 
 
-\begin{frame}{Generative Random Encoding}
+\begin{frame}{Random Soft Robots}
+\begin{block}{Random}
+Assign materials to voxels randomly.
+\end{block}
+\begin{block}{Generative encoding}
 Only two parameters can change in this encoding.
 \begin{enumerate}
 \item The probability of adding a new voxel into the structure.
 \item The probability that the new voxel introduced will use the same kind of material as its connection.
 \end{enumerate}
-We start with a random voxel inserted into the lattice.
-\begin{itemize}
-\item Choose whether a new voxel is going to be inserted.
-\item Choose randomly its connection.
-\item Choose its material.
-\item Iterate
-\end{itemize}
+\end{block}
+\begin{block}{Random CPPNs}
+Evolution with high mutation power and no fitness information.
+\end{block}
 \end{frame}
 
 \begin{frame}{Simple genetic algorithm}
@@ -404,9 +404,9 @@ Examples:\\
 \end{block}
 \end{minipage}
 
-
+\newpage
 \begin{minipage}{\textwidth}
-\begin{block}{Novelty Search - Best individuals every 100 generations:}
+\begin{block}{Novelty Search - Champions every 100 generations:}
 \includegraphics[width=0.2\textwidth]{figures/Robots/n_3_g_100.jpg}
 \includegraphics[width=0.2\textwidth]{figures/Robots/n_3_g_200.jpg}
 \includegraphics[width=0.2\textwidth]{figures/Robots/n_3_g_300.jpg}
@@ -419,7 +419,7 @@ Examples:\\
 \includegraphics[width=0.2\textwidth]{figures/Robots/n_3_g_1000.jpg}
 \end{block}
 
-\begin{block}{Fitness-based Search - Best individuals every 100 generations:}
+\begin{block}{Fitness-based Search - Champions every 100 generations:}
 \includegraphics[width=0.2\textwidth]{figures/Robots/f_3_g_100.jpg}
 \includegraphics[width=0.2\textwidth]{figures/Robots/f_3_g_200.jpg}
 \includegraphics[width=0.2\textwidth]{figures/Robots/f_3_g_300.jpg}
@@ -434,7 +434,7 @@ Examples:\\
 \end{minipage}
 
 \begin{minipage}{\textwidth}
-\begin{block}{Novelty Search - Best individuals every 100 generations:}
+\begin{block}{Novelty Search - Champions every 100 generations:}
 \includegraphics[width=0.2\textwidth]{figures/Robots/n_4_g_100.jpg}
 \includegraphics[width=0.2\textwidth]{figures/Robots/n_4_g_200.jpg}
 \includegraphics[width=0.2\textwidth]{figures/Robots/n_4_g_300.jpg}
@@ -447,7 +447,7 @@ Examples:\\
 \includegraphics[width=0.2\textwidth]{figures/Robots/n_4_g_1000.jpg}
 \end{block}
 
-\begin{block}{Fitness-based Search - Best individuals every 100 generations:}
+\begin{block}{Fitness-based Search - Champions every 100 generations:}
 \includegraphics[width=0.2\textwidth]{figures/Robots/f_4_g_100.jpg}
 \includegraphics[width=0.2\textwidth]{figures/Robots/f_4_g_200.jpg}
 \includegraphics[width=0.2\textwidth]{figures/Robots/f_4_g_300.jpg}
@@ -486,7 +486,7 @@ Examples:\\
 \end{minipage}
 
 \begin{minipage}{\textwidth}
-\begin{block}{Novelty search - The novelty is computed as the average distance from the $K$-nearest behaviors for $K \in \lbrace 1,2,5,10,20 \rbrace $.}
+\begin{block}{Novelty search - The novelty is computed as the average distance from the $K$-nearest behaviors.}
 \includegraphics[width=1.0\textwidth]{figures/results/KnnExperimentSize5.pdf}
 \end{block}
 \end{minipage}
@@ -502,8 +502,19 @@ Examples:\\
 \includegraphics[width=1.0\textwidth]{figures/results/fitComp100percent.pdf}
 \end{block}
 \end{minipage}
-\end{frame}
 
+\begin{minipage}{\textwidth}
+\begin{block}{}
+\includegraphics[width=1.0\textwidth]{figures/results/CopyFitChampions5.pdf}
+\end{block}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\begin{block}{}
+\includegraphics[width=1.0\textwidth]{figures/results/CopyFitChampions10.pdf}
+\end{block}
+\end{minipage}
+\end{frame}
 
 \section{References}
 
