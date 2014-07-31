@@ -1,9 +1,107 @@
 % Appendix A
 
-\chapter{Appendix Title Here} % Main appendix title
+\chapter{Simulation Settings} % Main appendix title
 
 \label{AppendixA} % For referencing this appendix elsewhere, use \ref{AppendixA}
 
-\lhead{Appendix A. \emph{Appendix Title Here}} % This is for the header on each page - perhaps a shortened title
+\lhead{Appendix A. \emph{Simulation Settings}} % This is for the header on each page - perhaps a shortened title
 
-Write your Appendix content here.
+
+\section{Environment}
+
+\begin{table}[h!]
+\caption{Voxelyze simulation settings}
+\label{VoxelyzeSimulationSettings}
+\begin{center}
+    \begin{tabular}{l r p{9cm}}
+    \textbf{Property} & \textbf{Value} & \textbf{Description}\\
+    \hline
+    \emph{DtFrac} & 0.9 & The timestep of the simulation, currently $0.9 \times dt$, where $dt$ is the optimal timestep.\\
+    \emph{ColSystem}        & 3 & Hierarchical collision detection between all voxels. Updates potential collision list only when aggregated motion requires it\footnote.\\
+    \emph{StopConditionValue} & 0.4 & Time in seconds simulation is stopped.\\
+    \emph{TempBase} & 25.0 & Base temperature of the environment.\\
+    \emph{TempAmp} & 39.0 & Temperature's amplitude of the environment.\\
+    \emph{TempPeriod} & 0.025 & Period of the temperature cycle.\\
+    \emph{Lattice\_Dim} & 0.001 & Lattice dimensions, each voxel has length, height, and depth of $1$mm.
+    \end{tabular}
+    \end{center}
+\end{table}
+
+\footnotetext{From VoxCad's documentation~\cite{hiller2012dynamic}.}
+
+
+
+\section{Materials}
+
+In this section all materials' properties used during the simulations will be given. All materials used in the simulations have a set of shared properties which are shown in table~\ref{UniversalMaterialProperties}. Furthermore, unique characteristics of the materials are presented in table~\ref{UniqueMaterialProperties}.
+
+\begin{table}[h!]
+\caption{Universal material properties}
+\label{UniversalMaterialProperties}
+\begin{center}
+    \begin{tabular}{lr}
+    \textbf{Property} & \textbf{Value}\\
+    \hline
+    \emph{Poissons ratio} & 0.35\\
+    \emph{Temporal phase}        & 0.0\\
+    \emph{Static friction coefficient}       & 1.0\\
+    \emph{Dynamic friction coefficient} & 0.5
+    \end{tabular}
+    \end{center}
+\end{table}
+
+
+\begin{table}[h!]
+\caption{Unique per material properties}
+\label{UniqueMaterialProperties}
+\begin{center}
+    \begin{tabular}{llrr}
+    \textbf{Name}                & \textbf{Color} & \textbf{Elastic Modulus} (MPa) & \textbf{CTE} ($1/deg\ C$) \\
+    \hline
+    \emph{Active positive} (+) & Red   & 10                    & +0.01\\
+    \emph{Active negative} (-) & Green & 10                   & -0.01 \\
+    \emph{Passive soft}       & Cyan  & 10                   & 0.00 \\
+    \emph{Passive hard}        & Blue  & 50                   & 0.00
+    \end{tabular}
+    \end{center}
+\end{table}
+
+
+\section{Experimental Settings}
+In this section the settings used for each experiment will be presented. For all the following experimental constants the simulation and material settings used are the ones described above, in case of other settings used, the new settings will be mentioned.
+\subsection{Experiment 1}
+\label{Settings1}
+\begin{small}
+\begin{description}
+\item[Objective function]{Displacement in body lengths (displacement divided by size of soft robot) of soft robot's center of mass.}
+\item[Gravity acceleration]{$-27.6\ m/s^2$}
+\item[Lattice dimensions]{$5 \times 5 \times 5$}
+\end{description}
+\end{small}
+
+\subsection{Settings}
+\label{Settings2}
+\begin{small}
+\begin{description}
+\item[Objective function]{Displacement in body lengths (displacement divided by size of soft robot) of soft robot's center of mass.}
+\item[Gravity acceleration]{$-27.6\ m/s^2$}
+\item[Lattice dimensions]{$10 \times 10 \times 10$}
+\end{description}
+\end{small}
+
+\subsection{Settings}
+\label{Settings3}
+\begin{small}
+\begin{description}
+\item[Objective function]{Displacement in body lengths (displacement divided by size of soft robot) of soft robot's center of mass.}
+\item[Gravity acceleration]{$-27.6\ m/s^2$}
+\item[Lattice dimensions]{$7 \times 7 \times 7$}
+\end{description}
+\end{small}
+
+
+
+
+
+
+
