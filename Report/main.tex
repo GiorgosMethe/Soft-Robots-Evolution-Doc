@@ -8,8 +8,21 @@
 
 \usepackage{epstopdf}
 \usepackage{url}
+\usepackage{framed}
+\usepackage[chapter]{algorithm}
+\usepackage{algorithmic}
+\usepackage{booktabs}
+\usepackage{xcoffins}
+\usepackage[toc,page]{appendix}
+\usepackage[usenames,dvipsnames]{color}
 \usepackage[square, numbers, comma, sort&compress]{natbib} % Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers' 
-\hypersetup{urlcolor=black, colorlinks=false} % Colors hyperlinks in blue - change to black if annoying
+\hypersetup{
+urlcolor=black,
+colorlinks=true,
+linkcolor=MidnightBlue,
+citecolor=BrickRed,
+linktocpage
+} % Colors hyperlinks in blue - change to black if annoying
 \title{\ttitle} % Defines the thesis title - don't touch this
 
 \begin{document}
@@ -27,6 +40,18 @@
 
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % New command to make the lines in the title page
 
+
+\newcommand{\todo}[1]{{\color{red}\fbox{\color{blue}#1}}}
+
+
+
+\NewCoffin\tablecoffin
+\NewDocumentCommand\Vcentre{m}
+  {%
+    \SetHorizontalCoffin\tablecoffin{#1}%
+    \TypesetCoffin\tablecoffin[l,vc]%
+  }
+
 % PDF meta-data
 \hypersetup{pdftitle={\ttitle}}
 \hypersetup{pdfsubject=\subjectname}
@@ -36,7 +61,6 @@
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
-
 \begin{titlepage}
 \begin{center}
 \includegraphics[width=.10\textwidth]{../Figures/Misc/University_of_Amsterdam_logo.pdf}\\
@@ -47,30 +71,30 @@
 \HRule \\[0.4cm] % Horizontal line
 {\huge \bfseries \ttitle}\\[0.4cm] % Thesis title
 \HRule \\[1.5cm] % Horizontal line
- 
-\begin{minipage}{0.4\textwidth}
+\begin{minipage}[t][8cm][t]{0,4\textwidth}
 \begin{flushleft} \large
-\emph{Author:}\\
-\authornames % Author name - remove the \href bracket to remove the link
+\emph{By:}\\
+\authornames
 \end{flushleft}
 \end{minipage}
-\begin{minipage}{0.4\textwidth}
+\begin{minipage}[t][8cm][t]{0,4\textwidth}
 \begin{flushright} \large
-\emph{Supervisors:} \\
-\supname % Supervisor name - remove the \href bracket to remove the link  
+\emph{Supervised by:} \\
+\supname
 \end{flushright}
 \end{minipage}\\[3cm]
  
 %\large \textit{A thesis submitted in fulfilment of the requirements\\ for the degree of \degreename}\\[0.3cm] % University requirement text
 %\textit{in the}\\[0.4cm]
 %\groupname\\\deptname\\[2cm] % Research group name and department name
- 
-{\large \today}\\[4cm] % Date
- 
-\vfill
+\begin{flushbottom}
+\begin{center}
+\large \today
 \end{center}
-
+\end{flushbottom}
+\end{center}
 \end{titlepage}
+
 
 %----------------------------------------------------------------------------------------
 %	DECLARATION PAGE
@@ -103,13 +127,12 @@
 %	ACKNOWLEDGEMENTS
 %----------------------------------------------------------------------------------------
 
-%\setstretch{1.3} % Reset the line-spacing to 1.3 for body text (if it has changed)
-%
-%\acknowledgements{\addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
-%
-%The acknowledgements and the people to thank go here, don't forget to include your project advisor\ldots
-%}
-%\clearpage % Start a new page
+\setstretch{1.3} % Reset the line-spacing to 1.3 for body text (if it has changed)
+
+\acknowledgements{\addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
+\ldots
+}
+\clearpage % Start a new page
 
 %----------------------------------------------------------------------------------------
 %	LIST OF CONTENTS/FIGURES/TABLES PAGES
@@ -117,14 +140,24 @@
 
 \pagestyle{fancy} % The page style headers have been "empty" all this time, now use the "fancy" headers as defined before to bring them back
 
+\newpage
 \lhead{\emph{Contents}} % Set the left side page header to "Contents"
 \tableofcontents % Write out the Table of Contents
 
+\newpage
 \lhead{\emph{List of Figures}} % Set the left side page header to "List of Figures"
 \listoffigures % Write out the List of Figures
 
+\newpage
 \lhead{\emph{List of Tables}} % Set the left side page header to "List of Tables"
 \listoftables % Write out the List of Tables
+
+\newpage
+\lhead{\emph{List of Algorithms}} % Set the left side page header to "List of Tables"
+{\let\clearpage\relax\listofalgorithms}
+\addcontentsline{toc}{chapter}{List of algorithms}
+
+\clearpage % Start a new page
 
 %----------------------------------------------------------------------------------------
 %	ABBREVIATIONS
@@ -178,14 +211,15 @@
 %----------------------------------------------------------------------------------------
 %	DEDICATION
 %----------------------------------------------------------------------------------------
+\clearpage
 
-%\setstretch{1.3} % Return the line spacing back to 1.3
-%
-%\pagestyle{empty} % Page style needs to be empty for this page
-%
-%\dedicatory{For/Dedicated to/To my\ldots} % Dedication text
-%
-%\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+\setstretch{1.3} % Return the line spacing back to 1.3
+
+\pagestyle{empty} % Page style needs to be empty for this page
+
+\dedicatory{Dedicated to my\ldots} % Dedication text
+
+\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - CHAPTERS
@@ -202,24 +236,33 @@
 \input{Chapters/Chapter2}
 \input{Chapters/Chapter3}
 \input{Chapters/Chapter4}
+\input{Chapters/Chapter5}
 \input{Chapters/Chapter6}
 \input{Chapters/Chapter7}
-\input{Chapters/Chapter8}
+
+
+
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - APPENDICES
 %----------------------------------------------------------------------------------------
 
-\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
 
-\appendix % Cue to tell LaTeX that the following 'chapters' are Appendices
+\begin{appendices}
+\input{Chapters/AppendixA}
+\end{appendices}
+
+
+%\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+
+%\appendix % Cue to tell LaTeX that the following 'chapters' are Appendices
 
 % Include the appendices of the thesis as separate files from the Appendices folder
 % Uncomment the lines as you write the Appendices
 
-\input{Appendices/AppendixA}
 
-\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+
+%\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
 
 \backmatter
 

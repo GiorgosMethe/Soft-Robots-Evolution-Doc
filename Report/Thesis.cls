@@ -181,7 +181,7 @@
 %	defined as \examname above so you cite it as \examname
 %----------------------------------------------------------------------------------------
 
-\thesistitle{Simultaneous Evolution of Morphology and Locomotion of Soft Robots by Novelty Search} % Your thesis title - this is used in the title and abstract
+\thesistitle{Evolution of Soft Robots by\\ Novelty Search} % Your thesis title - this is used in the title and abstract
 %-------------------------------------------------  
 \supervisor{Arnoud \textsc{Visser} (UvA)\\ Dario \textsc{Izzo} (ESA)\\ Daniel \textsc{Hennes} (ESA)} % You supervisor's name - this is used in the title page
 %-------------------------------------------------   
@@ -197,23 +197,23 @@
 %-------------------------------------------------   
 \keywords{Artificial Intelligence, Evolutionary Algorithms, Soft Robots, Novelty Search} % Keywords for your thesis - this is not currently used anywhere in the template, cite it with \keywordnames if you want it
 %-------------------------------------------------   
-\university{\texorpdfstring{\href{http://www.university.com} % Your university's URL
+\university{\texorpdfstring{\href{http://www.uva.nl} % Your university's URL
                 {University Of Amsterdam}} % Your university's name - this is currently used in the title page
                 {University Of Amsterdam}}
 %-------------------------------------------------   
-\UNIVERSITY{\texorpdfstring{\href{University Web Site URL Here (include http://)} % Your university's URL
+\UNIVERSITY{\texorpdfstring{\href{http://www.uva.nl} % Your university's URL
                 {UNIVERSITY OF AMSTERDAM}} % Your university's name in capitals - this is currently used in the abstract page
                 {UNIVERSITY OF AMSTERDAM}}
 %-------------------------------------------------                
-\department{\texorpdfstring{\href{Department or School Web Site URL Here (include http://)} % Your department's URL
+\department{\texorpdfstring{\href{http://www.uva.nl} % Your department's URL
                 {Artificial Intelligence}} % Your department's name - used in the title page and abstract
                 {Artificial Intelligence}}
 %-------------------------------------------------                
-\DEPARTMENT{\texorpdfstring{\href{Department or School Web Site URL Here (include http://)} % Your department's URL
+\DEPARTMENT{\texorpdfstring{\href{http://www.uva.nl} % Your department's URL
                 {DEPARTMENT OR SCHOOL NAME (IN BLOCK CAPITALS)}} % Your department's name in capitals - this is not currently used anywhere in the template, cite it with \DEPTNAME if you want it
                 {DEPARTMENT OR SCHOOL NAME (IN BLOCK CAPITALS)}}
 %-------------------------------------------------                
-\group{\texorpdfstring{\href{Research Group Web Site URL Here (include http://)} % Your research group's URL
+\group{\texorpdfstring{\href{http://www.uva.nl} % Your research group's URL
                 {Research Group Name}} % Your research group's name - this is currently used in the title page 
                 {Research Group Name}}
 %-------------------------------------------------                
@@ -221,11 +221,11 @@
                 {RESEARCH GROUP NAME (IN BLOCK CAPITALS)}} % Your research group's name in capitals - this is not currently used anywhere in the template, cite it with \GROUPNAME if you want it
                 {RESEARCH GROUP NAME (IN BLOCK CAPITALS)}}
 %-------------------------------------------------                
-\faculty{\texorpdfstring{\href{Faculty Web Site URL Here (include http://)} % Your faculty's URL
+\faculty{\texorpdfstring{\href{http://www.uva.nl} % Your faculty's URL
                 {Faculty of Science}} % Your faculty's name - this is currently used in the abstract page
                 {Faculty of Science}}
 %-------------------------------------------------                
-\FACULTY{\texorpdfstring{\href{Faculty Web Site URL Here (include http://)} % Your faculty's URL
+\FACULTY{\texorpdfstring{\href{http://www.uva.nl} % Your faculty's URL
                 {FACULTY OF INFORMATION SCIENCES}} % Your faculty's name in capitals - this is not currently used anywhere in the template, cite it with \FACNAME if you want it
                 {FACULTY OF INFORMATION SCIENCES}}
 %----------------------------------------------------------------------------------------    
