@@ -6,5 +6,12 @@
 
 \lhead{Chapter 6. \emph{Future Work}} % This is for the header on each page - perhaps a shortened title
 
-\section{Evolution of Materials}
+This chapter discusses possible future research that can be done in the topics approached by this thesis.
+
+\paragraph*{Evolution of materials}~\\
 Another aspect in the evolution of the morphology of soft robot bodies is the evolution of the materials alongside the structure. The scope of this thesis includes the evolution of soft robots morphologies given a set of predefined materials with their properties. The possibility of a dynamic palette of materials will enable more complex gaits for the soft bodies evolved. Using the same generative encoding, material properties can be added as output nodes in the genotype (CPPN), resulting in a palette of materials which size will be the same as the voxels presented in the evolved structure. Another possible way of evolving these properties could be that two genotypes can represent the same individual, following two different encoding. Direct encoding can be used for the material properties, whereas, mutations and crossovers will then only held among the same genotype types.
+
+\paragraph*{Novelty search}~\\
+Incorporating fitness information into the novelty search proved to be profitable for this diversity rewarding search adopting somehow some of fitness-based search advantages. Fit individuals can be selected at the selection process resulting their survival and optimization during the evolution, as long as there will not be new fitter individuals.
+
+As far as behaviors are concerned, a limited behavior space can benefit the search for novel individuals that their behavior belong only to this space, rewarding only those for their novelty. In this thesis, the space of behaviors was only normalized for trajectories of the robot bodies, whereas the orientation of their displacement played no role to the novelty search. A limited trajectory space could only take into consideration straight trajectories, treating all others as invalid behaviors and thus, not rewarding the individuals from which the trajectories were generated. It is expected that this type of novelty search will result in better solution as the diversity of locomotion patterns will only appeal to the strategy and not the direction.

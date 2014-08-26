@@ -7,9 +7,23 @@
 \lhead{Chapter 1. \emph{Introduction}} % This is for the header on each page - perhaps a shortened title
 
 
+Soft robotics is a field of research inspired by soft-bodied organisms, whereas the engineering and designing aspects of soft-structures are in the middle of interest, as soft-robotics can make the interaction between robots and living organisms safe, as well as their function in natural or more complex environments, where rigid robots have disadvantages. Actuated soft materials that react to environmental changes, add complexity to the designing phase of soft-robot engineering, since the degrees of freedom for soft structures that the distribution of materials and the space of possible morphologies, make the number of possibilities vast. 
+
+Approaching such vast search spaces, is a heavy task, recent development in evolutionary optimization though, have shown the possibility of successful evolution of both the morphology and the locomotion strategy of soft robots, while the genotype representation is of vital importance to the evolution. Generative encoding for the genotype representation has shown promising results. Compared to direct encoding, where its representation is a direct mapping from genotype to phenotype level, generative encoding genotype is a function that is similar to a set of rules that can be queried for each coordinate in the Cartesian phenotype space and produce the output. Recent work has proved that evolutionary methods coupled with a generative encoding genotype representation can actually evolve both the morphology and the locomotion behavior of soft-robotics in a virtual simulation.
+
+Traditional evolutionary methods in pursuance of the objective function defined by the user, are blind to keep enough diversity within the population, resulting usually driving the evolution towards local optima. Novelty search, unlike traditional optimization methods does not aim to optimize individuals towards an objective, but instead looks for novelty. Novelty search rewards diversity and leads to a boundless variety of solutions, mimicking natural evolution in such a way. Doing so, it has proven to be a successful method for searching vast spaces where the objective function is deceptive.
+
+Passive soft-robotic structures have no limitations to the extent of morphologies, in the same context, gravity conditions when robot locomotion is investigated might be more decisive when it comes to the morphology of the robot explorers. With the freedom soft-structures can give to evolutionary techniques in respect to the designing part of the evolution (evolved morphology), it is of interest to validate that a taxonomy of different locomotion strategies can apply when the gravity conditions change.
+
+
+
 \section{Thesis Contribution}
 
-\todo{Introduction, an actual copy of abstract but with more details}
+This thesis explores possibles ways of evolving the morphology and the locomotion strategy of soft structures under a virtual simulation environment. A simple genetic algorithm is used to confirm that these kind of problems cannot be captured by a simple genetic method, with direct encoding representation. Direct and direct encoding are also used under a random robot generator which show the advantages of the encoding in the produced structures, as well as point out the need of an indirect encoding to explore and exploit the geometrical properties of the problem. This encoding scheme is used paired to an evolutionary algorithm to verify results of previous work on the same domain, showing that generative representations for the genotype can indeed benefit these kind of evolutionary optimization methods. In addition, this thesis is exploring the effect of diversity based evolution can have in the performance of the evolved morphologies. Novelty search, a method rewarding the ``new'' in the behavior level is used for this purpose showing that not only same or better performance can be achieved through this method but also the diversity of behaviors is remarkably increased. \todo{write for different gravities...}
+
+
+
+
 
 
 \section{Thesis Outline}

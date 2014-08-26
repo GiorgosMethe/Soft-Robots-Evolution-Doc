@@ -13,12 +13,12 @@ In this chapter, an introduction to the problem specifications this thesis is co
 
 Recent work in evolutionary robotics shows that evolving the morphologies of soft robotics is possible through compositional pattern producing networks coupled with NEAT evolutionary algorithm. VoxCad simulator provides a test-bench for analyzing soft robot bodies that can be actuated through environmental changes, in this case the temperature. In addition to that, recent work by~\cite{cheney2013unshackling}, shows that very interesting morphologies can be evolved by the CPPN-NEAT algorithm in this kind of soft-robot simulation environment.
 
-\paragraph{VoxCad}~\\
+\paragraph*{VoxCad}~\\
 As far as the simulation settings are concerned, it is not of interest for this thesis to explore the best  not only environmental but also material settings for the evolved soft-robots. For the simulation of the soft material bodies, VoxCad's underlying physics engine \emph{Voxelyze} was used as a stand-alone software to analyze the soft structures without rendering them. Table~\ref{VoxelyzeSimulationSettings}, describes and presents the values used in different variables of the simulation.
 
 
 
-\paragraph{Materials}~\\
+\paragraph*{Materials}~\\
 
 \begin{figure}
 \centering
@@ -38,9 +38,9 @@ To evaluate all the following methods, information about the performance of rand
 \centering
 \includegraphics[width=1.0\textwidth]{../Figures/Results/random.pdf}\\
 \hspace{0.1cm}
-\includegraphics[width=0.29\textwidth]{../Figures/Robots/random.jpg}
-\includegraphics[width=0.25\textwidth]{../Figures/Robots/rg0.jpg}
-\includegraphics[width=0.20\textwidth]{../Figures/Robots/rg1.jpg}
+\includegraphics[height=0.15\textwidth]{../Figures/Robots/random.jpg}
+\includegraphics[height=0.15\textwidth]{../Figures/Robots/rg0.jpg}
+\includegraphics[height=0.15\textwidth]{../Figures/Robots/rg1.jpg}
 \caption{Generative encoding creates more natural morphologies even in random schemes.}
 \label{fig:randomResultsRobots}
 \end{figure}
@@ -65,7 +65,7 @@ In the previous section, indirect and direct random morphology methods were impl
 
 Hence, a more sophisticated method is tested here. Direct encoding genomes coupled with a simple genetic algorithm is a successful approach in evolving robot controllers. As it was previously stated in ch.~\ref{Background}, mutations and crossovers of real value streams, search the space effectively succeeding in difficult optimization problems. GAlib C++ library \cite{wall1996galib}, used for the implementation of this method.
 
-\paragraph{Representation of the genotype}~\\
+\paragraph*{Representation of the genotype}~\\
 As in every direct encoding scheme, genotype can be represented by a stream of bits, which length is equal with the number of the dimensions of the problem. In this case, using 4 materials but also trying to encode the presence of each voxel in the lattice as another dimension of the problem. Analytically, its length can be represented by a stream of length equal with the number of voxels in the lattice times the materials used plus one denoting the presence, descibed by the following equation:
 \begin{equation}
 \label{lengthDirect}
@@ -118,6 +118,7 @@ The evolution of these indirect representations of the phenotypes can be evolved
 \end{algorithmic}
 \end{algorithm}
 
+\clearpage % to fit in a page
 \begin{framed}
 \begin{description}
 \item[Initial population]{Before the evolution starts, an initial population must be produced, random genomes (CPPNs) fill up the population.}
@@ -194,7 +195,7 @@ The algorithmic adjustments are presented in Algorithm~\ref{noveltyPseudocode}, 
     \Vcentre{1 KHz}     &                     &
     \Vcentre{\includegraphics[scale=0.18]{../Figures/Behaviors/pace.pdf}} &
     \vspace{-.85cm}Set of robot's pace sampled values.    \\
-    \Vcentre{Pace-DFT}             &
+    \Vcentre{DFT-Pace}             &
     \Vcentre{100 KHz}   &
     \Vcentre{\checkmark}                &
     \Vcentre{\includegraphics[scale=0.18]{../Figures/Behaviors/pacedft.pdf}} &
@@ -203,7 +204,7 @@ The algorithmic adjustments are presented in Algorithm~\ref{noveltyPseudocode}, 
     \Vcentre{1 KHz}     &                     &
     \Vcentre{\includegraphics[scale=0.18]{../Figures/Behaviors/vtg.pdf}} &
     \vspace{-.85cm}  Voxels touching the ground in each sampling time.  \\
-    \Vcentre{VTG-DFT}              &
+    \Vcentre{DFT-VTG}              &
     \Vcentre{100 KHz}   &
     \Vcentre{\checkmark}              &
     \Vcentre{\includegraphics[scale=0.18]{../Figures/Behaviors/vtgdft.pdf}} &
@@ -212,7 +213,7 @@ The algorithmic adjustments are presented in Algorithm~\ref{noveltyPseudocode}, 
     \Vcentre{1 KHz}     &                     &
     \Vcentre{\includegraphics[scale=0.18]{../Figures/Behaviors/pr.pdf}} &
     \vspace{-.85cm}Maximum pressure among the connected voxels.  \\
-    \Vcentre{Pressure-DFT}         &
+    \Vcentre{DFT-Pressure}         &
     \Vcentre{100 KHz}   &
     \Vcentre{\checkmark}                &
     \Vcentre{\includegraphics[scale=0.18]{../Figures/Behaviors/prdft.pdf}} &
@@ -221,7 +222,7 @@ The algorithmic adjustments are presented in Algorithm~\ref{noveltyPseudocode}, 
     \Vcentre{1 KHz}     &                     &
     \Vcentre{\includegraphics[scale=0.18]{../Figures/Behaviors/ke.pdf}} &
     \vspace{-.85cm}Maximum kinetic energy of voxels.    \\
-    \Vcentre{KE-DFT}               &
+    \Vcentre{DFT-KE}               &
     \Vcentre{100 KHz}   &
     \Vcentre{\checkmark}                &
     \Vcentre{\includegraphics[scale=0.18]{../Figures/Behaviors/kedft.pdf}}  &

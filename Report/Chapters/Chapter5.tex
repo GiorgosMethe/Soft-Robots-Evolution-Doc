@@ -6,8 +6,7 @@
 
 \lhead{Chapter 5. \emph{Results}} % This is for the header on each page - perhaps a shortened title
 
-
-
+Following the extensive analysis of the methods used, this chapter presents and discusses the results of the reviewed methods. The performance of novelty search in respect to an objective function, is compared to fitness based search which is driven by this fitness measure. Selection methods such as competition within the population of each generation and elitism are analyzed for research purposes. Finally, evolution of these morphologies under variant gravity conditions is held to show possible differences in the evolved morphologies and a possible taxonomy of the structures made for each condition.
 
 
 \section{Into The Performace of The Novelty Search Method}
@@ -205,7 +204,16 @@ The way these two elitism functions can be used depends on the population size, 
 
 
 
-\section{Evolving Soft-Robots for Outer Space}
+\section{Evolving Soft-Robots for Outer Space}  
 
+In this section, it is of interest to show how different environmental conditions can affect both the search and the type of locomotion produced by the evolved soft robots. Since, similar conditions of other planes into our solar system are difficult to be reproduced by the simulation environment is used, we only interested to replicate the previous experimental settings with variant gravity acceleration and temperature period levels. Fitness based and novelty search are used again within the CPPN-NEAT evolutionary algorithm to evolve the morphology and the locomotion strategies of these voxel structures. For the novelty search three dimensional trajectories of the soft bodies are chosen as the behavior metric to evaluate the novelty of each. Figure~\ref{fig:GravityExperiment1}, illustrates the performance of these two search methods, in eight different settings, for five independent runs, the best fitness achieved by an individual in each run is what the figures shows.
+
+
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{../Figures/Results/GravityExperiment1.pdf}
+\caption{\textcolor{ForestGreen}{Novelty} compared with \textcolor{MidnightBlue}{Fitness} search for different frequency and gravity levels. Higher frequencies do not achieve higher performance in locomotion speed in low gravity conditions.}
+\label{fig:GravityExperiment1}
+\end{figure}
 
 
