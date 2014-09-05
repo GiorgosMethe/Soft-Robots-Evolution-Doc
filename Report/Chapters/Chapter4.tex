@@ -153,7 +153,7 @@ Novelty search as first presented in Ch.~\ref{Background}, requires small change
 \STATE $\mathbf{evaluation}(\mathtt{generation}[i])$
 \FORALL {$\mathtt{ind} \in \mathtt{generation}[i]$}
 \STATE $\mathtt{novelty} = \mathbf{sparsity}(\mathtt{ind}, (\mathtt{generation}[i] - \mathtt{ind}) \cup \mathtt{novel\_inds})$
-\IF {$(\mathtt{novelty} \geq \mathtt{novelty\_{threshold}})$}
+\IF {$(\mathtt{novelty} \geq \mathtt{novelty\_{threshold}}\ ||\ \mathtt{novel\_inds} == \varnothing)$}
 \STATE $\mathtt{novel\_inds} = \mathtt{novel\_inds} \cup \mathtt{ind}$
 \ENDIF
 \ENDFOR
