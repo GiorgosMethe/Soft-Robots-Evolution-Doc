@@ -137,12 +137,44 @@ Within the same figure and on the left side of it, \emph{fitness}-search is also
 
 \subsection{Is Diversity of Individuals Increased in \emph{Novelty}-Search?}
 
-\todo{Examples of robots here, showing that the diversity is larger for novelty}
+Figure~\ref{fig:morphologyDiversity}, shows the champions every hundred generations of a experimental run for novelty search and fitness based search. While the fitness based search is stuck trying to optimize a specific morphology of a soft robots, novelty search is taking a walk in behavior space unveiling new morphologies. 
+
+\begin{figure}
+\centering
+\begin{subfigure}[b]{1.0\textwidth}
+\includegraphics[width=0.19\textwidth]{../Figures/Robots/f_4_g_100.jpg}
+\includegraphics[width=0.19\textwidth]{../Figures/Robots/f_4_g_200.jpg}
+\includegraphics[width=0.19\textwidth]{../Figures/Robots/f_4_g_300.jpg}
+\includegraphics[width=0.19\textwidth]{../Figures/Robots/f_4_g_400.jpg}
+\includegraphics[width=0.19\textwidth]{../Figures/Robots/f_4_g_500.jpg}\\
+\includegraphics[width=0.19\textwidth]{../Figures/Robots/f_4_g_600.jpg}
+\includegraphics[width=0.19\textwidth]{../Figures/Robots/f_4_g_700.jpg}
+\includegraphics[width=0.19\textwidth]{../Figures/Robots/f_4_g_800.jpg}
+\includegraphics[width=0.19\textwidth]{../Figures/Robots/f_4_g_900.jpg}
+\includegraphics[width=0.19\textwidth]{../Figures/Robots/f_4_g_1000.jpg}
+\caption{Fitness based search}
+\end{subfigure}\\
+\begin{subfigure}[b]{1.0\textwidth}
+\includegraphics[width=0.19\textwidth]{../Figures/Robots/n_4_g_100.jpg}
+\includegraphics[width=0.19\textwidth]{../Figures/Robots/n_4_g_200.jpg}
+\includegraphics[width=0.19\textwidth]{../Figures/Robots/n_4_g_300.jpg}
+\includegraphics[width=0.19\textwidth]{../Figures/Robots/n_4_g_400.jpg}
+\includegraphics[width=0.19\textwidth]{../Figures/Robots/n_4_g_500.jpg}\\
+\includegraphics[width=0.19\textwidth]{../Figures/Robots/n_4_g_600.jpg}
+\includegraphics[width=0.19\textwidth]{../Figures/Robots/n_4_g_700.jpg}
+\includegraphics[width=0.19\textwidth]{../Figures/Robots/n_4_g_800.jpg}
+\includegraphics[width=0.19\textwidth]{../Figures/Robots/n_4_g_900.jpg}
+\includegraphics[width=0.19\textwidth]{../Figures/Robots/n_4_g_1000.jpg}
+\caption{Novelty search}
+\end{subfigure}
+\label{fig:morphologyDiversity}
+\caption{Fitness based search trying to optimize a specific structure while the search for novelty results in a variety of shapes.}
+\end{figure}
 
 
 \section{How Selection Affects the Performance of Both Search Methods}
 
-Discussed extensively in the previous section, selection is a process that picks individuals in order to breed, be mutated or copied into the next generation. It is the part of the evolutionary algorithm that is responsible for producing the new generation, based on the individuals which exist into the current one. 
+Discussed extensively in the previous section, selection is a process that picks individuals in order to breed, be mutated or copied into the next generation. It is the part of the evolutionary algorithm that is responsible for producing the new generation, based on the individuals which exist into the current one.
 
 
 \subsubsection*{\emph{Fitness} Search}
@@ -197,22 +229,15 @@ The way these two elitism functions can be used depends on the population size, 
 
 
 
-
-
-
-
-
-
-
 \section{Evolving Soft-Robots for Outer Space}  
+\todo{after last experiments will finish}
+In this section, it is of interest to show how different environmental conditions can affect both the search and the type of locomotion produced by the evolved soft robots. Since, similar conditions of other planes into our solar system are difficult to be reproduced by the simulation environment is used, we only interested to replicate the previous experimental settings with variant gravity acceleration and temperature period levels. Fitness based and novelty search are used again within the CPPN-NEAT evolutionary algorithm to evolve the morphology and the locomotion strategies of these voxel structures. For the novelty search three dimensional trajectories of the soft bodies are chosen as the behavior metric to evaluate the novelty of each. Figure~\ref{fig:GravityExperiment1}, illustrates the performance of these two search methods, in eight different settings, for five independent runs, the best fitness achieved by an individual in each run are shown. Notice, that novelty search fails to evolve morphologies which achieve higher fitness values than those fitness evolves. The reason this happens, is that three dimensional trajectories fail to compactly describe the behavior of the evolved individuals resulting in huge search space in comparison with the two dimensional trajectories. In addition, this type of behavior metric only shows improvements over the projection in two dimensional space for smaller lattices (Fig.~\ref{fig:BehaviorsPerformance}), when the search space of morphologies is small enough to be searched within a limited number of generations ($1000$). Taking as granted that high velocities can only appear by mobile machines in higher gravity levels, the duration of the evaluation also plays an important role in the failure of novelty search. It is expected that a more compact representation of the behavior will result in an improvement for novelty search.
 
-In this section, it is of interest to show how different environmental conditions can affect both the search and the type of locomotion produced by the evolved soft robots. Since, similar conditions of other planes into our solar system are difficult to be reproduced by the simulation environment is used, we only interested to replicate the previous experimental settings with variant gravity acceleration and temperature period levels. Fitness based and novelty search are used again within the CPPN-NEAT evolutionary algorithm to evolve the morphology and the locomotion strategies of these voxel structures. For the novelty search three dimensional trajectories of the soft bodies are chosen as the behavior metric to evaluate the novelty of each. Figure~\ref{fig:GravityExperiment1}, illustrates the performance of these two search methods, in eight different settings, for five independent runs, the best fitness achieved by an individual in each run is what the figures shows.
 
-
-\begin{figure}
+\begin{figure}[ht!]
 \centering
 \includegraphics[width=1.0\textwidth]{../Figures/Results/GravityExperiment1.pdf}
-\caption{\textcolor{ForestGreen}{Novelty} compared with \textcolor{MidnightBlue}{Fitness} search for different frequency and gravity levels. Higher frequencies do not achieve higher performance in locomotion speed in low gravity conditions.}
+\caption{\textcolor{ForestGreen}{Novelty} compared with \textcolor{MidnightBlue}{Fitness} search for different frequency and gravity levels. Higher frequencies do not achieve higher performance in locomotion speed in low gravity conditions. (settings~\ref{Settings2})}
 \label{fig:GravityExperiment1}
 \end{figure}
 
