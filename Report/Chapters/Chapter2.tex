@@ -6,28 +6,25 @@
 
 \lhead{Chapter 2. \emph{Background}} % This is for the header on each page - perhaps a shortened title
 
-This present chapter serves an introductory purpose, where an extensive analysis to all the specific research components of this thesis is following. First, evolutionary algorithms and robotics are discussed in depth. More specifically, genetic algorithms are presented, the role of the encoding in the representation within an evolutionary setting,  how artificial neural networks (ANNs) can represent an organism in evolutionary algorithms (EAs), and how these ANNs can be evolved when coupled with an EA. As part of the different encoding schemes, an indirect coding called compositional pattern producing networks is also discussed in detail. The aspect of the objective function in such evolutionary problems and the affect that has in the performance of the methods. Additionally, a search that uses an objective function that rewards diversity in the evolution is presented. Last, a field of robotics and material sciences, soft robotics is investigated in conjunction with ways that these soft material structures can be evolved and simulated in virtual environments, as well as already designed soft-robots in real life applications.
+%This present chapter serves an introductory purpose, where an extensive analysis to all the specific research components of this thesis is following. 
+This chapter gives an short overview of the state-of-the-art in evolutionary algorithms, to introduce the concepts needed for the approach of this thesis.
+First, evolutionary algorithms and robotics are discussed in depth. More specifically, genetic algorithms are presented, the role of the encoding in the representation within an evolutionary setting,  how artificial neural networks (ANNs) can represent an organism in evolutionary algorithms (EAs), and how these ANNs can be evolved when coupled with an EA. As part of the different encoding schemes, an indirect coding called compositional pattern producing networks is also discussed in detail. The aspect of the objective function in such evolutionary problems and the affect that has in the performance of the methods. Additionally, a search that uses an objective function that rewards diversity in the evolution is presented. Last, a field of robotics and material sciences, soft robotics is investigated in conjunction with ways that these soft material structures can be evolved and simulated in virtual environments, as well as already designed soft-robots in real life applications.
 
 
 
 
 \section{Evolutionary Algorithms}
 
-Evolutionary algorithms (EA) is a part of the evolutionary computation field, a generic population-based optimization algorithm. The main idea is that an evolution is held and propagate from generation to generation holding a number of candidate solutions. These candidates are propagated within generations until a good solution is found or a maximum number of iterations has passed. One of the most important advantages of EAs is that they can approximate good solutions in very difficult optimization problems, where analytic methods cannot be applied. This non-deterministic way of evolution starting from random sampled candidates from the solution space, results that the algorithm will come up with different results on separate runs. Another important fact of EAs is that holding a population of solutions can help avoiding being ``trapped'' in local optima of a specific function. The way EAs propagate from one generation to the other is simply by using all/part of the current candidate solutions to produce the next generation of them. Nevertheless, in evolutionary algorithms, the objective function trying to optimize has always meaning, only in respect to other individuals within the population, and not to the ultimate objective of each optimization problem.
+Evolutionary algorithms (EA) is a part of the evolutionary computation field, where generic population-based optimization algorithms are studied. The main idea is that an evolution is held and propagate from generation to generation holding a number of candidate solutions. These candidates are propagated within generations until a good solution is found or a maximum number of iterations has passed. One of the most important advantages of EAs is that they can approximate good solutions in very difficult optimization problems, where analytic methods cannot be applied. This non-deterministic way of evolution starting from random sampled candidates from the solution space, results that the algorithm will come up with different results on separate runs. Another important fact of EAs is that holding a population of solutions can help avoiding being ``trapped'' in local optima of a specific function. The way EAs propagate from one generation to the other is simply by using all/part of the current candidate solutions to produce the next generation of them. Nevertheless, in evolutionary algorithms, the objective function trying to optimize has always meaning, only in respect to other individuals within the population, and not to the ultimate objective of each optimization problem.
 
 
-\begin{figure}[t!]
-\centering
-\includegraphics[width=0.8\textwidth]{../Figures/Misc/Evolution.eps}
-\caption{Basic pipeline of an evolutionary method.}
-\label{fig:evolutionPipeline}
-\end{figure}
+
 
 \subsection{Genetic Algorithms}
 Genetic are in principle part of the evolutionary algorithms and follow the same principles.
 
 \begin{quote}Genetic algorithms are probabilistic search procedures designed to work on
-large spaces involving states that can be represented by strings.\end{quote}
+large problem spaces involving states that can be represented by strings.\end{quote}
 
 Considering the above quote by~\cite{goldberg1988genetic}, a genetic algorithm is a process of evolving a stream of values, which is a single solution in a high dimensional problem space. These values can be at their simplest form, bit ($0, 1$), integer, or float values. 
 
@@ -37,19 +34,20 @@ The way the next generation's population is produced completely depends on the c
 
 The way individuals are selected after each successful generation in order to produce new individuals, belongs to the process of \emph{selection}. Selection, as the name reveals itself, selects which individuals will become parents and which individuals will not. The selection criteria, as it also happen in some natural environments where the most fit organisms survive, is a function that can approximate how good is an individual. This \emph{objective} function, also called \emph{fitness}, is a measure of how good an individual is (i.e. total displacement of a robot's body while trying to evolve walking). With the knowledge of the fitness function added to the evolution, weak individuals are most of the times discarded from the breeding process. Selecting parents randomly from the top part of the population or selecting parent via \emph{tournament}, known also as \emph{competition} (i.e., multiple random picks of individuals from the whole generation's population keeping the best pick) are two of the basic selection methods in evolutionary algorithms.
 
+\begin{figure}[hb]
+\centering
+\includegraphics[width=0.8\textwidth]{../Figures/Misc/Evolution.eps}
+\caption{Basic pipeline of an evolutionary method.}\todo{Own picture or Courtesy?}
+\label{fig:evolutionPipeline}
+\end{figure}
+
+
 Figure~\ref{fig:evolutionPipeline}, illustrates the algorithmic pipeline of an evolutionary method, as described above. The pipeline starts with an random initialized population which is then evaluated (size refers to how ``good'' is each individual). The selection process is then following, whereas individuals are sorted based on their goodness in respect to the target of the evolution, and a set of the best is selected to produce the next generation where with the help of the three main genetic operators, elitism, crossover and mutation. The next generation will also be evaluated in respect to the same objective function and the iterative process will continue.
 
 \section{Evolutionary Robotics}
+\label{sec:evolutionary_robotics}
 
-Evolutionary robotics~\cite{WikievolutionaryRobotics} (ER) is a method that makes use of evolutionary computation algorithms to develop (evolve) robot controllers, without the direct design-programming by human engineers. One big advantage of this method is that it can evolve controllers for robots for environments that human designers and engineers do not have enough knowledge about (i.e., designing a robot controller for another planet, where surface type and gravity level might be crucial variables for the design of an exploring robot). In the same fashion as natural evolution, evolutionary techniques work with a population of random initialized controllers. The candidate population individuals (robot controllers) used in ER applications may be drawn from some subset of the set of artificial neural networks (ANNs), whereas simpler versions of genetic algorithm applications use \texttt{bit}-streams that directly map the controller. The controllers in the better performing robots are selected then, altered and propagated through mutation, crossover, and other genetic operations, in a repeating process that mimics natural evolution. Evolutionary robotics is done with many different objectives, often at the same time. These include creating useful controllers for real-world robot tasks, reproducing biological phenomena, etc.. Creating controllers via artificial evolution requires a large number of evaluations of a large population. This is usually takes a lot of computational time, which is one of the reasons why evolution of such controllers is usually evaluated within a simulation software. Also, initial random controllers may exhibit potentially harmful behavior, such as repeatedly crashing the robot into a wall, which may damage a physical robot.
-
-\begin{figure}
-\centering
-\includegraphics[width=0.3\textwidth]{../Figures/Misc/direct.jpg}\  \   \   
-\includegraphics[width=0.3\textwidth]{../Figures/Misc/indirect.jpg}
-\caption{Comparison \emph{direct} encoding versus \emph{generative} for the binary image example.}
-\label{fig:directVsIndirectEncoding}
-\end{figure}
+Evolutionary robotics~\cite{WikievolutionaryRobotics} (ER) is a method that makes use of evolutionary computation algorithms to develop (evolve) robot morphology or robot controllers, without the direct design-programming by human engineers. Most research concentrate on developing robot controllers. One big advantage of this method is that it can evolve controllers for robots for environments that human designers and engineers do not have enough knowledge about (i.e., designing a robot controller for another planet, where surface type and gravity level might be crucial variables for the design of an exploring robot). In the same fashion as natural evolution, evolutionary techniques work with a population of random initialized controllers. The candidate population individuals (robot controllers) used in ER applications may be drawn from some subset of the set of artificial neural networks (ANNs), whereas simpler versions of genetic algorithm applications use \texttt{bit}-streams that directly map the controller. The controllers in the better performing robots are selected then, altered and propagated through mutation, crossover, and other genetic operations, in a repeating process that mimics natural evolution. Evolutionary robotics is done with many different objectives, often at the same time. These include creating useful controllers for real-world robot tasks, reproducing biological phenomena, etc.. Creating controllers via artificial evolution requires a large number of evaluations of a large population. This is usually takes a lot of computational time, which is one of the reasons why evolution of such controllers is usually evaluated within a simulation software. Also, initial random controllers may exhibit potentially harmful behavior, such as repeatedly crashing the robot into a wall, which may damage a physical robot.
 
 Apart from evolutionary methods to develop robot controllers reinforcement learning is used, rewarding actions, which translates to state-action pairs that lead to high rewarding behaviors, as a result, a robot controller can be indirectly built. Applying evolved robot controllers to real robots in a physical environment is an extremely difficult task, since simulators in front of the limitations of computing efficiency sacrifice the accuracy. In some cases, evolutionary methods can be used to design the physical structure (morphology) of the robot~\cite{hiller2010evolving}, in addition or in place of the controller. This thesis is exploring that aspect of evolution. Developmental robotics is a field related to evolutionary robotics,  while instead of evolving through generations towards more fit controllers, it is trying to mimic life-like learning starting from a ``blank'' state in which the robot's ``brain'' is initialized and everything is unknown.
 
@@ -57,60 +55,71 @@ Apart from evolutionary methods to develop robot controllers reinforcement learn
 \section{Direct-Indirect Encoding of the Genotype}
 
 
-A simple direct encoding was described in the previous section, when a single dimension stream of bits or numbers describe the chromosome. When the dimensions of the task define the length of this genome, we have a \emph{direct} encoding, which means that the genotype-phenotype mapping is a straightforward function. An example of this encoding could be the design of a two dimensional binary image. In direct encoding the genotype of this picture can be represented by a stream of bits which has the same length as the image's pixels. In other cases, when there is no direct mapping between the genotype and the phenotype, indirect encoding can be presented, whereas a set of rules or a function can map the phenotype from the genotype. In cases that the phenotype space can be represented by a Cartesian n-dimensional space, an indirect encoded chromosome can be a function that is queried for each coordinate in a specific resolution and represents the phenotype. For the same binary image example, indirect encoding the genotype would be represented by a function that gives pixel values $0$ or $1$ for every pixel's coordinate. Figure~\ref{fig:directVsIndirectEncoding}, illustrates the difference between direct and indirect encoding, an example binary image is shown for both encoding schemes, in the first case (direct) the genotype is a binary stream which length is the equal with the number of pixels producing the value of each pixel directly. The latter encoding, uses a genome of length 3, as many as the coefficients of a linear combination of the function that involves $sin, cos, tan$-functions, the result is taken after applying the same function for each pixel coordinate. Even when a simple function is used the  phenotype holds some of its functions properties such as symmetry and repetition, resulting in a pattern that direct encoding cannot produce.
+A simple direct encoding was described in the previous section, when a single dimension stream of bits or numbers describe the chromosome. When the dimensions of the task define the length of this genome, we have a \emph{direct} encoding, which means that the genotype-phenotype mapping is a straightforward function. An example of this encoding could be the design of a two dimensional binary image. In direct encoding the genotype of this picture can be represented by a stream of bits which has the same length as the image's pixels. In other cases, when there is no direct mapping between the genotype and the phenotype, indirect encoding can be presented, whereas a set of rules or a function can map the phenotype from the genotype. In cases that the phenotype space can be represented by a Cartesian n-dimensional space, an indirect encoded chromosome can be a function that is queried for each coordinate in a specific resolution and represents the phenotype. For the same binary image example, indirect encoding the genotype would be represented by a function that gives pixel values $0$ or $1$ for every pixel's coordinate. 
+
+\begin{figure}[hb]
+\centering
+\includegraphics[width=0.3\textwidth]{../Figures/Misc/direct.jpg}\  \   \   
+\includegraphics[width=0.3\textwidth]{../Figures/Misc/indirect.jpg}
+\caption{Comparison \emph{direct} encoding versus \emph{generative} for the binary image example.}
+\label{fig:directVsIndirectEncoding}
+\end{figure}
+
+Figure~\ref{fig:directVsIndirectEncoding}, illustrates the difference between direct and indirect encoding, an example binary image is shown for both encoding schemes, in the first case (direct) the genotype is a binary stream which length is the equal with the number of pixels producing the value of each pixel directly. The latter encoding, uses a genome of length 3, as many as the coefficients of a linear combination of the function that involves $sin, cos, tan$-functions, the result is taken after applying the same function for each pixel coordinate. Even when a simple function is used the  phenotype holds some of its functions properties such as symmetry and repetition, resulting in a pattern that direct encoding cannot produce.
 
 
 
 \subsection{Compositional Pattern Producing Networks}
 
-\begin{figure}
-\centering
-\includegraphics[width=0.25\textwidth]{../Figures/Misc/cppnNetwork.eps}
-\caption{Compositional pattern producing networks have identical network structure with artificial neural networks.}
-\label{fig:cppnNetwork}
-\end{figure}
-
 Encoding plays an important role and it is critical about the performance of evolutionary algorithms ecpecially when huge problem spaces are present. Research have shown that the genotype-phenotype mapping can affect performance~\cite{komosinski2001comparison}. More than that, the geometrical implications of the problem also have some potentially important role in the encoding problem. Thus, the role of symmetry to machine learning technique is important~\cite{gauci:aaai08}, especially in applications like board games, robot controllers, biped walking, etc., where geometric regularities can be descriptive about the nature of the problem.
 
-\begin{figure}
+\begin{figure}[hb]
 \centering
 \includegraphics{../Figures/Misc/cppnResolution.eps}
 \caption{CPPNs work as a function $f$ that is being queried for the whole n-dimensional Cartesian space in which space maps the phenotype, in this case the phenotype is the triangle, figure taken by~\cite{stanley2007compositional}.}
 \label{fig:cppnResolution}
 \end{figure}
 
-\emph{Compositional pattern producing networks}~\cite{stanley2007compositional} or CPPNs are artificial neural networks in their base with an extended set of activation functions~(fig.~\ref{fig:cppnNetwork}). Results by this encoding show that repetitive and structural patterns can be produced in this generative mapping from the genotype to the phenotype space. Just like in the previous two dimensional image representation of a phenotype, CPPNs generate phenotypes that can be interpreted as distributions of points in a multidimensional Cartesian space. The genotype (CPPN) can be then queried for each coordinate of the space and give the phenotype representation of the genotype in multiple resolutions. In the same fashion, images can be constructed using CPPNs, where pixel coordinates are queried to the network and the grayscale-RGB values can be taken by the outputs of these networks. Figure~\ref{fig:cppnImages}, illustrates images encoded by CPPNs. Comparing the results with figure~\ref{fig:directVsIndirectEncoding}, is now understandable why this kind of encoding can capture in greater extent this problem domains, where symmetry is important.
+\emph{Compositional pattern producing networks}~\cite{stanley2007compositional} or CPPNs are artificial neural networks in their base with an extended set of activation functions~(fig.~\ref{fig:cppnNetwork}).\todo{Don't like the order of pictures and text. Please start with simple mapping functions {fig:cppnResolution}, before you describe more complex}  Results by this encoding show that repetitive and structural patterns can be produced in this generative mapping from the genotype to the phenotype space. Just like in the previous two dimensional image representation of a phenotype, CPPNs generate phenotypes that can be interpreted as distributions of points in a multidimensional Cartesian space\todo{sure about the Euclidean measure?}. The genotype (CPPN) can be then queried for each coordinate of the space and give the phenotype representation of the genotype in multiple resolutions. In the same fashion, images can be constructed using CPPNs, where pixel coordinates are queried to the network and the grayscale-RGB values can be taken by the outputs of these networks. Figure~\ref{fig:cppnImages}, illustrates images encoded by CPPNs. Comparing the results with figure~\ref{fig:directVsIndirectEncoding}, is now understandable why this kind of encoding can capture in greater extent this problem domains, where symmetry is important.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.25\textwidth]{../Figures/Misc/cppnNetwork.eps}
+\caption{Compositional pattern producing networks have identical network structure with artificial neural networks.}
+\label{fig:cppnNetwork}
+\end{figure}
 
 Figure~\ref{fig:cppnResolution}, illustrates how the mapping between the genotype and phenotype is done using generative encoding like CPPNs. A major asset of CPPNs is that they can generalize in all kind of resolutions. Considering the previous figure again, the CPPN is queried for all $x,y$ coordinates of the phenotype two dimensional Cartesian space. The step of $x,y$ sampling can be determined by the problem, since the inputs of the CPPN are the normalized coordinates $x,y \in [-1,1]$. Thus, genotypes using this kind of generative encoding can be mapped in every resolution, making it straightforward to generalize into larger spaces. As the space of the phenotype becomes larger, a CPPN encoding a solution into this space which has a fixed topology (structure of network), is not affected by the increasingly dimensions of the problem, a constraint that affects direct encoding schemes.
 
-\begin{figure}
+\begin{figure}[hb]
 \centering
-\includegraphics[width=0.25\textwidth]{../Figures/Misc/picBreed3.jpg}\  \   \   
-\includegraphics[width=0.25\textwidth]{../Figures/Misc/endless2.png}\  \   \   
-\includegraphics[width=0.25\textwidth]{../Figures/Misc/picBreed2.jpg}\\
-\includegraphics[width=0.25\textwidth]{../Figures/Misc/endless1.png}\	\	\	
-\includegraphics[width=0.25\textwidth]{../Figures/Misc/picBreed1.jpg}\	\	\	
+\includegraphics[width=0.25\textwidth]{../Figures/Misc/picBreed3.jpg}\quad   
+\includegraphics[width=0.25\textwidth]{../Figures/Misc/picBreed2.jpg}\quad
+\includegraphics[width=0.25\textwidth]{../Figures/Misc/picBreed1.jpg}\\
+\includegraphics[width=0.25\textwidth]{../Figures/Misc/endless2.png}\quad 
+\includegraphics[width=0.25\textwidth]{../Figures/Misc/endless1.png}\quad
 \includegraphics[width=0.25\textwidth]{../Figures/Misc/endless3.png}
-\caption{Compositional pattern producing networks can encode truly complex structures and shapes in the phenotype level. Source~\cite{picbreederSite}.}
+\caption{Compositional pattern producing networks (top) can encode truly complex structures and shapes (bottom) in the phenotype level. Source~\cite{picbreederSite}.}
 \label{fig:cppnImages}
 \end{figure}
 
-Compositional pattern producing networks have been used in many applications where symmetry and repetition can produce artistic two or three dimensional structures\cite{endlessforms}, and drawings~\cite{secretan2008picbreeder,picbreederSite}. As these applications require more symmetrical properties than others, more inputs than Cartesian space coordinates are fed into the networks' inputs to achieve these  aesthetic results.
+Compositional pattern producing networks have been used in many applications where symmetry and repetition can produce artistic two or three dimensional structures\cite{endlessforms}, and drawings~\cite{secretan2008picbreeder,picbreederSite}. As these applications require more symmetrical properties\todo{explain: more symmetry means less parameters, so simpler networks} than others, more inputs than Cartesian space coordinates are fed into the networks' inputs to achieve these  aesthetic results.
 
 
 
 \section{Neuroevolution}
 
-\begin{figure}[b!]
+
+
+\emph{Neuroevolution} is an optimization technique using evolutionary methods as described in Section~\ref{sec:evolutionary_robotics}, where artificial neural networks take the place of simpler representations from the genotype (bit-streams) to the phenotype (solution space). ANNs can compute arbitrarily complex functions, learn and perform under the presence of noisy inputs and generalize to unseen sensory information. Neuroevolution requires only a measure of a network's performance at a task, which can be used as reward. The more complicated forms of chromosome representations can develop more complex ``brains'' for robot controllers. After each run, the sensory input of the task domain is given at the artificial neural network's input neurons, and the solution is given by the network's outputs, where the fitness of the specific ``brain'' can be evaluated. A major issue is the selection of the network's \emph{topology}, topology is the arrangement of the network's elements such as links and nodes, which represents the structure and how the information flows within the network. In early neuroevolution implementations the topology of the networks used, was fixed, meaning that the only elements of the networks evolving were the weights of the connections between the nodes. Figure~\ref{fig:robotExample}, illustrates how sensor information propagates through a neural network and generates the motion control of the robot.
+
+\begin{figure}[hb!]
 \centering
-\includegraphics[width=0.6\textwidth]{../Figures/Misc/robotExample.eps}
-\caption{Robot controllers can be evolved through neuroevolution, where robot sensors are the input of neural networks, the output of the network directly control the robot.}
+\includegraphics[width=0.49\textwidth]{../Figures/Misc/RobotMaze.eps}\   
+\includegraphics[width=0.49\textwidth]{../Figures/Misc/RobotMazeNetwork.eps}
+\caption{Robot controllers can be evolved through neuroevolution, where robot sensors are the input of neural networks, the output of the network directly control the robot.}\todo{Here, or at the middle of section 2.4.1}
 \label{fig:robotExample}
 \end{figure}
-
-\emph{Neuroevolution} is an optimization technique using evolutionary methods as described above, whereas artificial neural networks take the place of simpler representations from the genotype (bit-streams) to the solution space. ANNs can compute arbitrarily complex functions, learn and perform under the presence of noisy inputs and generalize to unseen sensory information. Neuroevolution requires only a measure of a network's performance at a task. This more complicated form of chromosome representations can develop more complex ``brains'' for robot controllers. After each run, the sensory input of the task domain is given at the artificial neural network's input neurons, and the solution is given by the network's outputs, where the fitness of the specific ``brain'' can be evaluated. A major issue is the selection of the network's \emph{topology}, topology is the arrangement of the network's elements such as links and nodes, which represents the structure and how the information flows within the network. In early neuroevolution implementations the topology of the networks used, was fixed, meaning that the only elements of the networks evolving were the weights of the connections between the nodes. Figure~\ref{fig:robotExample}, illustrates how sensor information propagates through a neural network and generates the motion control of the robot.
-
-
 
 
 \subsection{Neuroevolution of Augmented Topologies}
@@ -119,26 +128,32 @@ Neuroevolution of augmented topologies (NEAT) as it first introduced by~\cite{st
 
 Originally, neuroevolution methods (methods that evolve ANNs), developed to capture difficult sequential decision as well as control problems, where sensory information is the input of these neural networks and decision are the outputs. NEAT is another method for evolving ANNs, whereas a few simple features are added, making it able to find solutions in more demanding problems. NEAT starts the evolution process with a population of networks with simple topologies. Through the generations instead of just fixing the weights of the networks' connections, topologies will become more complex allowing nodes and links to be added along the generations. Meaning that during evolution, more complex networks will be produced, this \emph{complexifying} technique leads to capture more demanding problems, as it offers enough freedom to the evolution.
 
-Several aspects of this method worth mentioning, with \emph{speciation} be the most important one. Speciation is the procedure that protects new \emph{species} until the have enough time to evolve, before comparing them with the rest of the population. For two individual genotypes (ANNs) to belong to the same species, their network topology must be similar, meaning that a threshold is set, and a function determines the numeric value of two network topologies' similarity. The age of each species protects them for competing in equal terms with more optimized species, giving them in this way time to evolve further towards the objective function.
+% nice place for fig:robotExample 
+
+Several aspects of this method are worth mentioning, with \emph{speciation} be the most important one. Speciation is the procedure that protects new \emph{species} until the have enough time to evolve, before comparing them with the rest of the population. For two individual genotypes (ANNs) to belong to the same species, their network topology must be similar, meaning that a threshold is set, and a function determines the numeric value of two network topologies' similarity. The age of each species protects them for competing in equal terms with more optimized species, giving them in this way time to evolve further towards the objective function.
 
 
 
 \section{CPPN-NEAT}
 
-Neuroevolution of augmented topologies is an evolutionary algorithm which not only evolves artificial neural networks but also their topology along. Compositional pattern producing networks are identical to ANNs in respect to their structure, also can make use of the \emph{complexifying} property, capturing in this way regularities in more complex problems. NEAT method can likewise evolve CPPNs in the place of ANNs, since it only needs minor modifications.
+%Neuroevolution of augmented topologies is an evolutionary algorithm which not only evolves artificial neural networks but also their topology along. 
+Compositional pattern producing networks (CPPN) are identical to ANNs in respect to their structure, also can make use of the \emph{complexifying} property, capturing in this way regularities in more complex problems. NEAT method can likewise evolve CPPNs in the place of ANNs, since it only needs minor modifications.
 
-The resulted method that evolves this generative type of genomes (CPPNs) is called CPPN-NEAT~\cite{stanley2007compositional}, and its only difference is in the way new nodes are added to the networks. Originally NEAT used to evolve ANNs which are using sigmoid functions to every node, so it was a trivial solution that every new-added node will carry this function, on the other hand CPPNs use functions from a canonical set, whereas CPPN-NEAT assigns a random function from this set to every newly added node.
+The resulted method that evolves this generative type of genomes (CPPNs) is called CPPN-NEAT~\cite{stanley2007compositional}, and its only difference with the original NEAT algorithm is in the way new nodes are added to the networks. The original NEAT algorithm uses to evolve ANNs which are using sigmoid functions to every node, so 
+%it was a trivial solution that 
+every new-added node will carry this function.
+In contrast, CPPNs use a variety of functions from a canonical set, so CPPN-NEAT assigns a random function from this set to every newly added node.
 
-Experiments have shown that the discussing method can indeed evolve CPPNs, capturing like this solutions in problems with geometrical nature, holding alongside essential properties of natural evolution. Furthermore, neuroevolution of CPPNs can also determine the connectivity patterns of neural networks in NEAT method~\cite{stanley2009hypercube}.
+Experiments have shown\todo{your of their experiments} that the discussing method can indeed evolve CPPNs, capturing like this solutions in problems with geometrical nature, holding alongside essential properties of natural evolution. Furthermore, neuroevolution of CPPNs can also determine the connectivity patterns of neural networks in NEAT method~\cite{stanley2009hypercube}.
 
 
 
 
 \section{Novelty Search}
 
-Traditional search within the framework of evolutionary algorithms needs an objective function, a function that leads the search towards ``good'' areas of the solution space, following the gradient of the fitness. Defining the fitness function is a straightforward problem most of the times, in a problem when a robot tries to get from its initial position to a target position in a room with no obstacles in between, a fitness function could be determined as the euclidean distance between the final position of the robot and the target point, the closer it gets to the target the more points (higher fitness) the specific controller is rewarded.
+Traditional search within the framework of evolutionary algorithms needs an objective function, a function that leads the search towards ``good'' areas of the solution space, following the gradient of the fitness. Defining the fitness function is a straightforward problem most of the times, in a problem when a robot tries to get from its initial position to a target position in a room with no obstacles in between, a fitness function could be determined as the Euclidean distance between the final position of the robot and the target point, the closer it gets to the target the more points (higher fitness) the specific controller is rewarded.
 
-\subsubsection*{When the objective function lies}
+\subsubsection*{When the objective function lies}\todo{Robots never lie}
 
 \begin{figure}
 \centering
@@ -148,7 +163,9 @@ Traditional search within the framework of evolutionary algorithms needs an obje
 \label{fig:maze}
 \end{figure}
 
-Such a measure as the objective function, is not always truthful, in fact, driving the search towards more rewarding areas of the search in many problems can lead to local optima, misleading the search, which eventually stacks in these localities of the problem. 
+Such a measure as the objective function
+%, is not always truthful, in fact, 
+is greedy, driving the search directly towards more rewarding areas of the search can lead  in many problems to local optima, misleading the search, which eventually stacks in these localities of the problem. 
 
 Considering the robot-maze example presented in~\cite{lehman2011abandoning,lehman2010revising}, a robot (red dot) is placed in a maze (fig.~\ref{fig:maze}), the robot (fig.~\ref{fig:robotExample}) has sensory information which are inputs to its controller (``brain''), the controller is driving the robot through the maze having only sonar sensor information, when its ultimate goal is to drive the robot to the target position (star) in a fixed time span. Naturally, to select a fitness function that can give enough information about how good a controller is, the euclidean distance to the target from the final position of the robot in the end of the simulation time is measured, providing knowledge to the search. For the first maze (left) when no obstacles are between the robot and its target, the objective function is reliable, since the euclidean distance to the target indeed informs the robot how close it is located. In the second maze (right), using the same fitness function, search can be misled. In this example maze, achieving high fitness does not mean that the robot is actually close to the target. Driving north in this maze following the increasing fitness leads to a wall that cannot be passed by the robot, therefore, exploration is needed in low-fitness areas which will allow the robot to reach the target point with the maximum fitness. The deceptive nature of the fitness function in this problem can be found in a lot of optimization problems, and the walls in this maze clearly denote problems where this fitness landscape can be found.
 
@@ -201,7 +218,7 @@ Soft robotics is a field of research dedicated to the science and engineering of
 \label{fig:softRobotsActuation}
 \end{figure}
 
-The design and development of soft robotics is not an easy task, soft grippers can be developed, made throughout by soft materials, however the actuation of such a soft structure is the most challenging task. Actuating soft materials can be done in many ways including pneumatic systems~\cite{ilievski2011soft, shepherd2011multigait}, hydraylic, internal body explosions, pressure tubes, temperature changes and others~\cite{laschi2012soft, seok2010peristaltic}. Figure~\ref{fig:softRobotsActuation} illustrates three different ways that soft-robot bodies can be actuated. Gripping mechanisms~\cite{hirose1978development} can softly and gently conform to objects of any shape and hold them with uniform pressure. This gripping function is realized by means of a mechanism consisting of links and series of pulleys which can be simply actuated by wires. Regardless traditional ways of actuating soft material robots, three dimensional printing is now giving the freedom for multi-material structures to be created, which also explodes the number of possibilities for the design of a soft structure such as a gripper for instance. Topological optimization techniques can be applied~\cite{hiller2009multi} for producing functionalities in the design. Autonomously actuated soft robots~\cite{tolleyresilient} can also be designed, having multiple advantages over rigid body robots, such as resistance under extreme temperatures, locomotion on terrains of variant types. 
+The design and development of soft robotics is not an easy task, soft grippers can be developed, made throughout by soft materials, however the actuation of such a soft structure is the most challenging task. Actuating soft materials can be done in many ways including pneumatic systems~\cite{ilievski2011soft, shepherd2011multigait}, hydraylic, internal body explosions, pressure tubes, temperature changes and others~\cite{laschi2012soft, seok2010peristaltic}. Figure~\ref{fig:softRobotsActuation} illustrates three different ways that soft-robot bodies can be actuated. Gripping mechanisms~\cite{hirose1978development} can softly and gently conform to objects of any shape and hold them with uniform pressure. This gripping function is realized by means of a mechanism consisting of links and series of pulleys which can be simply actuated by wires. Regardless traditional ways of actuating soft material robots, three dimensional printing is now giving the freedom for multi-material structures to be created, which also explodes the number of possibilities for the design of a soft structure such as a gripper for instance. Topological optimization techniques can be applied~\cite{hiller2009multi} for producing functionalities in the design. Autonomously actuated soft robots~\cite{tolleyresilient} (fig.~\ref{fig:softbot}) can also be designed, having multiple advantages over rigid body robots, such as resistance under extreme temperatures, locomotion on terrains of variant types. 
 
 It may seem on early stage, nevertheless, soft robotics research field is growing fast. Some of their characteristics make them interesting to explore, such as the infinite number of degrees of freedom, the variety of materials (mostly elastic) that can be used in the contrary to rigid robotics that are mostly made out of metals and plastic. Nevertheless, structure design and control of soft robotics remain challenging mostly because of their soft bodies can only be represented in continuous state space, where only analytical methods can be proven successful.
 
