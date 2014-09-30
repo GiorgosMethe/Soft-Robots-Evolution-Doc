@@ -43,10 +43,10 @@
     \textbf{Property} & \textbf{Value} & \textbf{Description}\\
     \midrule
     Poisson's ratio & 0.35 &  It is the ratio of expansion over two other axes following the compression in one.\\
-    Density & $1\times10^{6}\   Kg/m^3$ & \\
-    Temp phase & 0 & \\
-    Static friction coef. & 1 & \\
-    Dynamic friction coef. & 0.5 & \\
+    Density & $1\times10^{6}\   Kg/m^3$ & Density of material.\\
+    Temp phase & 0 & Phase of material to temperature period.\\
+    Static friction coef. & 1 & Static friction coefficient.\\
+    Dynamic friction coef. & 0.5 & Dynamic friction coefficient.\\
     \bottomrule
     \end{tabular}
 \end{table}
@@ -72,7 +72,7 @@ In this section all materials' properties used during the simulations will be gi
 
 \section{Experimental Settings}
 In this section the settings used for each experiment will be presented. For all the following experimental constants the simulation and material settings used are the ones described above, in case of other settings used, the new settings will be mentioned.
-\subsection{Experiment 1}
+\subsection{Settings}
 \label{Settings1}
 \begin{small}
 \begin{description}
@@ -101,6 +101,85 @@ In this section the settings used for each experiment will be presented. For all
 \item[Lattice dimensions]{$7 \times 7 \times 7$}
 \end{description}
 \end{small}
+
+
+\section{Gravity Experiments}
+\label{gravitySettings}
+\begin{small}
+\begin{description}
+\item[Objective function]{Displacement in body lengths (displacement divided by size of soft robot) of soft robot's center of mass.}
+\end{description}
+\end{small}
+\begin{table}[ht!]
+\centering
+\caption{Unique per material properties}
+\label{UniqueMaterialProperties}
+    \begin{tabular}{lrrrr}
+    \toprule
+    \textbf{Planet} & \textbf{Dim.} & \textbf{Grav.} ($m/s^2$) & \textbf{Sim. Time} (Secs.) & \textbf{Temp. Period} (secs.) \\
+    \midrule
+    Moon & $7^3$ & -1.622 & 1.0 & 0.050 \\
+    Mars & $7^3$ & -3.711 & 1.0 & 0.050 \\
+    Earth & $7^3$ & -9.780 & 0.4 & 0.025 \\
+    Jupiter & $7^3$ & -24.790 & 0.4 & 0.025\\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+
+\chapter{Evolution Settings} % Main appendix title
+
+\label{AppendixB} % For referencing this appendix elsewhere, use \ref{AppendixA}
+
+\lhead{Appendix B. \emph{Evolution Settings}} % This is for the header on each page - perhaps a shortened title
+
+Table~\ref{EvolutionSettings}, presents the settings used in the evolutionary algorithm (CPPN-NEAT), the size of the population and the maximum number of generations are selected to match~\cite{cheney2013unshackling} for comparison purposes. The size of the competition used in the some experiment is $4$. For novelty search, the nearest neighbor sparsity equation was used for the $10$-closest neighbor behaviors, at the same time the threshold in all novelty search experiments used was tuned so $\sim 0.8$ behaviors per generation are generated.
+
+\begin{table}[ht!]
+\centering
+\caption{CPPN-NEAT settings}
+\label{EvolutionSettings}
+    \begin{tabular}{lrrrr}
+    \toprule
+    \textbf{Property} &  \textbf{Value}\\
+    \midrule
+    PopulationSize & 30.0\\
+    MaxGenerations & 1000.0\\
+    DisjointCoefficient & 2.0 \\
+    ExcessCoefficient & 2.0 \\
+    WeightDifferenceCoefficient & 1.0 \\
+    FitnessCoefficient & 0.0 \\
+    CompatibilityThreshold & 6.0 \\
+    CompatibilityModifier & 0.3 \\
+    SpeciesSizeTarget & 8.0 \\
+    DropoffAge & 15.0 \\
+    AgeSignificance &	1.0 \\
+    SurvivalThreshold & 0.2 \\
+    MutateAddNodeProbability & 0.03 \\
+    MutateAddLinkProbability & 0.05 \\
+    MutateDemolishLinkProbability & 0.00 \\
+    MutateLinkWeightsProbability & 0.8 \\
+    MutateOnlyProbability & 0.25 \\
+    MutateLinkProbability & 0.1 \\
+    AllowAddNodeToRecurrentConnection & 0.0 \\
+    SmallestSpeciesSizeWithElitism & 5.0 \\
+    MutateSpeciesChampionProbability & 0.0 \\
+    MutationPower & 2.5 \\
+    AdultLinkAge & 18.0 \\
+    AllowRecurrentConnections & 0.0 \\
+    AllowSelfRecurrentConnections & 0.0 \\
+    ForceCopyGenerationChampion & 1.0 \\
+    LinkGeneMinimumWeightForPhentoype & 0.0 \\
+    GenerationDumpModulo & 1.0 \\
+    ExtraActivationFunctions & 1.0 \\
+    AddBiasToHiddenNodes & 0.0 \\
+    SignedActivation & 1.0 \\
+    ExtraActivationUpdates & 9.0 \\
+    OnlyGaussianHiddenNodes & 0.0 \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
 
 
 
