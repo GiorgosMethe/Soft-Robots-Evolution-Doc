@@ -159,15 +159,41 @@ Traditional search within the framework of evolutionary algorithms needs an obje
 
 \begin{figure}[t!]
 \centering
-\includegraphics[width=0.3\textwidth]{../Figures/Misc/mazeEasy.eps}\  \ \   \   
-\includegraphics[width=0.3\textwidth]{../Figures/Misc/maze.eps}
-\caption{Objective functions can be devious. Maze example from~\cite{lehman2011abandoning}.}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=1.0\textwidth]{../Figures/Misc/MazeEasy.jpg}
+\caption{Easy}
+\label{fig:mazeEasy}
+\end{subfigure}\hspace{2cm} 
+\begin{subfigure}[b]{0.3\textwidth} 
+\includegraphics[width=1.0\textwidth]{../Figures/Misc/MazeHard.jpg}
+\caption{Hard}
+\label{fig:mazeHard}
+\end{subfigure}
+\caption{Objective functions can be devious. Maze examples from~\cite{lehman2011abandoning}.}
 \label{fig:maze}
 \end{figure}
 
 Such a measure as the objective function is greedy, driving the search directly towards more rewarding areas of the search can lead  in many problems to local optima, misleading the search, which eventually stacks in these localities of the problem. 
 
-Considering the robot-maze example presented in~\cite{lehman2011abandoning,lehman2010revising}, a robot (red dot) is placed in a maze (fig.~\ref{fig:maze}), the robot (fig.~\ref{fig:robotExample}) has sensory information which are inputs to its controller (``brain''), the controller is driving the robot through the maze having only sonar sensor information, when its ultimate goal is to drive the robot to the target position (star) in a fixed time span. Naturally, to select a fitness function that can give enough information about how good a controller is, the euclidean distance to the target from the final position of the robot in the end of the simulation time is measured, providing knowledge to the search. For the first maze (left) when no obstacles are between the robot and its target, the objective function is reliable, since the euclidean distance to the target indeed informs the robot how close it is located. In the second maze (right), using the same fitness function, search can be misled. In this example maze, achieving high fitness does not mean that the robot is actually close to the target. Driving north in this maze following the increasing fitness leads to a wall that cannot be passed by the robot, therefore, exploration is needed in low-fitness areas which will allow the robot to reach the target point with the maximum fitness. The deceptive nature of the fitness function in this problem can be found in a lot of optimization problems, and the walls in this maze clearly denote problems where this fitness landscape can be found.
+Considering the robot-maze example presented in~\cite{lehman2011abandoning,lehman2010revising}, a robot (blue dot) is placed in a maze (fig.~\ref{fig:maze}), the robot (fig.~\ref{fig:robotExample}) has sensory information which are inputs to its controller (``brain''), the controller is driving the robot through the maze having only sonar sensor information, when its ultimate goal is to drive the robot to the target position (green dot) in a fixed time span. Naturally, to select a fitness function that can give enough information about how good a controller is, the euclidean distance to the target from the final position of the robot in the end of the simulation time is measured, providing knowledge to the search. For the first maze (fig.~\ref{fig:mazeEasy}) when no obstacles are between the robot and its target, the objective function is reliable, since the euclidean distance to the target indeed informs the robot how close it is located. In the second maze (fig.~\ref{fig:mazeHard}), using the same fitness function, search can be misled. In this example maze, achieving high fitness does not mean that the robot is actually close to the target. Driving north in this maze following the increasing fitness leads to a wall that cannot be passed by the robot, therefore, exploration is needed in low-fitness areas which will allow the robot to reach the target point with the maximum fitness. The deceptive nature of the fitness function in this problem can be found in a lot of optimization problems, and the walls in this maze clearly denote problems where this fitness landscape can be found. 
+
+To visualize how fitness based search can fail in such a setting figure~\ref{fig:mazeFitness}, presents the results of the above experiment explained using the robot sensory information presented in figure~\ref{fig:robotExample}, using NEAT evolutionary algorithm to evolve the neural controller presented in the same figure. The settings used for this experiment were the same as in~\cite{lehman2011abandoning}, where a population of $250$ individual controllers per generation were produced. As expected fitness based search was successful in the easy setting (fig.~\ref{fig:mazeFitnessEasy}). However, it failed to find the optimal solution in the hard map (fig.~\ref{fig:mazeFitnessHard}), focusing on creating controllers that led the robots drive north until the wall was reached, failing to explore the map more.
+
+\begin{figure}[t!]
+\centering
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=1.0\textwidth]{../Figures/Misc/MazeEasyFitness.jpg}
+\caption{Visited space after $200$ generations.}
+\label{fig:mazeFitnessEasy}
+\end{subfigure}\hspace{2cm}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=1.0\textwidth]{../Figures/Misc/MazeHardFitness.jpg}
+\caption{Visited space after $1000$ generations.}
+\label{fig:mazeFitnessHard}
+\end{subfigure}
+\caption{Fitness search has no problems to find the solution in the easy map, while it can not find the optimal solution in the hard setting after $250.000$ evaluations.}
+\label{fig:mazeFitness}
+\end{figure}
 
 \subsubsection*{Natural evolution is not a search for fitness}
 
@@ -202,7 +228,30 @@ f(x) = \cfrac{1}{k} \sum_{i=1}^{k} dist(x, S_i)
 
 \subsubsection*{Algorithm}
 
-There is no need of extensive modification in any evolutionary algorithm in order novelty search to be implemented, apart from replacing fitness with a novelty measure. To push search to visit new areas in the behavior space we need to reward every novel behavior coming up during the evolution. For this reason, storing novel reference points in space (behaviors) during the evolution is inevitable. The sparseness of a new behavior is computed by equation~\ref{sparsenessEquation}, resulting in a numerical value that implies how novel is the found behavior. If the new behavior has a novelty value more than this threshold it is also stored in the novel individuals' population. Apart from comparing any new behavior with all the novel stored ones, the newly produced can also be confronted with the entire set of behaviors produced in the same generation of the evolution.
+\begin{figure}[t!]
+\centering
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=1.0\textwidth]{../Figures/Misc/MazeEasyNovelty.jpg}
+\caption{Visited positions in the map after $200$ generations.}
+\label{fig:mazeNoveltyEasy}
+\end{subfigure}\hspace{0.3cm}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=1.0\textwidth]{../Figures/Misc/MazeHardNoveltySolution.jpg}
+\caption{Solution found after only $80$ generations.}
+\label{fig:mazeNoveltyHardSolution}
+\end{subfigure}\hspace{0.3cm}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=1.0\textwidth]{../Figures/Misc/MazeHardNovelty.jpg}
+\caption{ Visited positions in the map after $1000$ generations.}
+\label{fig:mazeNoveltyHard}
+\end{subfigure}
+\caption{Novelty search applied in the robot-maze optimization problem. Novelty search deeply investigates the behavior space finding the solution in the hard setting.}
+\label{fig:mazeNovelty}
+\end{figure}
+
+There is no need of extensive modification in any evolutionary algorithm in order novelty search to be implemented, apart from replacing fitness with a novelty measure. To push search to visit new areas in the behavior space we need to reward every novel behavior coming up during the evolution. For this reason, storing novel reference points in space (behaviors) during the evolution is inevitable. The sparseness of a new behavior is computed by equation~\ref{sparsenessEquation}, resulting in a numerical value that implies how novel is the found behavior. If the new behavior has a novelty value more than this threshold it is also stored in the novel individuals' population. Apart from comparing any new behavior with all the novel stored ones, the newly produced can also be confronted with the entire set of behaviors produced in the same generation of the evolution. 
+
+Having discussed about the basic idea behind novelty search and how it can be implemented, it is time to apply it in a known-problem that fitness-based search fails. Considering the robot-maze example presented earlier in this thesis, novelty search is now taking the place of evolution towards the objective function used before, which was the distance to the goal. To do that, a behavior metric has to be defined, which in this problem-case can be the final position of the robot by the time the simulation is finished. The sparsity measure then computes the reward of the robot based on how sparse is the achieved final position of the robot in regard all novel behaviors (positions in the map) found before in the evolution, based on the sparsity equation~\ref{sparsenessEquation}, using $k = 10$. Figure~\ref{fig:mazeNovelty}, presents the results achieved by novelty search in this setting, by showing all the visited areas that robots were driven by their evolved controllers to. For the easy map (fig.~\ref{fig:mazeNoveltyEasy}), novelty search achieved to fully visit every possible position in the map, which can not considered to be good as  fitness search is selects more individuals near to the target position, since the fitness measure in this map is straightforward. However, in the hard map (fig.~\ref{fig:mazeNoveltyHardSolution}, \ref{fig:mazeNoveltyHard}), where fitness-based search failed to find any solutions close to the target position, novelty search succeeded after only $80$ generations.
 
 
 
@@ -235,6 +284,11 @@ To sum up, a lot of research is being done in the field of soft robotics and mat
 
 \subsection{Soft Robotics in Simulation}
 
+Most work to simulate interactions and deformations within and between soft material bodies are mostly focused on the graphical part of the problem, sacrificing the accuracy of the simulation. Three dimensional meshes can represent these bodies including dynamics of their materials. 
+
+A recent work though, \emph{VoxCad} simulator~\cite{hiller2012dynamic}, is focusing mostly on the engineering side of the soft material interactions, not at the expense of a low frame rate. \emph{VoxCad} is a modeling and analyzing open-source software that can simulate soft material deformations and interactions. In figure~\ref{fig:VoxCAD}, VoxCad software is illustrated during the simulation of the soft body robot depicted in the simulator.
+
+VoxCad cannot model and simulate three dimensional meshes, yet a lattice is used to represent the 3D workspace where voxels (three dimensional pixels) can be assigned different materials. Materials have properties such as the elasticity of the material, density, Poisson's ratio, coefficient of thermal expansion (which determines how materials will be expanded in respect to the environment's temperature), temporal phase in respect to the temperature period, and the friction coefficients to the ground. Materials can also be mixed together to create a new type of material.
 
 \begin{figure}[t!]
 \centering
@@ -242,12 +296,6 @@ To sum up, a lot of research is being done in the field of soft robotics and mat
 \caption{VoxCAD (Voxel CAD),a cross-platform open source voxel modeling and analyzing software.}
 \label{fig:VoxCAD}
 \end{figure}
-
-Most work to simulate interactions and deformations within and between soft material bodies are mostly focused on the graphical part of the problem, sacrificing the accuracy of the simulation. Three dimensional meshes can represent these bodies including dynamics of their materials. 
-
-A recent work though, \emph{VoxCad} simulator~\cite{hiller2012dynamic}, is focusing mostly on the engineering side of the soft material interactions, not at the expense of a low frame rate. \emph{VoxCad} is a modeling and analyzing open-source software that can simulate soft material deformations and interactions. In figure~\ref{fig:VoxCAD}, VoxCad software is illustrated during the simulation of the soft body robot depicted in the simulator.
-
-VoxCad cannot model and simulate three dimensional meshes, yet a lattice is used to represent the 3D workspace where voxels (three dimensional pixels) can be assigned different materials. Materials have properties such as the elasticity of the material, density, Poisson's ratio, coefficient of thermal expansion (which determines how materials will be expanded in respect to the environment's temperature), temporal phase in respect to the temperature period, and the friction coefficients to the ground. Materials can also be mixed together to create a new type of material.
 
 Materials themselves are passive and cannot actuate without external trigger. In this simulator this external force that can actuate the materials is the temperature of the environment. The main variables of the environment is the base, the amplitude and finally, the period of the temperature. Furthermore, the gravity acceleration of the environment can vary.
 
