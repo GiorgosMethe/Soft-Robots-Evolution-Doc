@@ -11,6 +11,10 @@ Following the comprehensive analysis of the evolutionary methods used in the exp
 As in~\cite{cheney2013unshackling} and for comparison purposes, the population of each generation used is $30$, and the number of generations of the evolution is $1000$. For more details about the evolutionary algorithm and simulation settings used, see appendix~\ref{AppendixA}. Due to computationally expensive simulations, lattice sizes less than $10^3$ have been used as well, more specifically experiments have been done under $5^3, 7^3, 10^3$ lattice space.
 
 
+
+\section{Evolved Morphologies}
+
+
 \begin{figure}[t!]
 \centering
 \foreach \i in {1,2,3,4,5,6,7,8}{ 
@@ -31,18 +35,30 @@ As in~\cite{cheney2013unshackling} and for comparison purposes, the population o
 
 \begin{figure}[h!]
 \centering
+\begin{subfigure}[b]{1.0\textwidth}
 \foreach \i in {1,2,3,4,5,6,7,8}{ 
 \includegraphics[width=0.11\textwidth]{../Figures/Robots/nov-1-\i.jpg}
-}\\
+}
+\caption{}
+\end{subfigure}
+\begin{subfigure}[b]{1.0\textwidth}
 \foreach \i in {1,2,3,4,5,6,7,8}{
 \includegraphics[width=0.11\textwidth]{../Figures/Robots/nov-2-\i.jpg}
-}\\
+}
+\caption{}
+\end{subfigure}
+\begin{subfigure}[b]{1.0\textwidth}
 \foreach \i in {1,2,3,4,5,6,7,8}{
 \includegraphics[width=0.11\textwidth]{../Figures/Robots/nov-3-\i.jpg}
-}\\
+}
+\caption{}
+\end{subfigure}
+\begin{subfigure}[b]{1.0\textwidth}
 \foreach \i in {1,2,3,4,5,6,7,8}{
 \includegraphics[width=0.11\textwidth]{../Figures/Robots/nov-4-\i.jpg}
 }
+\caption{}
+\end{subfigure}
 \caption{Champion morphologies evolved in independent runs within novelty search. Each row presents the locomotion strategy of the individuals created.}
 \label{fig:evolvednovelty4}
 \end{figure}
@@ -70,9 +86,7 @@ As in~\cite{cheney2013unshackling} and for comparison purposes, the population o
 \end{figure}
 
 
-\clearpage
 
-\section{Evolved Morphologies}
 
 \begin{figure}[ht!]
 \centering
@@ -88,6 +102,8 @@ As in~\cite{cheney2013unshackling} and for comparison purposes, the population o
 \label{fig:indRunnAvgSize10Novelty}
 \end{figure}
 
+
+\clearpage
 
 \section{Into The Performance of Novelty Search}
 
@@ -311,6 +327,21 @@ The way these two elitism functions can be used depends on the population size, 
 Figure~\ref{fig:CopyFitChampions10}, illustrates the gain in performance when fitness elitism is used in novelty search method compared with pure novelty and fitness based search methods.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\clearpage
 
 \section{Evolving Soft-Robots for Outer Space}  
 
