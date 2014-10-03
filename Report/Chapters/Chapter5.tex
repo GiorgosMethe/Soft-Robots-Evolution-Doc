@@ -8,29 +8,44 @@
 
 Following the comprehensive analysis of the evolutionary methods used in the experiments in the previous chapter, in this chapter the performance of these methods is compared and analyzed. Pure novelty search is compared in respect to the fitness measure used in the simulations (displacement of soft-robots in body-lengths), against fitness search. Questions, as far as what happens in the average fitness and the champion fitness of each generation within novelty search, answered in the following sections. Additionally both search methods are compared in respect to the number of novel behavior they generate during an evolution experimental run. The effect the behavior metric selection has in novelty search is also considered, as well as, the number of closest behaviors in sparsity equation plays also an important role in the evolution towards diversity of behaviors. Selection techniques such as competition within species are also used in both search methods, to determine the effects they have in the performance towards the specific goal it has been set. A new method is proposed for incorporating fitness information into novelty search without unbalancing the search for novelty and its properties. Last, the performance of both methods are now investigated within variant gravity levels, in order to show that gravity conditions do not have an effect towards a specific search method, as well as to examine different evolved locomotion strategies under different gravity conditions.
 
-As in~\cite{cheney2013unshackling} and for comparison purposes, the population of each generation used is $30$, and the number of generations of the evolution is $1000$. For more details about the evolutionary algorithm and simulation settings used, see appendix~\ref{AppendixA}. Due to computationally expensive simulations, lattice sizes less than $10^3$ have been used as well, more specifically experiments have been done under $5^3, 7^3, 10^3$ lattice space.
+As in~\cite{cheney2013unshackling} and for comparison purposes, the population of each generation used is $30$, and the number of generations of the evolution is $1000$, more details about evolutionary algorithm settings, see appendix~\ref{EvolutionSettings}. For simulation settings used, see appendix~\ref{SimulationSettings}. Due to computationally expensive simulations, not all experiments have been done using a lattice size of $10^3$, lattice sizes less than $10^3$ have been used as well, more specifically experiments have been done under $5^3, 7^3, 10^3$ lattice space, see appendix~\ref{ExperimentalSettings}.
 
 
 
 \section{Evolved Morphologies}
 
-
 \begin{figure}[t!]
 \centering
+\begin{subfigure}[b]{1.0\textwidth}
 \foreach \i in {1,2,3,4,5,6,7,8}{ 
 \includegraphics[width=0.11\textwidth]{../Figures/Robots/fit-1-\i.jpg}
-}\\
+}
+\caption{2-legged pull locomotion}
+\label{fig:evolvedMorphologiesFitness-1}
+\end{subfigure}
+\begin{subfigure}[b]{1.0\textwidth}
 \foreach \i in {1,2,3,4,5,6,7,8}{
 \includegraphics[width=0.11\textwidth]{../Figures/Robots/fit-2-\i.jpg}
-}\\
+}
+\caption{4-legged (nose \& tail) animal-like locomotion}
+\label{fig:evolvedMorphologiesFitness-2}
+\end{subfigure}
+\begin{subfigure}[b]{1.0\textwidth}
 \foreach \i in {1,2,3,4,5,6,7,8}{
 \includegraphics[width=0.11\textwidth]{../Figures/Robots/fit-3-\i.jpg}
-}\\
+}
+\caption{2-legged push-pull locomotion}
+\label{fig:evolvedMorphologiesFitness-3}
+\end{subfigure}
+\begin{subfigure}[b]{1.0\textwidth}
 \foreach \i in {1,2,3,4,5,6,7,8}{
 \includegraphics[width=0.11\textwidth]{../Figures/Robots/fit-4-\i.jpg}	
 }
-\caption{Champion (best overall) morphologies evolved in independent runs within fitness-based search. Each row presents the locomotion strategy of the individuals created.}
-\label{fig:evolvedFitness4}
+\caption{2-legged galloping}
+\label{fig:evolvedMorphologiesFitness-4}
+\end{subfigure}
+\caption{Champion (best overall) morphologies evolved in independent runs within fitness-based search. Each row illustrates the locomotion strategy of the individuals created. (Settings~\ref{Settings-size10})}
+\label{fig:evolvedMorphologiesFitness}
 \end{figure}
 
 \begin{figure}[h!]
@@ -39,28 +54,32 @@ As in~\cite{cheney2013unshackling} and for comparison purposes, the population o
 \foreach \i in {1,2,3,4,5,6,7,8}{ 
 \includegraphics[width=0.11\textwidth]{../Figures/Robots/nov-1-\i.jpg}
 }
-\caption{}
+\caption{4-legged animal-like locomotion}
+\label{fig:evolvedMorphologiesNovelty-1}
 \end{subfigure}
 \begin{subfigure}[b]{1.0\textwidth}
 \foreach \i in {1,2,3,4,5,6,7,8}{
 \includegraphics[width=0.11\textwidth]{../Figures/Robots/nov-2-\i.jpg}
 }
-\caption{}
+\caption{2-legged galloping}
+\label{fig:evolvedMorphologiesNovelty-2}
 \end{subfigure}
 \begin{subfigure}[b]{1.0\textwidth}
 \foreach \i in {1,2,3,4,5,6,7,8}{
 \includegraphics[width=0.11\textwidth]{../Figures/Robots/nov-3-\i.jpg}
 }
-\caption{}
+\caption{L-shaped hopper}
+\label{fig:evolvedMorphologiesNovelty-3}
 \end{subfigure}
 \begin{subfigure}[b]{1.0\textwidth}
 \foreach \i in {1,2,3,4,5,6,7,8}{
 \includegraphics[width=0.11\textwidth]{../Figures/Robots/nov-4-\i.jpg}
 }
-\caption{}
+\caption{2-legged galloping}
+\label{fig:evolvedMorphologiesNovelty-4}
 \end{subfigure}
-\caption{Champion morphologies evolved in independent runs within novelty search. Each row presents the locomotion strategy of the individuals created.}
-\label{fig:evolvednovelty4}
+\caption{Champion morphologies evolved in independent runs within novelty search. Each row illustrates the locomotion strategy of the individuals created. (Settings~\ref{Settings-size10})}
+\label{fig:evolvedMorphologiesNovelty}
 \end{figure}
 
 
@@ -81,29 +100,35 @@ As in~\cite{cheney2013unshackling} and for comparison purposes, the population o
 }
 \caption{Novelty search}
 \end{subfigure}\\
-\caption{Champion morphologies evolved in independent runs within fitness-based and novelty search. Each row presents the locomotion strategy of the individuals created.}
-\label{fig:evolvedfitnessSize5}
+\caption{Champion morphologies evolved in independent runs within fitness-based and novelty search in a lower resolution ($5^3$). Each row illustrates the locomotion strategy of the individuals created. (Settings~\ref{Settings-size5})}
+\label{fig:evolvedMorphologies5NoveltyFitness}
 \end{figure}
 
 
+In this section some effective locomotion patterns evolved within fitness-based and novelty search will be discussed. Apart from the performance that the two methods achieved, both of them succeed in evolving effective strategies for the locomotion of the evolved morphologies. Figure~\ref{fig:evolvedMorphologiesFitness}, shows four different gaits evolved by fitness based search, based on different ways of locomotion they are all effective regarding to the objective function. Considering that a lattice space of $10^3$ cannot be compared with the real-life locomotion ways of living organisms, the result are shown that even in such low dimensions life-like gait can be evolved. Soft-body structures can use the front leg to pull themselves forward (fig.~\ref{fig:evolvedMorphologiesFitness-1}), evolve a four-leg walking where a nose and a tail are mostly used for stability (fig.~\ref{fig:evolvedMorphologiesFitness-2}), push and pull themselves forward (fig.~\ref{fig:evolvedMorphologiesFitness-3}), and gallop using both of their legs (fig.~\ref{fig:evolvedMorphologiesFitness-4}). 
+
+Moving from fitness-based search to novelty search, locomotion strategies do not differ too much, since the resolution does not allow the virtual soft-robots to explore more locomotion techniques. However, novelty search proves its merits as far as the morphologies are concerned. More complicated structures are now evovled, which can be explained by the fact that, novelty search pushes the evolutionary algorithm to investigate more complicated topologies for the networks (CPPNs) representing the morphologies produced. Figure~\ref{fig:evolvedMorphologiesNovelty}, presents four champion morphologies and their locomotion strategies. 
+
+
+
+
+
+\clearpage
 
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=1.0\textwidth]{../Figures/Results/indRunnAvgSize7Fitness.pdf}
-\caption{Best so far fitness, $10$ individual runs for fitness based search (settings~\ref{Settings3}).}
+\caption{Best so far fitness, $10$ individual runs for fitness based search. (Settings~\ref{Settings-size7})}
 \label{fig:indRunsAvgSize10Fitness}
 \end{figure}
 ~
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=1.0\textwidth]{../Figures/Results/indRunnAvgSize7Novelty.pdf}
-\caption{Best so far fitness, $10$ individual runs for novelty search (settings~\ref{Settings3}).}
+\caption{Best so far fitness, $10$ individual runs for novelty search. (Settings~\ref{Settings-size7})}
 \label{fig:indRunnAvgSize10Novelty}
 \end{figure}
-
-
-\clearpage
 
 \section{Into The Performance of Novelty Search}
 
@@ -118,14 +143,14 @@ One more thing worth noticing, is that observing only big steps in the fitness, 
 \begin{figure}[t!]
 \centering
 \includegraphics[width=1.0\textwidth]{../Figures/Results/FitNovRandomDirectSize5.pdf}
-\caption{Comparison of simple genetic algorithm (direct encoding) against \emph{random} - \emph{fitness} - \emph{novelty} search with generative encoding. Best so far fitness averaged over $10$ runs (settings~\ref{Settings1}).}
+\caption{Comparison of simple genetic algorithm (direct encoding) against \emph{random} - \emph{fitness} - \emph{novelty} search with generative encoding. Best so far fitness averaged over $10$ runs. (Settings~\ref{Settings-size5})}
 \label{fig:FitNovRandomDirectSize5}
 \end{figure}
 
 \begin{figure}[t!]
 \centering
 \includegraphics[width=1.0\textwidth]{../Figures/Results/FitvsNovVsDirSize10.pdf}
-\caption{Comparison of simple genetic algorithm (direct encoding) against \emph{fitness} - \emph{novelty} search with generative encoding. Best so far fitness averaged over $10$ runs (settings~\ref{Settings2}).}
+\caption{Comparison of simple genetic algorithm (direct encoding) against \emph{fitness} - \emph{novelty} search with generative encoding. Best so far fitness averaged over $10$ runs. (Settings~\ref{Settings-size10})}
 \label{fig:FitvsNovVsDirSize10}
 \end{figure}
 
@@ -147,7 +172,7 @@ Figure~\ref{fig:FitvsNovVsDirSize10}, presents the results of the same four diff
 \begin{figure}[t!]
 \centering
 \includegraphics[width=1.0\textwidth]{../Figures/Results/AvgGenerChampNoveltyFitnessSize7.pdf}
-\caption{Fitness of the generation's champion (best individual) for \emph{fitness} - \emph{novelty} search averaged over $10$ runs (settings~\ref{Settings3}).}
+\caption{Fitness of the generation's champion (best individual) for \emph{fitness} - \emph{novelty} search averaged over $10$ runs. (Settings~\ref{Settings-size7})}
 \label{fig:AvgGenerChampNoveltyFitnessSize7}
 \end{figure}
 
@@ -157,7 +182,7 @@ Another aspect of the evolution should be inspected is how the population of eac
 \begin{figure}[t!]
 \centering
 \includegraphics[width=1.0\textwidth]{../Figures/Results/ViolinPlotsAvgGenFitSize7.pdf}
-\caption{Distributions of average population fitness per generation over 10 runs for \emph{fitness}(Blue) - \emph{novelty} (Green) search with generative encoding (settings~\ref{Settings3}).}
+\caption{Distributions of average population fitness per generation over 10 runs for \emph{fitness}(Blue) - \emph{novelty} (Green) search with generative encoding. (Settings~\ref{Settings-size7})}
 \label{fig:ViolinPlotsAvgGenFitSize7}
 \end{figure}
 
@@ -168,7 +193,7 @@ What we see in the last two figures, evidently shows that even though novelty se
 \begin{figure}[t!]
 \centering
 \includegraphics[width=1.0\textwidth]{../Figures/Results/novelIndividualsFitNovComp.pdf}
-\caption{Number of novel behaviors found up to generation number, averaged over 10 runs. The novelty measure is computed as the average distance from the $10$-nearest behaviors for \emph{fitness} - \emph{novelty} search with generative encoding (settings~\ref{Settings3}).}
+\caption{Number of novel behaviors found up to generation number, averaged over 10 runs. The novelty measure is computed as the average distance from the $10$-nearest behaviors for \emph{fitness} - \emph{novelty} search with generative encoding. (Settings~\ref{Settings-size7})}
 \label{fig:novelIndividualsFitNovComp}
 \end{figure}
 
@@ -178,7 +203,7 @@ Until this point, the performance of both fitness and novelty search methods hav
 \centering
 \includegraphics[width=0.49\textwidth]{../Figures/Behaviors/behaviorsNovelty.pdf}\	
 \includegraphics[width=0.49\textwidth]{../Figures/Behaviors/behaviorsFitness.pdf}
-\caption{Novelty search creates a vast amount of behaviors achieving in this way to find fit individuals, and avoid local optima of the solution space. (settings~\ref{Settings3})}
+\caption{Novelty search creates a vast amount of behaviors achieving in this way to find fit individuals, and avoid local optima of the solution space. (Settings~\ref{Settings-size7})}
 \label{fig:behaviorSpaceDiversity}
 \end{figure}
 
@@ -194,7 +219,7 @@ A good behavior metric should include information about the objective function. 
 \begin{figure}
 \centering
 \includegraphics[width=1.0\textwidth]{../Figures/Results/FitNovSize5Pen2.pdf}
-\caption[]{Best so far fitness averaged over $10$ runs, penalizing actuated materials\footnotemark for \emph{fitness} - \emph{novelty} search with generative encoding (settings~\ref{Settings1}).}
+\caption[]{Best so far fitness averaged over $10$ runs, penalizing actuated materials\footnotemark for \emph{fitness} - \emph{novelty} search with generative encoding. (Settings~\ref{Settings-size5})}
 \label{fig:FitNovSize5Pen2}
 \end{figure}
 
@@ -207,7 +232,7 @@ The importance of selecting a good behavior metric is important in order for nov
 \begin{figure}[t!]
 \centering
 \includegraphics[width=1.0\textwidth]{../Figures/Results/BehaviorsPerformance.pdf}
-\caption{Comparison of the evolution's best fitness result from $10$-runs under different behavioral metrics for \emph{novelty} search (right). \emph{Fitness} search is also evaluated under the same settings (left - \textcolor{MidnightBlue}{blue} box). (settings~\ref{Settings3}).}
+\caption{Comparison of the evolution's best fitness result from $10$-runs under different behavioral metrics for \emph{novelty} search (right). \emph{Fitness} search is also evaluated under the same settings (left - \textcolor{MidnightBlue}{blue} box). (Settings~\ref{Settings-size7})}
 \label{fig:BehaviorsPerformance}
 \end{figure}
 
@@ -217,7 +242,7 @@ Choosing the appropriate metric to describe a phenotype into the behavior space 
 \begin{figure}[t!]
 \centering
 \includegraphics[width=1.0\textwidth]{../Figures/Results/KnnExperimentSize5.pdf}
-\caption{Best so far fitness averaged over $10$ runs, for different $k$ to sparsity computation of the behavior (settings~\ref{Settings1}).}
+\caption{Best so far fitness averaged over $10$ runs, for different $k$ to sparsity computation of the behavior. (Settings~\ref{Settings-size5})}
 \label{fig:KnnExperimentSize5}
 \end{figure}
 
@@ -257,7 +282,7 @@ Within the same figure and on the left side of it (\textcolor{MidnightBlue}{blue
 \includegraphics[width=0.19\textwidth]{../Figures/Robots/n_4_g_1000.jpg}
 \caption{Novelty search}
 \end{subfigure}
-\caption{Fitness based search trying to optimize a specific structure while the search for novelty results in a variety of shapes.}
+\caption{Fitness based search trying to optimize a specific structure while the search for novelty results in a variety of shapes. (Settings~\ref{Settings-size10})}
 \label{fig:morphologies}
 \end{figure}
 
@@ -273,7 +298,7 @@ Figure~\ref{fig:morphologies}, shows the champions every hundred generations of 
 \begin{figure}[b!]
 \centering
 \includegraphics[width=1.0\textwidth]{../Figures/Results/fitComp100_20percent.pdf}
-\caption{Best so far fitness averaged over $10$ runs, with no competition, local competition in the complete population of each species for \emph{fitness} search (settings~\ref{Settings3}).}
+\caption{Best so far fitness averaged over $10$ runs, with no competition, local competition in the complete population of each species for \emph{fitness} search. (Settings~\ref{Settings-size7})}
 \label{fig:fitComp100_20percent}
 \end{figure}
 
@@ -294,7 +319,7 @@ Since the algorithmic framework is the same for both searches, competition can b
 \begin{figure}[t!]
 \centering
 \includegraphics[width=1.0\textwidth]{../Figures/Results/NoveltyCompetitionsSize5.pdf}
-\caption{Best so far fitness averaged over $10$ runs, for local competition held among the population of each species for \emph{novelty} search with generative encoding (settings~\ref{Settings1}).}
+\caption{Best so far fitness averaged over $10$ runs, for local competition held among the population of each species for \emph{novelty} search with generative encoding. (Settings~\ref{Settings-size5})}
 \label{fig:NoveltyCompetitionsSize5}
 \end{figure}
 
@@ -316,7 +341,7 @@ Competition is a simple way of combining the two searches together, after each g
 \begin{figure}[t!]
 \centering
 \includegraphics[width=1.0\textwidth]{../Figures/Results/CopyFitChampions10.pdf}
-\caption{Best so far fitness averaged over $10$ runs, for \emph{novelty} search with and without copying \emph{fit} champions and \emph{fitness} search (settings~\ref{Settings2}).}
+\caption{Best so far fitness averaged over $10$ runs, for \emph{novelty} search with and without copying \emph{fit} champions and \emph{fitness} search. (Settings~\ref{Settings-size10})}
 \label{fig:CopyFitChampions10}
 \end{figure}
 
@@ -347,45 +372,14 @@ Figure~\ref{fig:CopyFitChampions10}, illustrates the gain in performance when fi
 
 \begin{figure}[t!]
 \centering
-\includegraphics[width=0.8\textwidth]{../Figures/Results/a.pdf}
-\caption{Novelty search performs equally good or better than fitness based search in all gravity conditions tested. (settings~\ref{Settings3})} \todo{Experiment not finished yet}
+\includegraphics[width=0.8\textwidth]{../Figures/Results/GravityExperiment.pdf}
+\caption{Novelty search performs equally good or better than fitness based search in all gravity conditions tested. (Settings~\ref{gravitySettings})}
 \label{fig:gravityConditions}
 \end{figure}
 
 In this section, it is of interest to show how different environmental conditions can affect both the search and the type of locomotion produced by the evolved soft robots. Since, similar conditions of other planets into our solar system are difficult to be reproduced by the simulation environment is used, we only interested to replicate the previous experimental settings with variant gravity acceleration conditions. Fitness based and novelty search are used again within the CPPN-NEAT evolutionary algorithm to evolve the morphology and the locomotion strategies of these voxel structures. For the novelty search two dimensional trajectories of the soft bodies are chosen as the behavior metric to evaluate the novelty of each. 
 
 Figure~\ref{fig:gravityConditions}, illustrates the performance of these two search methods, in four different settings, each method for more than five independent runs, the best fitness achieved by an individual averaged for all runs are shown together with the deviation errors. Default setting used in all previous experiment used for Jupiter's and Earth's gravity accelerations, while the simulation time used for both was $0.4$ seconds. For Moon's and Mars' evolution runs, a higher temperature period was used ($0.050$ seconds), in order effective locomotion to take place, as higher frequencies tend not to be able to  produce any locomotion in lower gravity conditions. Furthermore, for the latter two gravity levels, the simulation time was larger up to $1$ second for each evaluation, as the velocities generated by the soft-robots were significantly lower in such low gravity levels.
-
-\todo{discuss results}
-
-
-\begin{figure}[h!]
-\centering
-\begin{subfigure}[b]{1.0\textwidth}
-\foreach \i in {1,2,3,4,5,6,7,8,9,10}{ 
-\includegraphics[width=0.088\textwidth]{../Figures/Robots/fit-g9-1-\i.jpg}
-}
-\caption{2-legged galloping (Fitness-Search)}
-\end{subfigure}
-\begin{subfigure}[b]{1.0\textwidth}
-\foreach \i in {1,2,3,4,5,6,7,8,9,10}{ 
-\includegraphics[width=0.088\textwidth]{../Figures/Robots/fit-g9-2-\i.jpg}
-}
-\caption{4-legged animal like locomotion (Fitness-Search)}
-\end{subfigure}
-\begin{subfigure}[b]{1.0\textwidth}
-\foreach \i in {1,2,3,4,5,7,8}{ 
-\includegraphics[width=0.13\textwidth]{../Figures/Robots/nov-g9-1-\i.jpg}
-}
-\caption{Tumbleweed-like locomotion (Novelty-Search)}
-\end{subfigure}
-\caption{\textbf{Earth}: Morphologies evolved in gravity conditions on Earth, show that life-like locomotion strategies can be generated by soft-body creatures in a simulated environment.}
-\label{fig:gravityRobots9.8}
-\end{figure}
-
-
-
-
 
 
 
@@ -415,7 +409,7 @@ Figure~\ref{fig:gravityConditions}, illustrates the performance of these two sea
 }
 \caption{C-shaped hopper (Novelty-Search)}
 \end{subfigure}
-\caption{\textbf{Moon}: Locomotion strategies evolved in low-gravity conditions (Moon) consist mostly of hopper soft-robots.}
+\caption{\textbf{Moon}: Locomotion strategies evolved in low-gravity conditions (Moon) consist mostly of hopper soft-robots. (Settings~\ref{Settings-size10-moon})}
 \label{fig:gravityRobots1.6}
 \end{figure}
 
@@ -435,11 +429,33 @@ Figure~\ref{fig:gravityConditions}, illustrates the performance of these two sea
 }
 \caption{2-legged C-shaped hopper (Novelty-Search)}
 \end{subfigure}
-\caption{\textbf{Mars}: Gravity acceleration on Mars allows both galloping and hopping locomotion strategies.}
+\caption{\textbf{Mars}: Gravity acceleration on Mars allows both galloping and hopping locomotion strategies. (Settings~\ref{Settings-size10-mars})}
 \label{fig:gravityRobots3.7}
 \end{figure}
 
-
+\begin{figure}[h!]
+\centering
+\begin{subfigure}[b]{1.0\textwidth}
+\foreach \i in {1,2,3,4,5,6,7,8,9,10}{ 
+\includegraphics[width=0.088\textwidth]{../Figures/Robots/fit-g9-1-\i.jpg}
+}
+\caption{2-legged galloping (Fitness-Search)}
+\end{subfigure}
+\begin{subfigure}[b]{1.0\textwidth}
+\foreach \i in {1,2,3,4,5,6,7,8,9,10}{ 
+\includegraphics[width=0.088\textwidth]{../Figures/Robots/fit-g9-2-\i.jpg}
+}
+\caption{4-legged animal like locomotion (Fitness-Search)}
+\end{subfigure}
+\begin{subfigure}[b]{1.0\textwidth}
+\foreach \i in {1,2,3,4,5,7,8}{ 
+\includegraphics[width=0.13\textwidth]{../Figures/Robots/nov-g9-1-\i.jpg}
+}
+\caption{Tumbleweed-like locomotion (Novelty-Search)}
+\end{subfigure}
+\caption{\textbf{Earth}: Morphologies evolved in gravity conditions on Earth, show that life-like locomotion strategies can be generated by soft-body creatures in a simulated environment. (Settings~\ref{Settings-size10-earth})}
+\label{fig:gravityRobots9.8}
+\end{figure}
 
 
 
@@ -464,6 +480,6 @@ Figure~\ref{fig:gravityConditions}, illustrates the performance of these two sea
 }
 \caption{C-shaped hopper (Novelty-Search)}
 \end{subfigure}
-\caption{\textbf{Jupiter}: Heavier structures on Jupiter's gravity level can locomote efficiently using several strategies.}
+\caption{\textbf{Jupiter}: Heavier structures on Jupiter's gravity level can locomote efficiently using several strategies. (Settings~\ref{Settings-size10-jupiter})}
 \label{fig:gravityRobots27.6}
 \end{figure}
