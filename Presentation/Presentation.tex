@@ -33,7 +33,7 @@
 
 \definecolor{light-gray}{gray}{0.95}
 {
-\usebackgroundtemplate{\putat{10}{-110}{\includegraphics[width=0.3\paperwidth]{../Figures/Misc/ACT_logo.eps}}}
+\usebackgroundtemplate{\putat{22}{-80}{\includegraphics[width=0.2\paperwidth]{../Figures/Misc/ACT_logo.eps}}}
 \begin{frame}[plain]
 \vspace{1cm}
 \begin{center}
@@ -101,23 +101,27 @@ Locomotion can be achieved by pneumatic, passive, and other forms of actuation.
 \end{frame}
 
 \begin{frame}{Encoding Schemes}
+\begin{columns}[T] % align columns
+\begin{column}{.49\textwidth}
 \begin{block}{Direct Encoding}
 \begin{center}
-\includegraphics[width=0.4\textwidth]{../Figures/Misc/direct.jpg}
+\includegraphics[width=0.7\textwidth]{../Figures/Misc/direct.jpg}
 \end{center}
 \end{block}
 \centering
 $\underbrace{010101\ldots111101}_\text{number of pixels}$
-\end{frame}
-
-\begin{frame}{Encoding Schemes}
-\begin{block}{Indirect or Generative Encoding}
+\end{column}%
+\hfill%
+\begin{column}{.49\textwidth}
+\begin{block}{Generative Encoding}
 \begin{center}
-\includegraphics[width=0.4\textwidth]{../Figures/Misc/picBreed1.jpg}
+\includegraphics[width=0.7\textwidth]{../Figures/Misc/picBreed1.jpg}
 \end{center}
 \end{block}
 \centering
 $f(\underbrace{x\   ,\  y}_\text{coords.}) = \text{pixel value}$
+\end{column}%
+\end{columns}
 \end{frame}
 }
 
@@ -572,16 +576,6 @@ Simple genetic algorithm fails to produce locomotion.
 \end{minipage}
 \end{frame}
 
-
-\begin{frame}{Incorporating fitness information into Novelty Search}
-\begin{center}
-\includegraphics[width=\textwidth]{../Figures/Misc/EvolutionNoveltyFitnessElitism.eps}
-\end{center}
-\begin{itemize}
-\item Keeping properties of novelty search
-\end{itemize}
-\end{frame}
-
 \begin{comment}
 \begin{frame}{Behaviors}
 \begin{table}
@@ -647,7 +641,7 @@ Simple genetic algorithm fails to produce locomotion.
 \item 2 $\times$ Desktops (4-core)
 \end{itemize}
 \end{block}
-\alert{More than 20.000 hours of CPU time (single-core)}
+\alert{More than 22.500 hours of CPU time (single-core)}
 \end{frame}
 
 
@@ -732,6 +726,16 @@ Simple genetic algorithm fails to produce locomotion.
 \end{block}
 \end{frame}
 
+
+\begin{frame}{Incorporating fitness information into Novelty Search}
+\begin{center}
+\includegraphics[width=\textwidth]{../Figures/Misc/EvolutionNoveltyFitnessElitism.eps}
+\end{center}
+\begin{itemize}
+\item Keeping properties of novelty search
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Fitness Elitism in Novelty Search}
 \begin{block}{Best so far fitness, runs: 10, size: $10^3$}
 \centering
@@ -739,6 +743,12 @@ Simple genetic algorithm fails to produce locomotion.
 \end{block}
 \end{frame}
 
+\begin{frame}{Evolving Soft-Robots for Outer Space}
+\begin{block}{Average fitness, runs: 10, size: $7^3$}
+\centering
+\includegraphics[width=0.8\textwidth]{../Figures/Results/GravityExperiment.pdf}
+\end{block}
+\end{frame}
 }
 
 
@@ -753,6 +763,7 @@ Simple genetic algorithm fails to produce locomotion.
 \begin{frame}{Conclusion}
 \begin{itemize}
 \item Novelty search performs better in respect to fitness
+\item Improvements apply on different settings
 \item Performance is not much affected by the behavior metric
 \item Fitness elitism improves performance further
 \item Co-evolution of materials alongside morphology
