@@ -187,7 +187,7 @@
 %-------------------------------------------------   
 \examiner{} % Your examiner's name - this is not currently used anywhere in the template, cite it with \examname if you want it
 %-------------------------------------------------   
-\degree{Master of Science} % Your degree name - this is currently used in the title page and abstract
+\degree{Master Artificial Intelligence} % Your degree name - this is currently used in the title page and abstract
 %-------------------------------------------------   
 \authors{Georgios \textsc{Methenitis}} % Your name - this is used in the title page and abstract
 %-------------------------------------------------   
@@ -295,14 +295,12 @@
   \null\vfil
   \begin{center}
     \setlength{\parskip}{0pt}
-    {\normalsize \UNIVNAME \par} % University name in capitals
+    {\Large \UNIVNAME \par} % University name in capitals
+    {\normalsize \facname \par} % Faculty name
+    \bigskip
+    {\Large \degreename\par} % Degree name
     \bigskip
     {\huge{\textit{Abstract}} \par}
-    \bigskip
-    {\normalsize \facname \par} % Faculty name
-    {\normalsize \deptname \par} % Department name
-    \bigskip
-    {\normalsize \degreename\par} % Degree name
     \bigskip
     {\normalsize\bf \@title \par} % Thesis title
     \medskip
