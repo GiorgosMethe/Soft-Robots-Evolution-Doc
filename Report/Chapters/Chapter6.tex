@@ -1,10 +1,24 @@
+% Chapter 6
+
 % Chapter 7
 
-\chapter{Future Work} % Main chapter title
+\chapter{Discussion} % Main chapter title
 
-\label{Future Work} % For referencing the chapter elsewhere, use \ref{Chapter1} 
+\label{Discussion} % For referencing the chapter elsewhere, use \ref{Chapter1} 
 
-\lhead{Chapter 6. \emph{Future Work}} % This is for the header on each page - perhaps a shortened title
+\lhead{Chapter 6. \emph{Discussion}} % This is for the header on each page - perhaps a shortened title
+
+This thesis presented how virtual soft-robot morphologies can be evolved through novelty search, which is a diversity-based search within neuroevolution of augmented topologies evolutionary algorithm coupled with a generative encoding scheme. Soft-robot evolved in VoxCad soft material simulator. All aspects of novelty search were investigated in detail including the affect that behavior selection has in the evolution of the morphology and the effectiveness of locomotion strategy of soft-body structures. The performance of novelty search was also another research question answered through this thesis, when compared against traditional methods, such as fitness-based search. The obtained diversity in the phenotype level, and the role of sparsity were also investigated. Additionally, different selection techniques used in both novelty and fitness-based search, followed by a discussion on how this intermediate step in an evolutionary process can influence both search methods. A method of incorporating fitness information in novelty search was also introduced, resulting in a performance gain over pure novelty search method. Finally, both techniques were used to evolve soft-robots in four different gravity levels, showing interesting result and the possibility of influencing future robotic designs for planetary exploration.
+
+The most valuable and unexpected scientific result of this thesis was the superiority novelty-search showed over fitness-based search in the evolution of soft-robots. Both techniques used under the same objective function which was the displacement of soft-robots within a fixed time-span. All the experiments presented throughout this thesis proved that the search towards the above evaluation metric mentioned was not as successful as deploying novelty-search at the exact same settings driving the search towards diversity in the behavior level. The considerate selection of the behavior space used, showed that when the original objective metric is embodied into the behavior, novelty search achieves higher fitness performance than the fitness-based search in the specific problem domain.
+
+Selection techniques such as competition were used within fitness-based and novelty search, resulting on improved performance of pure fitness-based search. Competition held under novelty-search method had no important effect and no gain on the performance of the evolution. 
+
+In addition to the improved performance obtained by pure novelty search in this setting, a method that further improved the average displacement of evolved soft-robots was introduced in this thesis. Incorporating fitness information into novelty search without unbalancing the search towards diversity in the behavioral level, was achieved via fitness elitism. Most fit individuals are passed through generations, carrying their valuable chromosome and giving the chance to the evolution to benefit from the mutations or the crossovers with these fit individuals.
+
+Experiments under different gravity levels verify that novelty search is indeed performing better than fitness-based search in the evolution towards high-velocity soft-robots. In addition some interesting characteristics of evolved locomotion strategies under variant gravity condition also observed, adding knowledge and more possibilities when the gait of a soft-robot under low or high gravity is considered. With the progress three dimensional printing is showing, future space missions can benefit from low cost soft-robot explorers evolved to locomote efficiently. Passive locomotion adds more value to these soft-body structures, whereas environment changes can actuate certain material types to produce locomotion.
+
+\section{Future Work} % Main chapter title
 
 This chapter discusses possible future research that can be done in the topics approached and the contributions of this thesis. Designing soft-body structures in a simulated environment is a heavy task for human designers~\citep{cheney2013unshackling}, evolutionary algorithms~\citep{stanley2002evolving} and generative encoding~\citep{stanley2007compositional} combined, succeeded in the evolution of these designs, as well as, and the coordination (distribution of materials) of the structures evolved. What follows in this chapter is points worth further investigation in the science of evolutionary soft-robotics, still in a simulated environment.
 
