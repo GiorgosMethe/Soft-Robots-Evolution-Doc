@@ -275,6 +275,8 @@ The performance of novelty search when trajectories of the soft-robots are used 
 
 In the same figure (see Fig.~\ref{fig:BehaviorsPerformance}) and on the left side of it (\textcolor{MidnightBlue}{blue} box), fitness-based search is also evaluated under the same experimental settings. The performance of this objective optimization method is comparable only to the novelty search search when the voxels touching the ground are the selected behavior metric.
 
+Apart from the effects of the behavior selection another aspect of novelty search, the sparsity equation is investigated in detail in Appendix~\ref{AdditionalExperiments}.
+
 
 
 
@@ -309,19 +311,16 @@ Since the algorithmic framework is the same for both search methods, competition
 Competition allows individuals to breed even if they are not in the top part of the population in respect to a measure. For fitness-based search this means that soft-robots with low displacement will be allowed to breed and some of them eventually become fit. For novelty search, behaviors with low novelty (behaviors located in a dense area of observed behaviors) is less probable that they will contribute in generating novel behaviors in future generations. Hence, allowing low novelty solutions to survive harms the performance in novelty search.
 
 
-\section{Incorporate \emph{fitness} Information into \emph{Novelty}-Search}
-\todo{here}
+\section{Incorporate \emph{fitness} Information into \emph{Novelty} Search}
 
-The reason that novelty search is considered such an revolutionary search method is because it finds solutions for deceptive problems, where the fitness landscape is not a straightforward function. What makes it so unique, it is the fact that instead of looking for better solutions in respect to an objective function is looking for different solutions. In each generation of the novelty search there are some solutions that are very good regarding their objective function value, eventually these novel individuals will stop being selected for reproduction since their novelty metric value will be declined as more individuals with similar behaviors will be produced by mutations of the same novel individuals, and they won't be optimized as they could have been. Mutations and other genetic operations can optimize these fit individuals more, but this is something that happens in fitness-based search. These individuals (with high fitness value) can be seen as \emph{stepping~stones}~\citep{lehman2011abandoning} towards more optimized versions of them. Being blind to the objective function, novelty search will eventually stop producing new individuals out of them, which will lead to promising individuals being thrown out of the evolution process. 
+The reason that novelty search is considered such an revolutionary search method is because it finds solutions for deceptive problems, where the fitness landscape is not a straightforward function. What makes it so unique, it is the fact that instead of looking for optimizing the solutions in respect to an objective function is looking for the novelty in the behavior space. On each generation of novelty search novel behaviors that are also fit in regards to the objective of the problem are discovered. Mutations of these solutions will yield in behaving similarly to the ancestors, resulting in similar behaviors. Thus, the novelty value of these individuals will be declined as similar behaviors will contribute in a denser area in the behavior space. Eventually these solutions will stop being selected, and evolution will not have the change of carrying their valuable in respect to their goodness chromosome along. Mutations and other genetic operations can optimize these fit individuals more. These individuals (with high fitness value) can be seen as \emph{stepping~stones}~\citep{lehman2011abandoning} towards more optimized versions of them. Being blind to the objective function, novelty search will eventually stop producing new individuals out of them, which will lead to promising individuals not able to ``survive'' through the evolution process.
 
-Competition is a simple way of combining the two searches together, after each generation is produced competition is held over all the population within each specie, selecting individual, for reproduction, that have high value in the objective function. Figure~\ref{fig:NoveltyCompetitionsSize5}, illustrates the results of using the global fitness as a measure for selection among two generations. The results (\textcolor{ForestGreen}{Green} line), reveal that competition for fitness in a novelty search setting disturbs the balance of the evolution towards novelty, not allowing novelty search to expand the search in a greater extend, since it is not the case that selected fit individuals will lead in novel behaviors. 
-
+\subsection*{Fitness-Competition in Novelty Search}
 
 
+Competition is a simple way of combining these two search methods together. In this experiment, the number of new individuals each species will breed is determined by the average novelty value of each species. Competition is selecting these individuals not in respect to their novelty but regarding their fitness value. Elitism also copies the most novel behavior that observed within each species to the next generation. After each generation is produced, competition is held over all the population within each species selecting individuals for reproduction. Figure~\ref{fig:NoveltyCompetitionsSize5}, illustrates the results of using the fitness of an individual as a measure for selection among two generations. The resulted best so far fitness (\textcolor{ForestGreen}{Green} line), reveals that competition for fitness in a novelty search setting disturbs the balance of the evolution towards novelty, not allowing novelty search to expand the search in a greater extend, since it is not the case that selected fit individuals will lead in novel behaviors. 
 
-
-
-\subsection*{Fitness Elitism in Novelty Search}
+\subsection*{Fitness-Elitism in Novelty Search}
 
 \begin{figure}[t!]
 \centering
@@ -330,11 +329,11 @@ Competition is a simple way of combining the two searches together, after each g
 \label{fig:CopyFitChampions10}
 \end{figure}
 
-It has been shown, how selecting individuals in respect to their fitness distracts the evolution in novelty search. Hence, a new method is proposed for incorporating fitness information into novelty search without perturbing with its pipeline. Elitism is the process of copying the best individual of each species into the next generation with a probability of mutating it first. In this way best individuals are preserved and can be optimized later, which considered to be a successful way of protecting the best of each species generation so they can contribute with their beneficial genes later in the evolution. Novelty search can include elitism in its selection process, and it does that by copying the most novel organisms of the current population of each species to the next. Since, there is no point of changing this function, elitism can be used also to copy fit individuals within novelty search method. 
+It has been shown, how selecting individuals in respect to their fitness by competition leads to a decline in performance of novelty search. Hence, an approach is proposed for incorporating fitness information into novelty search without perturbing with its pipeline. Elitism is the process of passing mutations or copies of the best individuals to the next generation. In this way best individuals are preserved and can be optimized later. This way the best individuals of each species generation are protected so they can contribute with their beneficial genes later in the evolution. Novelty search can include elitism in its selection process, and it does that by copying the most novel organisms of the current population of each species to the next. Since, there is no point of changing this function, elitism can be used also to copy fit individuals within novelty search method. The way these two elitism functions can be used depends on the population size, and the problem. Probabilistic methods can also be used combining both elitism functions. In the specific setting, both elitism function copy new individuals to the new generation. Moreover, evolution towards novelty does not get disturbed, at the same time, fit individuals have the chance to be optimized further as long as they are the fittest within the species population. Figure~\ref{fig:CopyFitChampions10}, illustrates the gain in performance when fitness elitism is used in novelty search method compared with the pure novelty and fitness-based search methods.
 
-The way these two elitism functions can be used depends on the population size, and the problem. Probabilistic methods can also be used combining both elitism functions. In the specific setting, both elitism function copy new individuals to the new generations. In this way the evolution towards novelty does not get disturbed, at the same time, highly fit individuals have the chance to be optimized further as long as they are the fittest within the species population.
 
-Figure~\ref{fig:CopyFitChampions10}, illustrates the gain in performance when fitness elitism is used in novelty search method compared with pure novelty and fitness based search methods.
+
+In this section two ways of incorporating fitness information into novelty search method discussed. Competition and elitism can be used within the pipeline of novelty search in an evolutionary algorithm to use fitness information of individuals. The latter achieved to an improvement over pure novelty search method.
 
 
 
@@ -362,11 +361,11 @@ Figure~\ref{fig:CopyFitChampions10}, illustrates the gain in performance when fi
 \label{fig:gravityConditions}
 \end{figure}
 
-In this section, it is of interest to show how different environmental conditions can affect both the search and the type of locomotion produced by the evolved soft robots. Since, similar conditions of other planets in our solar system are difficult to be reproduced by the simulation environment is used, we only interested to replicate the previous experimental settings with variant gravity acceleration conditions. Fitness-based and novelty search are used again within the CPPN-NEAT evolutionary algorithm to evolve the morphology and the locomotion strategies of these voxel structures. For the novelty search two dimensional trajectories of the soft bodies are chosen as the behavior metric to evaluate the novelty of each. To keep the computational cost low, lattice dimension $7^3$ was used.
+In this section, it is of interest to show how different environmental conditions can affect both the performance and the type of locomotion produced by the evolved soft robots. Both search methods discussed in this thesis, novelty and fitness-based search used for the co-evolution of the morphology and the locomotion strategy of soft-robots under variant gravity levels. Since the software used for the simulation of the soft-robots cannot reproduce the conditions of other planets/moons in our solar system, the gravity acceleration of the environment is the only altered variable of the simulation environment. For the novelty search method two dimensional trajectories of the soft bodies are chosen as the behavior metric to evaluate the novelty of each individual. Due to the computationally expensive simulation for structures of resolution $10^3$, the performance of the locomotion strategies evolved is measured in a smaller lattice resolution $7^3$ ($10$-runs for each gravity level for both methods). Settings used in all previous experiments, were also used for Jupiter's and Earth's gravity accelerations, the simulation time used for both was $0.4$ seconds. For Lunar's and Mars' evolution runs, a higher temperature period was used ($0.050$ instead of $0.025$ seconds), in order effective locomotion to take place. High frequencies tend not to allow soft-body structures produce any decent locomotion in lower gravity conditions. Furthermore, for the lower gravity of Lunar and Mars, the simulation time was increased up to $1$ second for each evaluation. However, the final displacement of the robots was normalized to meet the expected displacement for $0.4$ seconds (the displacement of soft-robots is roughly linear to time).
 
-Default settings used in all previous experiments, was also used for Jupiter's and Earth's gravity accelerations, whereas the simulation time used for both was $0.4$ seconds. For Moon's and Mars' evolution runs, a higher temperature period was used ($0.050$ seconds), in order effective locomotion to take place, as higher frequencies tend not to allow soft-body structures produce any decent locomotion in lower gravity conditions. Furthermore, for the latter two gravity levels, the simulation time was larger, up to $1$ second for each evaluation, since the velocities generated by the soft-robots were significantly lower in such low gravity levels.
+Figure~\ref{fig:gravityConditions}, illustrates the performance of novelty and fitness-based search, in four different gravity conditions for Lunar ($-1.6~m/s^2$), Mars ($-3.7~m/s^2$), Earth ($-9.7~m/s^2$), and Jupiter ($-24.8~m/s^2$). The best fitness achieved by an individual averaged for all runs are shown, together with the deviation errors. Novelty search achieves in producing better or equally good locomotion for the soft-robots evolved in all gravity conditions. The results on different settings verify that novelty search can indeed achieve higher performance in the specific problem task. 
 
-Figure~\ref{fig:gravityConditions}, illustrates the performance of these two search methods, in four different settings, each method for ten independent runs, the best fitness achieved by an individual averaged for all runs are shown, together with the deviation errors. Pure novelty search is compared with pure fitness-based search, and the results show that novelty search, while it tries to optimize the sparsity of newly generated behaviors (two-dimensional trajectories), it achieves in producing better or equally good locomotion for the soft-robots produced. The results on different settings verify that novelty search can indeed achieve higher performance in the specific problem domain. The rest of this section is discussing in detail findings when soft-robots were evolved in different planetary conditions. For visualization purposes all the following experiment have been set with a lattice dimension $10^3$.
+The rest of this section discusses in detail findings during the experiment in regards to the evolved locomotion strategies and morphologies capable to produce efficient locomotion. Although, the measured performance of $10$ evolution runs can give us a clear estimate of what each method can achieve in respect to the expected displacement of soft-robots, the resolution of $7^3$ is not high enough to unveil complex morphologies. Three runs of both evolutionary methods of a higher resolution ($10^3$) soft-robots are not enough to approximate the performance, but are enough in order evolved morphologies and locomotion ways to be investigated.
 
 
 
@@ -383,7 +382,7 @@ Figure~\ref{fig:gravityConditions}, illustrates the performance of these two sea
 \foreach \i in {1,2,3,4,5,6,7}{ 
 \includegraphics[width=0.132\textwidth]{../Figures/Robots/fit-g1-2-\i.jpg}
 }
-\caption{1-legged hopper (Fitness-Search)}
+\caption{Triangle shaped hopper (Fitness-Search)}
 \label{fig:gravityRobots1.6-2}
 \end{subfigure}
 \begin{subfigure}[b]{1.0\textwidth}
@@ -400,13 +399,13 @@ Figure~\ref{fig:gravityConditions}, illustrates the performance of these two sea
 \caption{C-shaped hopper (Novelty-Search)}
 \label{fig:gravityRobots1.6-4}
 \end{subfigure}
-\caption{\textbf{Moon}: Locomotion strategies evolved in low-gravity conditions (Moon) consist mostly of hopper soft-robots. (Settings~\ref{Settings-size10-moon})}
+\caption{\textbf{Lunar}: Locomotion strategies evolved in low-gravity conditions (Moon) consist mostly of hopper soft-robots. (Settings~\ref{Settings-size10-moon})}
 \label{fig:gravityRobots1.6}
 \end{figure}
 
-\subsection{Soft-Robots on Moon}
+\subsection{Soft-Robots on Lunar}
 
-Locomotion strategies evolved under low gravity conditions, for the gravity of the Moon more specifically, showed that hopping behaviors can only produce effective locomotion in these conditions. Low gravity makes it difficult for the soft-body structures to grip on any surface and evolve something different than hopping. Figure~\ref{fig:gravityRobots1.6}, shows four different kind of hopper soft-robots on Lunar's gravity. However, the morphology of each hopper differs.
+Locomotion strategies evolved under low gravity conditions, for the gravity of the Lunar more specifically, showed that hopping behaviors can only produce effective locomotion in these conditions. Low gravity makes it difficult for the soft-body structures to grip on the ground surface and evolve something different than hopping. Figure~\ref{fig:gravityRobots1.6}, shows four different types of hopper soft-robots under Lunar's gravity. However, the morphology of each hopper differs. A 3-legged hopper (see Fig.~\ref{fig:gravityRobots1.6-1}) uses its leg in the middle to hop, stabilizing itself with the help of its front and back legs. One legged hoppers can be evolved with different morphologies, a triangle shaped body (see Fig.~\ref{fig:gravityRobots1.6-2}), L-shaped (see Fig.~\ref{fig:gravityRobots1.6-3}), and a C-shaped soft-robot (see Fig.~\ref{fig:gravityRobots1.6-2}). Hopper soft-robots are difficult to develop a stable locomotion strategy, since most of the times the hopping technique they use is failing after few simulation seconds. Moreover, stable locomotion is difficult to be evolved, since the evolution objective is the locomotion speed. 
 
 
 
@@ -438,27 +437,23 @@ Locomotion strategies evolved under low gravity conditions, for the gravity of t
 
 \subsection{Soft-Robots on Mars}
 
-The locomotion effectiveness on Mars were higher when compared to this on Moon's gravity acceleration, making it possible for the virtual soft-robots to develop other kinds of gait using legs. Figure~\ref{fig:gravityRobots3.7}, presents two evolved creatures, where the one is galloping having a two-legged body (fig.~\ref{fig:gravityRobots3.7-1}), and the next is hopping having a C-shaped soft-body (fig.~\ref{fig:gravityRobots3.7-2}).
+The locomotion effectiveness on Mars was higher when compared to this on Moon's gravity acceleration, making it possible for the virtual soft-robots to develop other kinds of gait using legs. Figure~\ref{fig:gravityRobots3.7}, presents two evolved virtual creatures, where the one is galloping having a two-legged body (see Fig.~\ref{fig:gravityRobots3.7-1}), and the next is hopping having a C-shaped soft-body (see Fig.~\ref{fig:gravityRobots3.7-2}). Note that the C-shaped hopper soft-robot mostly uses passive materials apart from its upper body, where all the active material are located. With using its upper part generates enough motion able to move itself. What was observed in the soft-robots evolved in lower gravity levels was the fact that morphologies with less active materials can produce decent locomotion.
 
 
-
-
-
-
-\begin{figure}[b!]
+\begin{figure}[t!]
 \centering
 \begin{subfigure}[b]{1.0\textwidth}
 \foreach \i in {1,2,3,4,5,6,7,8,9,10}{ 
 \includegraphics[width=0.088\textwidth]{../Figures/Robots/fit-g9-1-\i.jpg}
 }
-\caption{2-legged galloping (Fitness-Search)}
+\caption{Top view, 2-legged galloping (Fitness-Search)}
 \label{fig:gravityRobots9.8-1}
 \end{subfigure}
 \begin{subfigure}[b]{1.0\textwidth}
 \foreach \i in {1,2,3,4,5,6,7,8,9,10}{ 
 \includegraphics[width=0.088\textwidth]{../Figures/Robots/fit-g9-2-\i.jpg}
 }
-\caption{4-legged animal like locomotion (Fitness-Search)}
+\caption{Top view, 4-legged animal like locomotion (Fitness-Search)}
 \label{fig:gravityRobots9.8-2}
 \end{subfigure}
 \begin{subfigure}[b]{1.0\textwidth}
@@ -474,14 +469,16 @@ The locomotion effectiveness on Mars were higher when compared to this on Moon's
 
 \subsection{Soft-Robots on Earth}
 
-On higher gravity levels, life-like locomotion can be evolved. Figure~\ref{fig:gravityRobots9.8}, shows three different locomotion strategies evolved by fitness-based and novelty search on gravity conditions on Earth. Galloping from is again produced by evolved two-legged shaped body creatures (fig.~\ref{fig:gravityRobots9.8-1}). Interesting animal-like gait has also been evolved (fig.~\ref{fig:gravityRobots9.8-2}), verifying the connection there is between gravity and the evolved locomotion strategies of living organisms evolving on Earth for thousands of years. Tumbleweed-like locomotion (fig.~\ref{fig:gravityRobots9.8-3}) has also been generated under novelty search method, producing rolling soft-robots that can locomote efficiently. Fact that adds significance to the novelty-search method, since fitness-based search did not produce this kind of locomotion strategy. Tumbleweed is a concept of low-cost locomotion that has inspired robot designers for Mars' missions in the past~\citep{antol2003low}, and has been already deployed in Antarctica for testing purposes by NASA.
+On higher gravity levels, life-like locomotion can be emerged. Figure~\ref{fig:gravityRobots9.8}, shows three different locomotion strategies generated by fitness-based and novelty search on gravity conditions of Earth. Galloping-type locomotion is again observed by evolved two-legged shaped body creatures (see Fig.~\ref{fig:gravityRobots9.8-1}). Interesting animal-like gait has also been evolved (see Fig.~\ref{fig:gravityRobots9.8-2}), verifying the connection there is between gravity and the locomotion strategies of living organisms evolving on Earth for thousands of years. Tumbleweed-like locomotion (see Fig.~\ref{fig:gravityRobots9.8-3}) has been emerged under novelty search method, producing rolling soft-robots that can locomote efficiently. Fact that adds significance to the novelty-search method, since fitness-based search did not produce this kind of locomotion strategy. Tumbleweed is a concept of low-cost exploration that has inspired robot designers for Mars' missions in the past~\citep{antol2003low}, and has been already deployed in Antarctica for testing purposes by NASA.
 
 
 
+\subsection{Soft-Robots on Jupiter}
+
+Moving on to higher gravity levels, Jupiter, heavier structures can use galloping as a strategy for their locomotion. Figure~\ref{fig:gravityRobots27.6}, presents some of the locomotion types when novelty and fitness-based search were used for the evolution of them. Galloping (see Fig.~\ref{fig:gravityRobots27.6-1}) is again considered to be an effective way of moving in such a high gravity, whereas thicker legs are evolved to withstand the high gravitational force. Push-pull worm-like locomotion (see Fig.~\ref{fig:gravityRobots27.6-2}), can also produce decent velocities to soft-robots. Finally, hoppers have also been evolved to this setting, while they are using more actuated materials.
 
 
-
-
+Different locomotion strategies can be evolved on different gravity levels producing effective locomotion. Low gravity does not allow other kinds of locomotion apart from hoppers to be evolved, while higher gravity acceleration allows more complicated behaviors to be evolved. In all settings, both search methods produced effective locomotion for the soft-body structures, however, the performance in regard to the objective measure defined, displacement of the body in body lengths, was equal or higher for novelty search in all gravity settings.
 
 
 \begin{figure}[t!]
@@ -510,15 +507,6 @@ On higher gravity levels, life-like locomotion can be evolved. Figure~\ref{fig:g
 \caption{\textbf{Jupiter}: Heavier structures on Jupiter's gravity level can locomote efficiently using several strategies. (Settings~\ref{Settings-size10-jupiter})}
 \label{fig:gravityRobots27.6}
 \end{figure}
-
-\subsection{Soft-Robots on Jupiter}
-
-Moving on to higher gravity levels, Jupiter, heavier structures can use galloping effective strategies for their locomotion. Figure~\ref{fig:gravityRobots27.6}, presents some of them when novelty and fitness-based search were used for the evolution of them. Galloping (fig.~\ref{fig:gravityRobots27.6-1}) is again considered to be an effective way of moving in such a high gravity, whereas thicker legs are evolved to withstand the heavy gravitational force. Push-pull worm-like locomotion (fig.~\ref{fig:gravityRobots27.6-2}), can also produce a decent velocity to the soft-robot. Finally hoppers are also evolved to this setting, while they are using more actuated materials.
-
-
-
-
-Concluding, different locomotion strategies can be evolved on different gravity levels producing effective locomotion. Low gravities do not allow other kinds of locomotion apart from hoppers to be evolved, while higher gravity acceleration conditions allow more complicated behaviors to be evolved. In all settings, both search methods produced effective locomotion for the soft-body structures, however, the performance in regard to the objective measure defined, displacement of the body in body lengths, was higher for novelty search in almost all gravity settings.
 
 
 
