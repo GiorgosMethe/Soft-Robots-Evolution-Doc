@@ -183,7 +183,7 @@
 
 \thesistitle{Evolution of Soft Robots by\\ Novelty Search} % Your thesis title - this is used in the title and abstract
 %-------------------------------------------------  
-\supervisor{Arnoud \textsc{Visser} (UvA)\\ Dario \textsc{Izzo} (ESA)\\ Daniel \textsc{Hennes} (ESA)} % You supervisor's name - this is used in the title page
+\supervisor{Arnoud \textsc{Visser}, UvA\\ Dario \textsc{Izzo}, ESA-ESTEC\\ Daniel \textsc{Hennes}, ESA-ESTEC} % You supervisor's name - this is used in the title page
 %-------------------------------------------------   
 \examiner{} % Your examiner's name - this is not currently used anywhere in the template, cite it with \examname if you want it
 %-------------------------------------------------   
