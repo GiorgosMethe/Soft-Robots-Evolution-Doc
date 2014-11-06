@@ -249,12 +249,12 @@ Table~\ref{EvolutionSettingsTable}, presents the settings used in the evolutiona
 \begin{figure}[b!]
 \centering
 \includegraphics[width=1.0\textwidth]{../Figures/Results/KnnExperimentSize5.pdf}
-\caption{Best so far fitness averaged over $10$ runs, for different $k$ to sparsity computation of the behavior. (Settings~\ref{Settings-size5})}
+\caption{Best fitness so far averaged over $10$ runs, for different $k$ to sparsity computation of the behavior. (Settings~\ref{Settings-size5})}
 \label{fig:KnnExperimentSize5}
 \end{figure}
 
 
-Sparsity (see Eq.~\ref{sparsenessEquation}) is a metric that evaluates how sparse is the space of a newly generated-observed behavior. In this equation $k$ defines how many of the closest neighboring behaviors are going to be used for the computation of the average distance. Figure~\ref{fig:KnnExperimentSize5} presents the resulted best so far fitness given different values for $k \in \lbrace 1, 2, 5, 10, 20 \rbrace$. In principle $k$ can define how tolerate the algorithm can be with new behaviors. It is not certain that a specific value for $k$ should give the highest performance in fitness and it depends almost completely by the application. The only implication in choosing value for $k$ is that choosing large values should yield in a more detailed exploration in the behavior space, in the contrary using small values the final set of behaviors will be denser in the behavior space. In the specific figure and experiment $k=10$ was the setting that led to the best performance.
+Sparsity (see Eq.~\ref{sparsenessEquation}) is a metric that evaluates how sparse is the space of a newly generated-observed behavior. In this equation $k$ defines how many of the closest neighboring behaviors are going to be used for the computation of the average distance. Figure~\ref{fig:KnnExperimentSize5} presents the resulted best fitness so far given different values for $k \in \lbrace 1, 2, 5, 10, 20 \rbrace$. In principle $k$ can define how tolerate the algorithm can be with new behaviors. It is not certain that a specific value for $k$ should give the highest performance in fitness and it depends almost completely by the application. The only implication in choosing value for $k$ is that choosing large values should yield in a more detailed exploration in the behavior space, in the contrary using small values the final set of behaviors will be denser in the behavior space. In the specific figure and experiment $k=10$ was the setting that led to the best performance.
 
 
 
