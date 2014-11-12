@@ -94,7 +94,7 @@ Considering the representation of the genome, as well as the geometrical nature 
 
 \section{Generative-Encoded Evolutionary Soft Robots}
 
-Direct encoding methods lack the morphology regularities of the evolved soft robots. Compositional pattern-producing networks can serve this function. CPPNs are built up by a set of canonical functions which enable the outputs of the network to produce repetitive, symmetrical and geometrically interesting patterns. Producing regularities in the phenotype space and capturing geometrical properties of the optimization problem, it is expected that this representation is going to produce efficient locomotion strategies and morphologies of the soft structures~\citep{cheney2013unshackling}.
+Direct encoding methods lack the morphology regularities of the soft robots evolved by this method. Compositional pattern-producing networks can serve this function. CPPNs are built up by a set of canonical functions which enable the outputs of the network to produce repetitive, symmetrical and geometrically interesting patterns. Producing regularities in the phenotype space and capturing geometrical properties of the optimization problem, it is expected that this representation is going to produce efficient locomotion strategies and morphologies of the soft structures~\citep{cheney2013unshackling}.
 \begin{figure}
 \centering
 \includegraphics[height=0.2\textheight]{../Figures/Misc/cppnSoftBot.eps}
@@ -103,11 +103,11 @@ Direct encoding methods lack the morphology regularities of the evolved soft rob
 \end{figure}
 Since, CPPNs must be queried for every coordinate of the lattice space, the input nodes (neurons) of the CPPN are assigned to x,y,z normalized coordinates following~\citep{cheney2013unshackling}, so that:
 \[x,y,z \in [-1,1]\]
-A bias input node is also introduced in the genome CPPN representation. More inputs could be added to the CPPNs, for instance the distance from the center point of the Cartesian space (simulation lattice) as described in~\citep{stanley2007compositional} and used in~\citep{cheney2013unshackling}, which naturally adds more bias towards symmetrical structures. However, evolving perfectly symmetrical structures is not much of an interest to show, since CPPNs, as it is shown later in this thesis, can evolve symmetrical morphologies without this extra information input node(s). The proposed input nodes for the three dimensions of the Cartesian space provide the minimum bias to the network outputs. Figure~\ref{fig:cppnDiagram}, illustrates the topology of a random CPPN network with the input and output nodes described above. The set of nodes and connections determine the network's \emph{topology}. The topology of these networks can be variant and be evolved alongside the weights of the connections in any neuroevolutionary method. The divergent part of the network between the input and the output nodes is described by the genotype and it is the one that is going to be evolved and altered during the evolution. The presence or not of a voxel in each coordinate of the lattice is determined by a single output of the CPPN called $p$ and the selection of the material is determined by $n$-outputs. The node with the maximum value in the output will determine which of the materials will be used.
+A bias input node is also introduced in the genome CPPN representation, this will allow the network to produce arbitrary outputs different from the defaults when all other inputs values are set to zero. More inputs could be added to the CPPNs, for instance the distance from the center point of the Cartesian phenotype space (lattice) as described in~\citep{stanley2007compositional} and used in~\citep{cheney2013unshackling}, which naturally adds more bias towards symmetrical structures. However, the evolution of such aesthetic structures is not much of interest to exploit. CPPNs, as it is shown later in this thesis, can evolve symmetrical morphologies without this extra information input node(s). The proposed input nodes for the three dimensions of the Cartesian space provide the minimum bias to the network outputs. Figure~\ref{fig:cppnDiagram} illustrates the topology of a random CPPN network with the input and output nodes previously described. The set of nodes and connections determine the \emph{topology} of the network. The topology of these networks can be variant and be evolved alongside the weights of the connections in any neuroevolution method. The divergent part of the network between the input and the output nodes is described by the genotype and it is the one that is going to be evolved and altered during the evolution. The presence of a voxel in each coordinate of the lattice is determined by a single output of the CPPN, denoted with $p$ while the selection of the material is determined by $n$-outputs. The node with the maximum value out of the $n$-outputs will determine which of the materials is going to be used in the specific voxel only in cases this is present.
 
 \subsection{Evolution of Generative Encoded Genomes}
 
-The evolution of these indirect representations of the genotypes can be evolved with any method able to evolve artificial neural networks, since they are identical to CPPNs. CPPN-NEAT (see Section~\ref{CPPN}), is a method to evolve CPPNs with the NEAT evolutionary method. Previous work~\citep{cheney2013unshackling}, showed that this method can indeed evolve the morphologies of the soft robots in the VoxCad simulation environment. HyperNEAT\footnote{HyperNEAT \texttt{v4.0 C++} by J. Gauci code (url: \url{https://github.com/MisterTea/HyperNEAT})} is used for the implementation of the CPPN-NEAT algorithm. Algorithm~\ref{evolutionPseudocode}, presents the pseudocode for the evolution under CPPN-NEAT method. In addition, a brief explanation of the function used in the algorithm follows:
+The evolution of these indirect representations of the genotypes can be evolved with any method able to evolve artificial neural networks, since these are identical to CPPNs. CPPN-NEAT (see Sec.~\ref{CPPN}), is a method to evolve CPPNs with the NEAT evolutionary method. Previous work~\citep{cheney2013unshackling}, showed that this method can indeed evolve the morphologies of the soft robots in the VoxCad simulation environment. \textit{HyperNEAT}\footnote{HyperNEAT \texttt{v4.0 C++} by J. Gauci code (url: \url{https://github.com/MisterTea/HyperNEAT})} is used for the implementation of the CPPN-NEAT algorithm. Algorithm~\ref{evolutionPseudocode}, presents the pseudocode for the evolution under CPPN-NEAT method. In addition, a brief explanation of the function used in the algorithm follows:
 
 
 \begin{algorithm}[t!]
@@ -133,13 +133,13 @@ The evolution of these indirect representations of the genotypes can be evolved 
 
 \item[Speciation]{Takes place and split the population in separate species or adds individuals to already existing species in respect to their networks' topologies; a compatibility function determines the similarity between two genomes (see Eq.~\ref{CompatibilityEquation}). However, all firstly introduced genomes belong to the same species, due to the identical topology of their CPPNs.}
 
-\item[Evaluation] Once the population is filled with new individuals, these have to be evaluated. Simulation is take place for each of the individuals of the population, where each one of them is awarded with a fitness value.
+\item[Evaluation] Once the population is filled with new individuals, these have to be evaluated. Simulation is taking place for each of the individuals of the population, where each one of them is awarded with a fitness value.
 
-\item[Fitness adjustment]{After all individuals are evaluated, each species is assigned a value which is the sum of the fitness values of the individuals belonging to the species divided by the number of the individuals. The way it is been decided how many individuals each of the species will breed is directly determined by the average fitness of each species.}
+\item[Fitness adjustment]{After all individuals are evaluated, each species is assigned a value which is the sum of the fitness values of the individuals belonging to this species divided by the number of the individuals. This way, it is been decided how many individuals each of the species will breed and it is directly determined by the average fitness of each species.}
 
 \item[Selection]{As soon as the number of new individuals each species is determined, only the top $20\%$ of the species population will reproduce, the rest population will ``die''. \emph{Competition}, and \emph{Elitism} as other genetic selection techniques can also be used in this step of the evolution.}
 
-\item[Reproduction]{There are two ways, for the selected individual inside each species to reproduce. These are \emph{mutation}, which slightly changes the genome of one parent,  creating a new genome, and \emph{crossover}, where two parents combine their genes to create a new individual.}
+\item[Reproduction]{There are two ways for the selected individual inside each species to reproduce. These are \emph{mutation}, which slightly changes the genome of one parent to create a new genome, and \emph{crossover}, where two parents combine their genes to create a new individual.}
 \end{description}
 
 
@@ -149,21 +149,19 @@ The evolution of these indirect representations of the genotypes can be evolved 
 
 \subsection{Novelty Search}
 
-Novelty search as first presented in Chapter~\ref{Background}, requires only small changes in an evolutionary algorithm. Fitness is replaced by a novelty metric which determines how novel is a phenotype's observed behavior with respect to all novel behaviors found earlier in the evolution. Sparsity (see Eq.~\ref{sparsenessEquation}), is used to determine this value, where every individual is compared not only with the previous novel behaviors, but also with the current generation's observed behaviors.
-
-
-
+Novelty search, as first presented in Chapter~\ref{Background}, requires only small changes in the pipeline of an evolutionary algorithm. Fitness is replaced by a novelty metric which determines how novel is a phenotype's observed behavior with respect to all novel behaviors found earlier in the evolution. Sparsity (see Eq.~\ref{sparsenessEquation}) is used to determine this value while every individual is compared not only with the previous novel behaviors, but also with the observed behaviors by individuals from the current generation.
 \begin{algorithm}[t!]
-\caption{CPPN-NEAT with novelty search}
+\caption{CPPN-NEAT with \textcolor{BrickRed}{novelty search}}
 \label{noveltyPseudocode}
 \begin{algorithmic}[1]
 \STATE $\mathtt{population} = \varnothing$
-\STATE $\mathtt{novel\_inds} = \varnothing$
+\textcolor{BrickRed}{\STATE $\mathtt{novel\_inds} = \varnothing$}
 \STATE $\mathtt{species} = \varnothing$
 \STATE $\mathtt{generation}[0] = \mathbf{initial\_population}()$
 \FOR{ $i = 0\   \text{to}\  \mathtt{max\_generation}$}
 \STATE $\mathtt{species} = \mathtt{species} \cup \mathbf{speciation}(\mathtt{generation}[i])$
 \STATE $\mathbf{evaluation}(\mathtt{generation}[i])$
+\textcolor{BrickRed}{
 \FORALL {$\mathtt{ind} \in \mathtt{generation}[i]$}
 \STATE $\mathtt{novelty} = \mathbf{sparsity}(\mathtt{ind}, (\mathtt{generation}[i] - \mathtt{ind}) \cup \mathtt{novel\_inds})$
 \IF {$(\mathtt{novelty} \geq \mathtt{novelty\_{threshold}}\ ||\ \mathtt{novel\_inds} == \varnothing)$}
@@ -171,17 +169,16 @@ Novelty search as first presented in Chapter~\ref{Background}, requires only sma
 \ENDIF
 \ENDFOR
 \STATE $\mathbf{adjust\_novelty}(\mathtt{generation}[i], \mathtt{species})$
+}
 \STATE $\mathbf{selection}(\mathtt{generation}[i], \mathtt{species})$
 \STATE $\mathtt{generation}[i+1] = \mathbf{reproduction}(\mathtt{generation}[i])$
 \STATE $\mathtt{population} = \mathtt{population} \cup \mathtt{generation}[i+1]$
 \ENDFOR
 \end{algorithmic}
 \end{algorithm}
+The algorithmic adjustments within CPPN-NEAT algorithm are indicated in Algorithm~\ref{noveltyPseudocode} (\textcolor{BrickRed}{Red} colored text), where the pseudocode of novelty search is presented.
 
-
-The algorithmic adjustments within CPPN-NEAT algorithm are presented in Algorithm~\ref{noveltyPseudocode}, where the pseudocode of novelty search is presented.
-
-Evaluation function in fitness based evolution, was responsible of evaluating an individual in respect to an objective. This objective function is equal to the body-lengths traveled by the soft robot within a specific time span. However, the same function is now also responsible for observing the behavior of each individual, and record it. In this way, the novelty of a behavior can be computed based on recorded behaviors of other individuals. Function \text{sparsity}, computes the sparseness (see Eq.~\ref{sparsenessEquation}) of a specific individual's observed behavior in the behavior space. Following the evaluation of each individual, its behavior will be compared to all novel behaviors stored during the evolution. A threshold determines if the observed behavior is considered novel in respect to the set of behaviors was compared to. The fitness adjustment of the previous code example is becoming novelty adjustment following the same functionality, selection and reproduction operations can be applied in the same way.
+\textbf{Evaluation} function in fitness based evolution was responsible of evaluating an individual in respect to an objective. This objective function is equal to the body-lengths traveled by the soft robot within a specific time span. However, the same function is now also responsible for observing the behavior of each individual and record it. In this way, the novelty of a behavior can be computed based on recorded behaviors of other individuals. Function \textbf{sparsity} computes the sparseness (see Eq.~\ref{sparsenessEquation}) of a specific individual's observed behavior in the behavior space. Following the evaluation of each individual, its behavior will be compared to all novel behaviors stored during the evolution. A threshold determines if the observed behavior is considered novel in respect to the set of behaviors was compared to. The fitness adjustment of the previous code example is becoming \textbf{novelty adjustment} following the same functionality, selection and reproduction operations can be applied in the same way.
 
 
 \subsubsection{Behavior in novelty search}
@@ -247,32 +244,31 @@ Evaluation function in fitness based evolution, was responsible of evaluating an
     \end{tabular}
 \end{table}
 
-\emph{Behavior} can be defined as the way that a human/machine behaves towards or within an environment. Regarding the evolution of soft robots in the specific simulated environment, a behavior can be defined as the way soft robots behave in respect to their locomotion strategy. Every aspect of the soft robots movement that can be observed, can be used to describe their behavior. Previous work~\citep{lehman2011evolving}, in a try to evolve walking three-dimensional virtual creatures, used the evolved morphology of the creatures to describe their behavior. Although, in this work comparing the morphology of the evolved soft robots, is similar to comparing the chromosome (CPPN) of each individual. Thus, only the comparison of the observed behavior in the phenotype level, can lead the evolution towards more complex behaviors.
+\emph{Behavior} can be defined as the way that a human/machine behaves towards or within an environment. Regarding the evolution of soft robots in the specific simulated environment, a behavior can be defined as the way soft robots behave in respect to their locomotion strategy. Every aspect of the soft robots movement that can be observed can be used to describe their behavior. Previous work~\citep{lehman2011evolving} in a try to evolve walking three-dimensional virtual creatures used the evolved morphology of the creatures to describe their behavior. Although, in this work comparing the morphology of the evolved soft robots is similar to comparing the chromosome (CPPN) of each individual. Therefore, only the comparison of the observed behavior in phenotype level can lead the evolution towards more complex behaviors.
 
 A straightforward function that determines the goodness of an individual is used in fitness based methods. This measure drives the search in ``good'' areas of the search space. However, the same measure cannot be used for novelty search. What novelty search looks for is novelty in behavior space. It is expected that behaviors that contain information about the goodness (displacement) of individuals will be more successful than behaviors that include other aspects of the soft robots' behavior. In cases that behavior does not contain information about the objective, the search for novelty will become random in regards to this objective function.
 
-Behaviors that describe the morphology of the evolved soft robots have failed~\citep{lehman2011evolving}, since search is then forcing new types of morphologies without caring about the actual target of the evolution, which was the efficient locomotion. To present a similar idea, consider a behavior metric that enumerates how many voxels the soft robot is consisted of. This is not a well-founded behavior metric, since the search will reward new structures with different number of voxels from previous novel structures. Therefore, there will not be exploration in the behavior aspect that affects the actual target of the evolution, which is to produce and evolve efficient locomotion strategies. 
+Behaviors that describe the morphology of the evolved robots have failed~\citep{lehman2011evolving}, since search is then forcing new types of morphologies without caring about the actual target of the evolution, which was the efficient locomotion. To present a similar idea consider a behavior metric that enumerates the number of voxels a soft robot consists of. This is not a well-founded behavior metric, since the search will reward new structures with different number of voxels from previous evolved structures. Therefore, there will not be exploration in the behavior aspect that affects the actual target of the evolution, which is to produce and evolve efficient locomotion strategies.
 
-Table~\ref{Behaviors}, presents all behaviors used for the novelty metric computation, with the sampling rate of the recorded values during the simulation and their description. For all recorder behavior metrics a constant sampling rate ensures that all signals have the same length. The behaviors designed to describe the strategy and the efficiency of the evolved  locomotion. They contain information that indirectly implies both of the objectives of the evolution. \emph{Trajectories} (2D and 3D), incorporate all the needed information such as speed, displacement, and locomotion strategy. To avert from same trajectories in all possible directions, trajectories are normalized, meaning that their starting coordinates are always the start of the axes ($<0,0,0>$), and the coordinates of the trajectory are rotated so their center of mass is normalized to a specific angle ($\theta = 90^{o}$). To measure the the difference of two trajectories, the Euclidean distances between coordinates at the same sampling time are measured, so that:
+Table~\ref{Behaviors} presents all behaviors used for the novelty metric computation together with the sampling rate of the recorded values during the simulation and their description. For all recorder behavior metrics a constant sampling rate ensures that all signals have the same length. The behaviors designed to describe the strategy and the efficiency of the evolved  locomotion. They contain information that indirectly implies both the objectives of the evolution. \emph{Trajectories} (2D and 3D), incorporate all the needed information such as speed, displacement, and locomotion strategy. To avert from same trajectories in all possible directions trajectories are normalized, meaning that their starting coordinates are always the start of the axes ($<0,0,0>$) and the point coordinates of the trajectory are rotated so their center of mass is normalized to a specific angle ($\theta = 90^{o}$). To measure the difference of two trajectories the Euclidean distances between coordinates at the same sampling time are measured, so that:
 \begin{align}
 \text{First trajectory: } &t_i = t_i^1, t_i^2, \ldots, t_i^N\\
 \text{Second trajectory: } &t_j = t_j^1, t_j^2, \ldots, t_j^N\\
 \text{Difference: } &t_i - t_j = \sum_{n=1}^{N} dist( t_i^n, t_j^n )
 \end{align}
-, where $n$ is the number of sampled coordinate points and $dist$ is the Euclidean distance. \emph{Pace} is also a very informative behavior metric as it directly measures the speed of the robot. \emph{Voxels touching the ground} can also produce information about the locomotion strategy but not enough about the actual performance regarding the displacement. Hopping robots that move fast can have same behaviors with hopping robots with zero speed. \emph{Maximum pressure} among the voxels' connection is one more behavior metric, pressure is expected to become higher as structures move faster and interactions with the ground eventually getting harder. Finally, \emph{maximum kinetic energy} is a different behavior that straightly determines the displacement of the voxels in the structure. To compute the difference between two signals a straightforward method is used. Subtracting the one signal from the other taking the absolute differences and summing them up to compute one single value that describes how variant the two signals are. More specifically:
+where $n$ is the number of sampled coordinate points and $dist$ is the Euclidean distance. \emph{Pace} is also a very informative behavior metric as it directly measures the speed of the robot. \emph{Voxels touching the ground} can also imply information about the locomotion strategy but not enough about the actual performance regarding the displacement. Hopping robots that move fast can have same behaviors with regards to this metric with hopping robots with zero speed. \emph{Maximum pressure} among the voxels' connection is yet another behavior metric, pressure is expected to become higher as structures move faster and interactions with the ground eventually getting harder. Finally, \emph{maximum kinetic energy} is a behavior metric that straightly determines the displacement of the voxels in the structure. To compute the difference between two signals, a straightforward method is used. Subtracting the one signal from the other, taking the absolute differences, and summing them up to compute one single value that describes how variant the two signals are. More specifically:
 \begin{align}
 \text{First 1-d signal: } &s_i = s_i^1, s_i^2, \ldots, s_i^N\\
 \text{Second 1-d signal: } &s_j = s_j^1, s_j^2, \ldots, s_j^N\\
 \text{Difference: } &s_i - s_j = \sum_{n=1}^{N} | s_i^n - s_j^n |
 \end{align}
-
-For all behaviors but trajectories, the Fourier profile of their signal can also be used as an observed behavior. This process of transformation of the one-dimensional signals into frequency space eliminates shifts of signals in the time-axis. The discrete Fourier transformation:
+For all behaviors but trajectories, the Fourier profile of their signals can also be used as an observed behavior. This process of transformation of the one-dimensional signals into frequency space eliminates shifts of signals in time-axis. The discrete Fourier transformation:
 \begin{equation}
 C_i^k = \sum_{n=1}^{N} s_i^n e^{-i 2 \pi k n/N,},~\forall k \in \mathbb{Z}
 \end{equation}
-For the Fourier transformations of these signals, the first twenty coefficients are compared, and the summation of their absolute differences determines the difference of the two behaviors.
+For the Fourier transformations of these signals the first twenty coefficients are compared, and the summation of their absolute differences determines the difference of the two behaviors.
 \begin{equation}
 \text{Difference in frequency: } s_i - s_j = \sum_{k=0}^{R-1} | C_i^k - C_j^k |, R=20
 \end{equation}
 
-We have defined, what is a behavior and how one behavior can be different from another one to be considered novel, behaviors that are considered to be novel are stored in a list helping in this way the evolution to avoid generating similar behaviors (see Alg.~\ref{noveltyPseudocode}).
+In this section, different observed behavior metrics have been defined. The similarity or difference of two same type behaviors can be determined by the equations provided while these measures of difference are used by the sparsity equation (see Eq.~\ref{sparsenessEquation}) to compute the sparseness of a given behavior in the behavior space. Individuals with novel observed behaviors (high sparseness value) are then stored in a list helping the evolution to avoid generating similar behaviors (see Alg.~\ref{noveltyPseudocode}).
