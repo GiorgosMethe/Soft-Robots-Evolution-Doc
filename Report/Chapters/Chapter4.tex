@@ -27,7 +27,7 @@ For the simulation of the soft material bodies, VoxCad's~\citep{hiller2012dynami
 \begin{figure}
 \centering
 \includegraphics[height=0.2\textheight]{../Figures/Misc/allSoftMaterials.png}
-\caption{Soft robot uses four materials (two active, two passive), morphology evolved penalizing actuated materials.}
+\caption{Soft robot using four materials (two active, two passive), morphology evolved penalizing actuated materials.}
 \label{fig:allSoftMaterials}
 \end{figure}
 
@@ -48,7 +48,7 @@ The first implementation of a random morphology generator mimics ``direct'' enco
 \includegraphics[height=0.15\textwidth]{../Figures/Robots/random.jpg}
 \includegraphics[height=0.15\textwidth]{../Figures/Robots/rg0.jpg}
 \includegraphics[height=0.15\textwidth]{../Figures/Robots/rg1.jpg}
-\caption{Generative encoding creates more natural morphologies even in random schemes (see Settings~\ref{Settings-size10}).}
+\caption{Generative random approaches create more natural morphologies (see Settings~\ref{Settings-size10}).}
 \label{fig:randomResultsRobots}
 \end{figure}
 
@@ -98,7 +98,7 @@ Direct encoding methods lack the morphology regularities of the soft robots evol
 \begin{figure}
 \centering
 \includegraphics[height=0.2\textheight]{../Figures/Misc/cppnSoftBot.eps}
-\caption{Each genotype is queried for every coordinate inside the lattice, its outputs determine the presence of a voxel and the type of its material.}
+\caption{Each genotype (CPPN) is queried for every coordinate inside the lattice space, its outputs determine the presence of a voxel and the type of its material.}
 \label{fig:cppnDiagram}
 \end{figure}
 Since, CPPNs must be queried for every coordinate of the lattice space, the input nodes (neurons) of the CPPN are assigned to x,y,z normalized coordinates following~\citep{cheney2013unshackling}, so that:
@@ -186,7 +186,7 @@ The algorithmic adjustments within CPPN-NEAT algorithm are indicated in Algorith
 
 \begin{table}
 \centering
-\caption{Observed behaviors of the soft robots used for the novelty value computation.}
+\caption{Observed soft robot behaviors used for the sparsity computation in novelty search.}
 \label{Behaviors}
     \begin{tabular}{lrcc p{4cm}}
     \toprule
