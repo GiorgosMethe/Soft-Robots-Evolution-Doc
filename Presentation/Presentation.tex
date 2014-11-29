@@ -111,6 +111,7 @@ Locomotion can be achieved by pneumatic, passive, and other forms of actuation.
 \centering
 $\underbrace{010101\ldots111101}_\text{number of pixels}$
 \end{column}%
+\pause
 \hfill%
 \begin{column}{.49\textwidth}
 \begin{block}{Generative Encoding}
@@ -305,8 +306,15 @@ s(x) = \cfrac{1}{k} \sum_{i=0}^k dist(x, b_i)
 \end{block}
 \end{frame}
 
-
-
+\begin{frame}{Evolution of Soft Robots by Novelty Search}
+\begin{block}{Research Questions:}
+\begin{itemize}
+\item Can morphology and locomotion strategy be evolved through novelty search?
+\item What is the role of the behavior in novelty search?
+\item Can performance of novelty search improved by incorporating fitness information?
+\end{itemize}
+\end{block}
+\end{frame}
 
 
 
@@ -630,7 +638,7 @@ Simple genetic algorithm fails to produce locomotion.
 \begin{block}{Experiments:}
 \begin{itemize}
 \item For lattice sizes: 5, 7, 10
-\item $8$ different behavior metrics
+\item $10$ different behavior metrics
 \item $4$ variant gravity, $2$ temp. freq. levels
 \item For both fitness, and novelty search
 \end{itemize}
@@ -763,11 +771,11 @@ Simple genetic algorithm fails to produce locomotion.
 \begin{frame}{Conclusion}
 \begin{itemize}
 \item Novelty search performs better in respect to fitness
-\item Improvements apply on different settings
+\item Increased performance on different settings
 \item Performance is not much affected by the behavior metric
-\item Fitness elitism improves performance further
-\item Co-evolution of materials alongside morphology
-\item Develop methods to combine both searches
+\item Fitness elitism further improves performance
+\item[+] Co-evolution of materials alongside morphology
+\item[+] Develop methods to combine both searches
 \end{itemize}
 \end{frame}
 
