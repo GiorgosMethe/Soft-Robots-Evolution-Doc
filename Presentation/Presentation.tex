@@ -90,6 +90,31 @@ Locomotion can be achieved by pneumatic, passive, and other forms of actuation.
 \end{frame}
 
 {
+\usebackgroundtemplate{\putat{0}{-275}{\includegraphics[width=\paperwidth]{../Figures/Misc/000084.jpg}}}
+\begin{frame}{Soft Robos in Simulation}
+\vspace{-0.5cm}
+\begin{block}{\includegraphics[scale=0.35]{../Figures/Misc/voxcad_logo.png}\	VoxCad Simulator~\footfullcite{hiller2012dynamic}}
+\begin{itemize}
+\item Voxel modeling and analyzing software
+\item Physics engine extracted and used for the simulations
+\end{itemize}
+\end{block}
+\begin{minipage}[3cm]{0.5\textwidth}
+\begin{block}{Simulation}
+\begin{itemize}
+\item 3-D Grid, Voxels, Materials, Temperature
+\end{itemize}
+Possible solution space:
+\begin{itemize}
+\item for size $5^3$: \textcolor{red}{$2,3 \times 10^{87}$}
+\item for size $10^3$: \textcolor{red}{$9.3 \times 10^{698}$}
+\end{itemize}
+\end{block}
+\end{minipage}
+\end{frame}
+}
+
+{
 \setbeamercolor{block body}{bg=white}
 
 \begin{frame}{Evolution {\scriptsize of Soft Robots by Novelty Search}}
@@ -133,7 +158,7 @@ $f(\underbrace{x\   ,\  y}_\text{coords.}) = \text{pixel value}$
 \item Large set of canonical activation functions
 \begin{figure}
 \begin{center}
-\includegraphics[scale=0.25]{../Figures/Misc/cppnNetwork.png}
+\includegraphics[width=0.35\textwidth]{../Figures/Misc/cppnNetwork.eps}
 \end{center}
 \end{figure}
 \item Produce symmetrical and repetitive patterns
@@ -155,19 +180,19 @@ $f(\underbrace{x\   ,\  y}_\text{coords.}) = \text{pixel value}$
 \end{block}
 \end{frame}
 
-\begin{frame}{Neuroevolution}
-\begin{block}{Adding a link}
-\centering
-\includegraphics[height=0.7\textheight]{../Figures/Misc/networksMutationWeights3.eps}
-\end{block}
-\end{frame}
-
-\begin{frame}{Neuroevolution}
-\begin{block}{Adding a node}
-\centering
-\includegraphics[height=0.7\textheight]{../Figures/Misc/networksMutationWeights4.eps}
-\end{block}
-\end{frame}
+%\begin{frame}{Neuroevolution}
+%\begin{block}{Adding a link}
+%\centering
+%\includegraphics[height=0.7\textheight]{../Figures/Misc/networksMutationWeights3.eps}
+%\end{block}
+%\end{frame}
+%
+%\begin{frame}{Neuroevolution}
+%\begin{block}{Adding a node}
+%\centering
+%\includegraphics[height=0.7\textheight]{../Figures/Misc/networksMutationWeights4.eps}
+%\end{block}
+%\end{frame}
 
 \begin{frame}{NeuroEvolution of Augmented Topologies (NEAT)~\footfullcite{stanley2002evolving}}
 \begin{block}{Some key points of this method are:}
@@ -306,18 +331,6 @@ s(x) = \cfrac{1}{k} \sum_{i=0}^k dist(x, b_i)
 \end{block}
 \end{frame}
 
-\begin{frame}{Evolution of Soft Robots by Novelty Search}
-\begin{block}{Research Questions:}
-\begin{itemize}
-\item Can morphology and locomotion strategy be evolved through novelty search?
-\item What is the role of the behavior in novelty search?
-\item Can performance of novelty search improved by incorporating fitness information?
-\end{itemize}
-\end{block}
-\end{frame}
-
-
-
 
 \section{Related Work}
 
@@ -357,31 +370,6 @@ s(x) = \cfrac{1}{k} \sum_{i=0}^k dist(x, b_i)
 
 
 \section{Method}
-
-{
-\usebackgroundtemplate{\putat{0}{-275}{\includegraphics[width=\paperwidth]{../Figures/Misc/000084.jpg}}}
-\begin{frame}{Soft Robos in Simulation}
-\vspace{-0.5cm}
-\begin{block}{\includegraphics[scale=0.35]{../Figures/Misc/voxcad_logo.png}\	VoxCad Simulator~\footfullcite{hiller2012dynamic}}
-\begin{itemize}
-\item Created by Jonathan Hiller and Hod Lipson
-\item Voxel modeling and analyzing software
-\item Physics engine extracted and used for the simulations
-\end{itemize}
-\end{block}
-\begin{itemize}
-\item Voxels
-\item Materials
-\item Temperature
-\end{itemize}
-Possible solution space:
-\begin{itemize}
-\item for size $5^3$: \textcolor{red}{$2,3 \times 10^{87}$}
-\item for size $10^3$: \textcolor{red}{$9.3 \times 10^{698}$}
-\end{itemize}
-\end{frame}
-}
-
 
 \begin{comment}
 \begin{frame}{Random Soft Robots}
@@ -428,7 +416,7 @@ Simple genetic algorithm fails to produce locomotion.
 \end{itemize}
 \end{block}
 \begin{center}
-\includegraphics[height=0.4\textheight]{../Figures/Misc/cppnSoftBot2.eps}
+\includegraphics[height=0.45\textheight]{../Figures/Misc/cppnSoftBot.eps}
 \end{center}
 \end{frame}
 
@@ -637,19 +625,20 @@ Simple genetic algorithm fails to produce locomotion.
 \begin{frame}{Experimental phase}
 \begin{block}{Experiments:}
 \begin{itemize}
-\item For lattice sizes: 5, 7, 10
+\item Population size: $30$, Max. generations: $1000$
+\item For lattice size/resolution: $5^3$, $7^3$, $10^3$
 \item $10$ different behavior metrics
-\item $4$ variant gravity, $2$ temp. freq. levels
+\item $4$ variant gravity levels, $2$ temperature frequency levels
 \item For both fitness, and novelty search
 \end{itemize}
 \end{block}
 \begin{block}{Held at:}
 \begin{itemize}
-\item 2 $\times$ Servers (16-core \& 8-core)
-\item 2 $\times$ Desktops (4-core)
+\item $2$ $\times$ Servers ($16$-core \& $8$-core)
+\item $2$ $\times$ Desktops ($4$-core)
 \end{itemize}
 \end{block}
-\alert{More than 22.500 hours of CPU time (single-core)}
+\alert{More than $22.500$ hours of CPU time (single-thread)}
 \end{frame}
 
 
@@ -695,40 +684,29 @@ Simple genetic algorithm fails to produce locomotion.
 \end{block}
 \end{frame}
 
-\begin{comment}
 \begin{frame}{Increased Performance}
-\begin{block}{Best so far fitness, runs: 10, size: $5^3$}
+\begin{block}{Best fitness so far, low-res. $5^3$}
 \centering
 \includegraphics[width=0.95\textwidth]{../Figures/Results/FitNovRandomDirectSize5.pdf}
 \end{block}
 \end{frame}
-\end{comment}
 
 \begin{frame}{Increased Performance}
-\begin{block}{Best so far fitness, runs: 10, size: $10^3$}
+\begin{block}{Best fitness so far, high-res. $10^3$}
 \centering
 \includegraphics[width=0.95\textwidth]{../Figures/Results/FitvsNovVsDirSize10.pdf}
 \end{block}
 \end{frame}
 
-\begin{comment}
 \begin{frame}{Population Comparison}
-\begin{block}{Average fitness of generation, runs: 10, size: $7^3$}
-\centering
-\includegraphics[width=0.95\textwidth]{../Figures/Results/ViolinPlotsAvgGenFitSize7.pdf}
-\end{block}
-\end{frame}
-\end{comment}
-
-\begin{frame}{Population Comparison}
-\begin{block}{Champion fitness of generation, runs: 10, size: $7^3$}
+\begin{block}{Best fitness so far Vs. Generation best fitness, med-res. $7^3$}
 \centering
 \includegraphics[width=0.95\textwidth]{../Figures/Results/AvgGenerChampNoveltyFitnessSize7.pdf}
 \end{block}
 \end{frame}
 
 \begin{frame}{Behavior Selection}
-\begin{block}{Champion fitness of each run, runs: 10, size: $7^3$}
+\begin{block}{Novelty search with 10-behavior metrics, med-res. $7^3$}
 \centering
 \includegraphics[width=1.0\textwidth]{../Figures/Results/BehaviorsPerformance.pdf}
 \end{block}
@@ -774,6 +752,7 @@ Simple genetic algorithm fails to produce locomotion.
 \item Increased performance on different settings
 \item Performance is not much affected by the behavior metric
 \item Fitness elitism further improves performance
+\item[+] More sophisticated behaviors and difference measure
 \item[+] Co-evolution of materials alongside morphology
 \item[+] Develop methods to combine both searches
 \end{itemize}
