@@ -1,0 +1,310 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt, twoside]{Thesis} % The default font size and one-sided printing (no margin offsets)
+
+\graphicspath{{Pictures/}} % Specifies the directory where pictures are stored
+
+\usepackage{epstopdf}
+\usepackage{url}
+\usepackage{framed}
+\usepackage[chapter]{algorithm}
+\usepackage{algorithmic}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcoffins}
+\usepackage{pgffor}
+\usepackage{comment}
+\usepackage[toc,page]{appendix}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage[round, comma, semicolon, sort&compress]{natbib} % Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers' 
+%\usepackage{todonotes}
+\usepackage{pdfpages}
+
+\hypersetup{
+urlcolor=black,
+colorlinks=true,
+linkcolor=MidnightBlue,
+citecolor=BrickRed,
+linktocpage
+} % Colors hyperlinks in blue - change to black if annoying
+\title{\ttitle} % Defines the thesis title - don't touch this
+
+\begin{document}
+\frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
+
+\setstretch{1.3} % Line spacing of 1.3
+
+% Define the page headers using the FancyHdr package and set up for one-sided printing
+\fancyhead{} % Clears all page headers and footers
+\rhead{\thepage} % Sets the right side header to show the page number
+\lhead{} % Clears the left side page header
+
+\pagestyle{fancy} % Finally, use the "fancy" page style to implement the FancyHdr headers
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % New command to make the lines in the title page
+
+
+\newcommand{\todo}[1]{{\color{red}\fbox{\color{blue}#1}}}
+
+
+
+\NewCoffin\tablecoffin
+\NewDocumentCommand\Vcentre{m}
+  {%
+    \SetHorizontalCoffin\tablecoffin{#1}%
+    \TypesetCoffin\tablecoffin[l,vc]%
+  }
+
+% PDF meta-data
+\hypersetup{pdftitle={\ttitle}}
+\hypersetup{pdfsubject=\subjectname}
+\hypersetup{pdfauthor=\authornames}
+\hypersetup{pdfkeywords=\keywordnames}
+
+\includepdf[offset=2.55cm -2.55cm]{cover.pdf}
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\cleardoublepage
+\pagestyle{empty}
+\null\vfill
+{\Large
+The present work has been conducted in association with the \emph{Advanced Concepts Team} (ACT) in \emph{European Space Agency} (ESA-ESTEC, Noordwijk) and the University of Amsterdam. The subject of this work had been offered as an internship project by the ACT under the title: ``\textit{Simultaneous evolution of morphology and locomotion of soft robots by novelty search}''. Most of this work has been conducted during my $3$-month internship at the ACT, ESA-ESTEC. The resulted work was also submitted in partial fulfillment of the requirements for the degree of MSc. Artificial Intelligence of the University of Amsterdam as a master thesis.}
+\vfill\null
+
+
+\begin{titlepage}
+
+\begin{center}
+\includegraphics[width=.10\textwidth]{../Figures/Misc/University_of_Amsterdam_logo.pdf}\\[0.2cm]
+\textsc{\Large \univname}\\[0.7cm] % University name
+\textsc{\LARGE Master Artificial Intelligence}\\[2.0cm]
+\vspace{0.1cm}% University/department logo - uncomment to place it
+\textsc{\large Master Thesis}\\[0.5cm]
+\HRule \\[0.4cm] % Horizontal line
+{\huge \bfseries \ttitle}\\[0.4cm] % Thesis title
+\HRule \\[1.5cm] % Horizontal line
+\begin{minipage}[t][3.5cm][t]{0,4\textwidth}
+\begin{flushleft} \large
+\emph{Author:}\\
+\authornames
+\end{flushleft}
+\end{minipage}
+\begin{minipage}[t][3.5cm][t]{0,4\textwidth}
+\begin{flushright} \large
+\emph{Supervisors:} \\
+\supname
+\end{flushright}
+\end{minipage}
+\begin{flushbottom}
+\begin{center}
+ECTS: $42$\\[0.5cm]
+\textit{Submitted to the Board of Examiners in partial\\ fulfillment of the requirements for the degree of \\\textbf{MSc. Artificial Intelligence}\\ of the\\ \textsc{University of Amsterdam}.}\\[2.5cm]
+\large \today
+\end{center}
+\end{flushbottom}
+\end{center}
+\end{titlepage}
+
+\cleardoublepage
+
+
+
+%----------------------------------------------------------------------------------------
+%	DECLARATION PAGE
+%	Your institution may give you a different text to place here
+%----------------------------------------------------------------------------------------
+
+\clearpage % Start a new page
+
+%----------------------------------------------------------------------------------------
+%	QUOTATION PAGE
+%----------------------------------------------------------------------------------------
+
+\pagestyle{empty} % No headers or footers for the following pages
+
+\null\vfill % Add some space to move the quote down the page a bit
+
+\textit{``Evolve solutions; when you find a good one, don't stop."}
+
+\begin{flushright}
+David Eagleman, \textit{Incognito: The Secret Lives of the Brain}
+\end{flushright}
+
+\vfill\vfill\vfill\vfill\vfill\vfill\null % Add some space at the bottom to position the quote just right
+
+\cleardoublepage % Start a new page
+
+\input{Chapters/Abstract}
+
+%----------------------------------------------------------------------------------------
+%	ACKNOWLEDGEMENTS
+%----------------------------------------------------------------------------------------
+
+\setstretch{1.3} % Reset the line-spacing to 1.3 for body text (if it has changed)
+
+\acknowledgements{\addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
+The present work has been conducted in association with the \emph{Advanced Concepts Team} (ACT) in \emph{European Space Agency} (ESA-ESTEC, Noordwijk). The subject of this thesis had been offered as an internship project by the ACT under the title: ``\textit{Simultaneous evolution of morphology and locomotion of soft robots by novelty search}''. Most of this work has been conducted during my $3$-month internship at the ACT, ESA-ESTEC.
+
+It would have been impossible to write this thesis without the help and support of my three supervisors, Arnoud Visser (Senior Lecturer, UvA), Dario Izzo (Scientific Coordinator, ACT) and Daniel Hennes (Postdoctoral Research Fellow, ACT).
+
+I would like to thank Arnoud for his valuable comments in the whole duration of this thesis. I am grateful for all the discussion we had the last two years regarding my thesis, Dutch Nao Team, and the number of projects and papers we have done together.
+
+I am most grateful to Dario and Daniel. Their ideas and discussions we had were valuable for me to finish this work. It has been an honor working under their supervision, as I gained too much from them.
+
+I express my warm thanks to all the members of Dutch Nao Team, the Robocup SPL team of University of Amsterdam, in which I was proud to serve as a member for two years. I also thank all the members of ACT who welcomed me in the team and made my three-month internship a wonderful experience. Special thanks to Paul for our ``evolutionary'' conversations.
+
+I would like to express my gratitude towards everyone who supported me during my master studies. Especially, my family, my friends, and my girlfriend. You have given me your unequivocal support throughout this work and my studies.
+}
+\clearpage % Start a new page
+
+%----------------------------------------------------------------------------------------
+%	LIST OF CONTENTS/FIGURES/TABLES PAGES
+%----------------------------------------------------------------------------------------
+
+\pagestyle{fancy} % The page style headers have been "empty" all this time, now use the "fancy" headers as defined before to bring them back
+
+\newpage
+\lhead{\emph{Contents}} % Set the left side page header to "Contents"
+\tableofcontents % Write out the Table of Contents
+
+\newpage
+\lhead{\emph{List of Figures}} % Set the left side page header to "List of Figures"
+\listoffigures % Write out the List of Figures
+
+\newpage
+\lhead{\emph{List of Tables}} % Set the left side page header to "List of Tables"
+\listoftables % Write out the List of Tables
+
+\newpage
+\lhead{\emph{List of Algorithms}} % Set the left side page header to "List of Tables"
+{\let\clearpage\relax\listofalgorithms}
+\addcontentsline{toc}{chapter}{List of algorithms}
+
+\clearpage % Start a new page
+
+%----------------------------------------------------------------------------------------
+%	ABBREVIATIONS
+%----------------------------------------------------------------------------------------
+
+%\clearpage % Start a new page
+%
+%\setstretch{1.5} % Set the line spacing to 1.5, this makes the following tables easier to read
+%
+%\lhead{\emph{Abbreviations}} % Set the left side page header to "Abbreviations"
+%\listofsymbols{ll} % Include a list of Abbreviations (a table of two columns)
+%{
+%\textbf{LAH} & \textbf{L}ist \textbf{A}bbreviations \textbf{H}ere \\
+%%\textbf{Acronym} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or \\
+%}
+
+%----------------------------------------------------------------------------------------
+%	PHYSICAL CONSTANTS/OTHER DEFINITIONS
+%----------------------------------------------------------------------------------------
+
+%\clearpage % Start a new page
+%
+%\lhead{\emph{Physical Constants}} % Set the left side page header to "Physical Constants"
+%
+%\listofconstants{lrcl} % Include a list of Physical Constants (a four column table)
+%{
+%Speed of Light & $c$ & $=$ & $2.997\ 924\ 58\times10^{8}\ \mbox{ms}^{-\mbox{s}}$ (exact)\\
+%% Constant Name & Symbol & = & Constant Value (with units) \\
+%}
+
+%----------------------------------------------------------------------------------------
+%	SYMBOLS
+%----------------------------------------------------------------------------------------
+
+%\clearpage % Start a new page
+%
+%\lhead{\emph{Symbols}} % Set the left side page header to "Symbols"
+%
+%\listofnomenclature{lll} % Include a list of Symbols (a three column table)
+%{
+%$a$ & distance & m \\
+%$P$ & power & W (Js$^{-1}$) \\
+%% Symbol & Name & Unit \\
+%
+%& & \\ % Gap to separate the Roman symbols from the Greek
+%
+%$\omega$ & angular frequency & rads$^{-1}$ \\
+%% Symbol & Name & Unit \\
+%}
+
+%----------------------------------------------------------------------------------------
+%	DEDICATION
+%----------------------------------------------------------------------------------------
+\clearpage
+
+\setstretch{1.3} % Return the line spacing back to 1.3
+
+\pagestyle{empty} % Page style needs to be empty for this page
+
+\dedicatory{This work is dedicated to my family. Thank you for your support during all the years I have been a student.} % Dedication text
+
+\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - CHAPTERS
+%----------------------------------------------------------------------------------------
+
+\mainmatter % Begin numeric (1,2,3...) page numbering
+
+\pagestyle{fancy} % Return the page headers back to the "fancy" style
+
+% Include the chapters of the thesis as separate files from the Chapters folder
+% Uncomment the lines as you write the chapters
+
+\input{Chapters/Chapter1}
+\input{Chapters/Chapter2}
+\input{Chapters/Chapter3}
+\input{Chapters/Chapter4}
+\input{Chapters/Chapter5}
+\input{Chapters/Chapter6}
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - APPENDICES
+%----------------------------------------------------------------------------------------
+
+
+\begin{appendices}
+\input{Chapters/Appendices}
+\end{appendices}
+
+
+%\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+
+%\appendix % Cue to tell LaTeX that the following 'chapters' are Appendices
+
+% Include the appendices of the thesis as separate files from the Appendices folder
+% Uncomment the lines as you write the Appendices
+
+
+
+%\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+
+\backmatter
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\label{Bibliography}
+
+\lhead{\emph{Bibliography}} % Change the page header to say "Bibliography"
+
+\bibliographystyle{unsrtnat} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
+
+\bibliography{Bibliography}
+
+\cleardoublepage
+
+\end{document}

@@ -53,8 +53,8 @@ Georgios \textsc{Methenitis}
 \begin{flushright}
 {\scriptsize \emph{Supervisors:}} \\
 Arnaud \textsc{Visser}, {\scriptsize UvA}\\
-Dario \textsc{Izzo}, {\scriptsize ESA}\\
-Daniel \textsc{Hennes}, {\scriptsize ESA}
+Dario \textsc{Izzo}, {\scriptsize ESA-ESTEC}\\
+Daniel \textsc{Hennes}, {\scriptsize ESA-ESTEC}
 \end{flushright}
 \end{minipage}\\[0.5cm]
 \end{center}
@@ -73,10 +73,10 @@ Daniel \textsc{Hennes}, {\scriptsize ESA}
 \section{Background}
 
 \begin{frame}{{\scriptsize Evolution of} Soft Robots {\scriptsize by Novelty Search}}
-\begin{block}{Soft Robots}
+\begin{block}{Soft Robotics}
 \begin{itemize}
-\item Early research stage
 \item Inspired by nature
+\item Early research stage
 \item Completely soft bodies
 \item New kinds of locomotion
 \end{itemize}
@@ -91,7 +91,7 @@ Locomotion can be achieved by pneumatic, passive, and other forms of actuation.
 
 {
 \usebackgroundtemplate{\putat{0}{-275}{\includegraphics[width=\paperwidth]{../Figures/Misc/000084.jpg}}}
-\begin{frame}{Soft Robos in Simulation}
+\begin{frame}{Soft Robots in Simulation}
 \vspace{-0.5cm}
 \begin{block}{\includegraphics[scale=0.35]{../Figures/Misc/voxcad_logo.png}\	VoxCad Simulator~\footfullcite{hiller2012dynamic}}
 \begin{itemize}
@@ -106,8 +106,7 @@ Locomotion can be achieved by pneumatic, passive, and other forms of actuation.
 \end{itemize}
 Possible solution space:
 \begin{itemize}
-\item for size $5^3$: \textcolor{red}{$2,3 \times 10^{87}$}
-\item for size $10^3$: \textcolor{red}{$9.3 \times 10^{698}$}
+\item for size $10^3$: {\Large \textcolor{red}{$9.3 \times 10^{698}$}}
 \end{itemize}
 \end{block}
 \end{minipage}
@@ -136,7 +135,6 @@ Possible solution space:
 \centering
 $\underbrace{010101\ldots111101}_\text{number of pixels}$
 \end{column}%
-\pause
 \hfill%
 \begin{column}{.49\textwidth}
 \begin{block}{Generative Encoding}
@@ -174,25 +172,11 @@ $f(\underbrace{x\   ,\  y}_\text{coords.}) = \text{pixel value}$
 \end{frame}
 
 \begin{frame}{Neuroevolution}
-\begin{block}{Traditional neuroevolution methods}
+\begin{block}{Traditional neuro-evolutionary methods}
 \centering
 \includegraphics[height=0.7\textheight]{../Figures/Misc/networksMutationWeights2.eps}
 \end{block}
 \end{frame}
-
-%\begin{frame}{Neuroevolution}
-%\begin{block}{Adding a link}
-%\centering
-%\includegraphics[height=0.7\textheight]{../Figures/Misc/networksMutationWeights3.eps}
-%\end{block}
-%\end{frame}
-%
-%\begin{frame}{Neuroevolution}
-%\begin{block}{Adding a node}
-%\centering
-%\includegraphics[height=0.7\textheight]{../Figures/Misc/networksMutationWeights4.eps}
-%\end{block}
-%\end{frame}
 
 \begin{frame}{NeuroEvolution of Augmented Topologies (NEAT)~\footfullcite{stanley2002evolving}}
 \begin{block}{Some key points of this method are:}
@@ -202,14 +186,13 @@ $f(\underbrace{x\   ,\  y}_\text{coords.}) = \text{pixel value}$
 \item Structural innovation through speciation
 \end{itemize}
 \end{block}
-\pause
 \begin{block}{Genetic Operations in NEAT:}
 \centering
 \includegraphics[height=0.25\textheight]{../Figures/Misc/neatAddNode.eps}
 \end{block}
 \end{frame}
 
-\begin{frame}{NeuroEvolution of Augmented Topologies (NEAT)~\footfullcite{stanley2002evolving}}
+\begin{frame}{NeuroEvolution of Augmented Topologies (NEAT)}
 \begin{block}{Some key points of this method are:}
 \begin{itemize}
 \item Evolving neural network topologies along with weights
@@ -223,7 +206,7 @@ $f(\underbrace{x\   ,\  y}_\text{coords.}) = \text{pixel value}$
 \end{block}
 \end{frame}
 
-\begin{frame}{NeuroEvolution of Augmented Topologies (NEAT)~\footfullcite{stanley2002evolving}}
+\begin{frame}{NeuroEvolution of Augmented Topologies (NEAT)}
 \begin{block}{Some key points of this method are:}
 \begin{itemize}
 \item Evolving neural network topologies along with weights
@@ -315,12 +298,13 @@ $f(\underbrace{x\   ,\  y}_\text{coords.}) = \text{pixel value}$
 \end{center}
 \end{frame}
 
-\begin{frame}{{\scriptsize Evolution of Soft Robots by} Novelty Search}
+\begin{frame}{{\scriptsize Evolution of Soft Robots by} Novelty Search~\footfullcite{lehman2011abandoning}}
 \begin{block}{What is novelty search:}
 \begin{itemize}
 \item Traditionally fitness measures how good an individual is.
 \item Objective function can prevent evolution reaching the target.
 \item Abandon the objective
+\item Define a behavior metric
 \item Try finding novelty in behavior space
 \end{itemize}
 \end{block}
@@ -358,7 +342,8 @@ s(x) = \cfrac{1}{k} \sum_{i=0}^k dist(x, b_i)
 \vspace{0.3cm}
 \includegraphics[width=0.3\textwidth,height=0.25\textheight]{../Figures/Misc/unshacklingEvolutionFigure1.png}\	\	\	
 \includegraphics[width=0.3\textwidth,height=0.25\textheight]{../Figures/Misc/unshacklingEvolutionFigure2.png}\	\	\	
-\includegraphics[width=0.3\textwidth,height=0.25\textheight]{../Figures/Misc/unshacklingEvolutionFigure3.png}
+\includegraphics[width=0.3\textwidth,height=0.25\textheight]{../Figures/Misc/unshacklingEvolutionFigure3.png}\\[0.8cm]
+\textit{Evolution of soft robots by novelty search}
 \end{frame}
 
 
@@ -423,7 +408,7 @@ Simple genetic algorithm fails to produce locomotion.
 {
 \setbeamercolor{block body}{bg=white}
 
-\begin{frame}{Extending CPPN-NEAT with Novelty Search~\footfullcite{lehman2011abandoning}}
+\begin{frame}{Extending CPPN-NEAT with Novelty Search}
 \begin{itemize}
 \item Novelty takes the place of fitness
 \item Novel individuals stored in a list
@@ -628,8 +613,8 @@ Simple genetic algorithm fails to produce locomotion.
 \item Population size: $30$, Max. generations: $1000$
 \item For lattice size/resolution: $5^3$, $7^3$, $10^3$
 \item $10$ different behavior metrics
-\item $4$ variant gravity levels, $2$ temperature frequency levels
-\item For both fitness, and novelty search
+\item $4$ variant gravity levels
+\item For both fitness and novelty search
 \end{itemize}
 \end{block}
 \begin{block}{Held at:}
@@ -638,7 +623,7 @@ Simple genetic algorithm fails to produce locomotion.
 \item $2$ $\times$ Desktops ($4$-core)
 \end{itemize}
 \end{block}
-\alert{More than $22.500$ hours of CPU time (single-thread)}
+\alert{$\sim 22.500$ hours of CPU time (single-thread)}
 \end{frame}
 
 
@@ -657,19 +642,6 @@ Simple genetic algorithm fails to produce locomotion.
 \setbeamercolor{block body}{bg=white}
 
 \begin{frame}{Increased Diversity}
-\begin{block}{Novelty Search - Champions every 100 generations:}
-\includegraphics[width=0.2\textwidth]{../Figures/Robots/n_4_g_100.jpg}
-\includegraphics[width=0.2\textwidth]{../Figures/Robots/n_4_g_200.jpg}
-\includegraphics[width=0.2\textwidth]{../Figures/Robots/n_4_g_300.jpg}
-\includegraphics[width=0.2\textwidth]{../Figures/Robots/n_4_g_400.jpg}
-\includegraphics[width=0.2\textwidth]{../Figures/Robots/n_4_g_500.jpg}\\
-\includegraphics[width=0.2\textwidth]{../Figures/Robots/n_4_g_600.jpg}
-\includegraphics[width=0.2\textwidth]{../Figures/Robots/n_4_g_700.jpg}
-\includegraphics[width=0.2\textwidth]{../Figures/Robots/n_4_g_800.jpg}
-\includegraphics[width=0.2\textwidth]{../Figures/Robots/n_4_g_900.jpg}
-\includegraphics[width=0.2\textwidth]{../Figures/Robots/n_4_g_1000.jpg}
-\end{block}
-
 \begin{block}{Fitness-based Search - Champions every 100 generations:}
 \includegraphics[width=0.2\textwidth]{../Figures/Robots/f_4_g_100.jpg}
 \includegraphics[width=0.2\textwidth]{../Figures/Robots/f_4_g_200.jpg}
@@ -681,6 +653,19 @@ Simple genetic algorithm fails to produce locomotion.
 \includegraphics[width=0.2\textwidth]{../Figures/Robots/f_4_g_800.jpg}
 \includegraphics[width=0.2\textwidth]{../Figures/Robots/f_4_g_900.jpg}
 \includegraphics[width=0.2\textwidth]{../Figures/Robots/f_4_g_1000.jpg}
+\end{block}
+
+\begin{block}{Novelty Search - Champions every 100 generations:}
+\includegraphics[width=0.2\textwidth]{../Figures/Robots/n_4_g_100.jpg}
+\includegraphics[width=0.2\textwidth]{../Figures/Robots/n_4_g_200.jpg}
+\includegraphics[width=0.2\textwidth]{../Figures/Robots/n_4_g_300.jpg}
+\includegraphics[width=0.2\textwidth]{../Figures/Robots/n_4_g_400.jpg}
+\includegraphics[width=0.2\textwidth]{../Figures/Robots/n_4_g_500.jpg}\\
+\includegraphics[width=0.2\textwidth]{../Figures/Robots/n_4_g_600.jpg}
+\includegraphics[width=0.2\textwidth]{../Figures/Robots/n_4_g_700.jpg}
+\includegraphics[width=0.2\textwidth]{../Figures/Robots/n_4_g_800.jpg}
+\includegraphics[width=0.2\textwidth]{../Figures/Robots/n_4_g_900.jpg}
+\includegraphics[width=0.2\textwidth]{../Figures/Robots/n_4_g_1000.jpg}
 \end{block}
 \end{frame}
 
@@ -752,7 +737,6 @@ Simple genetic algorithm fails to produce locomotion.
 \item Increased performance on different settings
 \item Performance is not much affected by the behavior metric
 \item Fitness elitism further improves performance
-\item[+] More sophisticated behaviors and difference measure
 \item[+] Co-evolution of materials alongside morphology
 \item[+] Develop methods to combine both searches
 \end{itemize}

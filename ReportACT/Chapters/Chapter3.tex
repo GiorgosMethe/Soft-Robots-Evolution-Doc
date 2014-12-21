@@ -1,0 +1,107 @@
+% Chapter 3
+
+\chapter{Related Work} % Main chapter title
+
+\label{Related Work} % For referencing the chapter elsewhere, use \ref{Chapter1} 
+
+\lhead{Chapter 3. \emph{Related Work}} % This is for the header on each page - perhaps a shortened title
+
+This chapter presents related research work in evolutionary robotics and methodologies used to evolve robot controllers as well as robot morphologies in simulated (\emph{Artificial Life}) or physical environments. In addition, a lot of research work has been conducted regarding the aspect of the encoding to the morphological evolution of soft robots. With the design freedom soft materials give to any evolutionary method, it is of interest to see what has been achieved so far. Most work utilizes a fitness based evolution to successfully evolve virtual and physical robots. However, as it will be discussed later in this chapter, novelty search has been used within an evolutionary setting in order to evolve virtual creatures. Novelty search, as it was discussed in Section~\ref{NoveltySearch}, is a diversity based method where the objective function rewards the novelty in the behavior level.
+
+
+\section{Evolution of Virtual-Physical Robots}
+
+Robot controllers can be evolved through evolutionary algorithms on simulated (virtual) robots. Moreover, evolutionary methods can be applied to physical~robots~\citep{nolfi1994evolve} where no damage can occur due to exploration of the action space. Controllers represented by an encoding scheme can be generated and propagated from generation to generation within an evolutionary framework until good solutions are found.
+
+\begin{figure}[b!]
+\centering
+\includegraphics[width=0.8\textwidth]{../Figures/Misc/evolvingVirtualCreatures.png}
+\caption{Karl Sims, \textit{``Evolution of virtual creatures''} \citep{sims1994evolving}.}
+\label{fig:karlSims}
+\end{figure}
+
+Novel systems that make use of evolutionary methods to evolve complex encoding representations such as artificial neural networks have been developed. These complex representations can control not only the morphology of rigid body parts connected with joints, but also control the forces applied to each joint. As a result, virtual creatures (see Fig.~\ref{fig:karlSims}) can be produced in a physical three-dimensional world~\citep{sims1994evolving}. Different fitness measures also give the possibility to the evolution of diverse creatures in respect to these measures. This genetic encoding defines a hyperspace of infinite number of possible creatures and behaviors, when it is searched using optimization techniques like EA a variety of successful and interesting locomotion strategies emerge, some of which would be difficult to invent or build by engineers. This was the first work successfully tried to evolve both the morphology and the locomotion of virtual robots in a simulated environment, based on such a complex representation for the genome (ANNs).
+
+\begin{figure}[t!]
+\centering
+\includegraphics[width=0.25\textwidth,height=0.2\textwidth]{../Figures/Misc/lsystems1.png}
+\includegraphics[width=0.25\textwidth,height=0.2\textwidth]{../Figures/Misc/lsystems2.png}
+\caption{The use of Lindenmayer systems results in creature morphologies that have a more natural look~\citep{hornby2001evolving}.}
+\label{fig:lsystems}
+\end{figure}
+
+Computer graphic designers can profit from evolutionary techniques since the design phase of some applications (i.e games, movies, etc.) is a time consuming process. However, the need for natural looking morphologies is of crucial importance in such optimization methods. Previous work~\citep{lipson2000automatic,sims1994evolving} resulted in unnatural looking shapes for the evolved virtual creatures and abnormal behaviors mostly due to the vast solution space and the encoding representation of the genome. A system that uses Lindenmayer systems~\citep{hornby2001evolving} (L-systems) as the encoding of an EA for creating virtual creatures was proposed. Creatures evolved by this system have hundreds of parts, while the use of an L-system as the encoding resulted in creature morphologies that have a more natural look (see Fig.~\ref{fig:lsystems}). The discussed method~\citep{hornby2001evolving} showed that the encoding of the genome can indeed have a big impact on the evolved morphologies.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.25\textwidth,height=0.2\textwidth]{../Figures/Misc/rules1.png}
+\includegraphics[width=0.25\textwidth,height=0.2\textwidth]{../Figures/Misc/rules2.png}
+\includegraphics[width=0.25\textwidth,height=0.2\textwidth]{../Figures/Misc/rules3.png}
+\caption{Generative representation can define a set of rules that simple components can be put together to generate a robot~\citep{hornby2003generative}.}
+\label{fig:rules}
+\end{figure}
+
+Evolutionary methods have shown the ability to create complex designs for robots which can perform tasks in the environment they are evolved in. However, these complex designs are hard or sometimes impossible to be transferred on a physical robot. Generative representation used in~\citep{hornby2003generative}, accomplishes to replace complex representations into a construction plan which uses simple robot components in a regular way (see Fig.~\ref{fig:rules}). This compact design space of the resulted method can indeed limit the possible morphologies given a set of possible morphological parts. As direct encoding schemes have trouble capturing geometrical properties of the problem, generative encoding like CPPNs can be used in order to take advantage of a problem's regularities.
+
+\begin{figure}[b!]
+\centering
+\includegraphics[width=0.25\textwidth,height=0.2\textwidth]{../Figures/Misc/auerbach1.png}
+\includegraphics[width=0.25\textwidth,height=0.2\textwidth]{../Figures/Misc/auerbach2.png}
+\includegraphics[width=0.25\textwidth,height=0.2\textwidth]{../Figures/Misc/auerbach3.png}
+\caption{CPPN-NEAT can be used as a generative encoding for the evolution of virtual robots~\citep{auerbach2010dynamic}.}
+\label{fig:auerbach}
+\end{figure}
+
+HyperNEAT~\citep{stanley2009hypercube} is a method to evolve CPPNs which then determines the topology and the weights of ANNs. It has shown promising results in evolving the gaits of legged robots~\citep{clune2009evolving}, whereas direct encoding schemes have not been successful. Natural evolution is the only process which instead of evolving only the brain of biological organisms, it also evolves the morphology of them. CPPN-NEAT~\citep{stanley2007compositional} can be used as a generative encoding EA which can evolve both features of virtual robots~\citep{auerbach2010dynamic, auerbach2010evolving} (see Fig.~\ref{fig:auerbach}), verifying that more complex creatures than designers imagination can be created in such a setting. With this representation it is also possible that a lower resolution phenotype space can be used in the first runs of the evolution to save computational time without significantly degrading the quality of evolved structures, while later a higher resolution space can be used for a more detailed optimization.
+
+Evolving objects with types of encoding based on concepts from biological development like CPPNs can be a powerful way to evolve complex and interesting objects~\citep{clune2011evolving}. These results can be used in applications in fields of engineering, biology, and in others as diverse as art. Apart from the use in robot-bodies design evolution, EA techniques coupled with indirect coding schemes allow the evolution of the morphology and the motion control of soft bodies. In this case multicellular animats~\citep{joachimczak2012co} in a two-dimensional fluid-like environment. Both the developmental program that determines the morphology and the motion control are encoded indirectly in a single linear genome, where a genetic algorithm can be applied to evolve it.
+
+With the excel of $3$D printing, soft multi-material robot bodies can be produced using simple material types. These soft structures entirely made of soft-materials can be simulated~\citep{hiller2012dynamic} allowing the evolution of their designs without the costs of production. As it was first shown in~\citep{hiller2012automatic}, the automated design of three-dimensional bodies can obtain many functionalities through the distribution of different materials inside their body. The virtual soft robots were successfully evolved (EA) and tested for a single-direction locomotion displacement, while the best evolved morphology was printed into a physical soft robot using a three-dimensional printer. The soft robot tested inside a pressure-chamber and achieved to move itself with a displacement that had only a small error compared to the one in the software simulation. 
+
+\begin{figure}[t!]
+\centering
+\includegraphics[height=0.2\textwidth]{../Figures/Misc/unshacklingEvolutionFigure1.png}\hspace{0.4cm}
+\includegraphics[height=0.2\textwidth]{../Figures/Misc/unshacklingEvolutionFigure2.png}\hspace{0.4cm}
+\includegraphics[height=0.2\textwidth]{../Figures/Misc/unshacklingEvolutionFigure3.png}
+\caption{\textit{``Unshackling Evolution: Evolving Soft Robots with Multiple
+Materials and a Powerful Generative Encoding''} \citep{cheney2013unshackling}.}
+\label{fig:unschackling}
+\end{figure}
+
+
+\begin{figure}[b!]
+\centering
+\includegraphics[width=0.6\textwidth]{../Figures/Misc/meshSoft1.png}
+\caption{Soft robot bodies are built out of meshes of tetrahedra \citep{rieffel2014growing}.}
+\label{fig:meshSoft}
+\end{figure}
+
+Evolution of soft material robots as it was shown in~\citep{hiller2012automatic}, can result in soft robots able to produce locomotion. The possibility of evolving these soft structures using an indirect encoding was of interest to be exploited by~\citep{cheney2013unshackling}. A powerful generative encoding, CPPNs~\citep{stanley2007compositional}, was used to generate soft voxel-formed three-dimensional structures (see Fig.~\ref{fig:unschackling}), coupled with the use of NEAT algorithm which ensures the increasing complexity of the networks produced. The superiority of this kind of generative encoding was verified, showing how CPPNs can take advantage of their geometrical properties. Evaluation was done by a simple displacement measure, while evolution tended to evolve different kinds of locomotion strategies and morphologies as the fitness function was penalized for different kinds of parameters. Furthermore, it has been shown that evolving morphologies (CPPNs) in lower resolutions and then applying the same networks for higher resolution structures can be beneficial, since the locomotion behaviors in lowers structures also apply in higher saving computational time. An earlier work~\citep{hiller2010evolving}, apart from the generative encoding of CPPNs, made use of \textit{Gaussian Mixture} and \textit{Discrete Cosine Transform} to produce amorphous soft body structures.
+
+The simultaneous evolution of soft robot morphology and control was also investigated by recent work~\citep{rieffel2014growing} (see Fig.~\ref{fig:meshSoft}). Some aspects of soft robot evolution were verified in this work, namely muscle placement and muscle-firing patterns can be evolved given a fixed body shape and fixed material properties. Furthermore, material properties can be co-evolved alongside locomotion strategies. Finally, a developmental encoding was introduced, allowing more complex parts to be added to soft robotic structures during the evolution.
+
+
+\section{Evolving Virtual Creatures by Novelty Search}
+
+\begin{figure}[t!]
+\centering
+\includegraphics[width=0.2\textwidth]{../Figures/Misc/nov1.png}
+\includegraphics[width=0.2\textwidth]{../Figures/Misc/nov2.png}
+\includegraphics[width=0.2\textwidth]{../Figures/Misc/nov3.png}
+\includegraphics[width=0.2\textwidth]{../Figures/Misc/nov4.png}
+\caption{Diverse morphologies evolved during a single run of novelty search with local competition~\citep{lehman2011evolving}.}
+\label{fig:noveltySims}
+\end{figure}
+
+In problems with such high dimensionality as evolving both the morphology and locomotion strategy of artificial creatures in simulated or physical environments, evolution does not explore the solution space enough sticking with the first most promising morphologies to exploit. However, novelty search, a technique that explicitly rewards diversity, can potentially mitigate such convergence. Methods for evolving such virtual creatures like in~\citep{sims1994evolving} can utilize novelty search~\citep{lehman2011evolving} and be far more explorative in the search space (see Fig.~\ref{fig:noveltySims}). Behavior novelty defined as a measure between morphological properties of the produced creatures driving the evolution to explore more diverse morphologies. A larger diversity with regards to the morphological properties of the evolved virtual creatures does not guarantee their ability to locomote in the simulated environment. However, combining fitness and novelty objectives through local competition led to improved results, whereas novelty search alone failed. 
+
+As it was stated before, the work that is being presented in this thesis makes use of novelty search to co-evolve the morphology and the locomotion capability of soft bodied virtual creatures. As pure novelty search failed to evolve fit solutions in previous work~\citep{lehman2011evolving} used, it is of interest to apply and investigate its performance in virtual soft robots this time.
+
+
+
+\begin{comment}
+\section{Evolving gaits}
+\todo{Not much idea of what to add here and where I should focus (space?)}
+\citep{auerbach2012relationship} On  the  relationship  between  environmental and mechanical complexity in evolved robots.
+\citep{lee2013evolving} Evolving gaits  for  physical  robots  with  the  hyperneat  generative  encoding:   The  benefits  of simulation.
+\end{comment}

@@ -1,0 +1,105 @@
+\documentclass{sig-alternate}
+
+\begin{document}
+
+ \conferenceinfo{GECCO'15,} {July 11-15, 2015, Madrid, Spain.}
+    \CopyrightYear{2015}
+    \crdata{TBA}
+    \clubpenalty=10000
+    \widowpenalty = 10000
+
+\title{Novelty Search of Soft Robot Morphologies for Space Exploration}
+%\subtitle{[Extended Abstract]
+%\titlenote{A full version of this paper is available as
+%\textit{Author's Guide to Preparing ACM SIG Proceedings Using
+%\LaTeX$2_\epsilon$\ and BibTeX} at
+%\texttt{www.acm.org/eaddress.htm}}}
+
+\numberofauthors{1}
+\author{
+\alignauthor
+???
+% \alignauthor
+% Ben Trovato\titlenote{Dr.~Trovato insisted his name be first.}\\
+%       \affaddr{Institute for Clarity in Documentation}\\
+%       \affaddr{1932 Wallamaloo Lane}\\
+%       \affaddr{Wallamaloo, New Zealand}\\
+%       \email{trovato@corporation.com}
+% % 2nd. author
+% \alignauthor
+% G.K.M. Tobin\titlenote{The secretary disavows
+% any knowledge of this author's actions.}\\
+%       \affaddr{Institute for Clarity in Documentation}\\
+%       \affaddr{P.O. Box 1212}\\
+%       \affaddr{Dublin, Ohio 43017-6221}\\
+%       \email{webmaster@marysville-ohio.com}
+% % 3rd. author
+% \alignauthor Lars Th{\o}rv{\"a}ld\titlenote{This author is the
+% one who did all the really hard work.}\\
+%       \affaddr{The Th{\o}rv{\"a}ld Group}\\
+%       \affaddr{1 Th{\o}rv{\"a}ld Circle}\\
+%       \affaddr{Hekla, Iceland}\\
+%       \email{larst@affiliation.org}
+% \and  % use '\and' if you need 'another row' of author names
+% % 4th. author
+% \alignauthor Lawrence P. Leipuner\\
+%       \affaddr{Brookhaven Laboratories}\\
+%       \affaddr{Brookhaven National Lab}\\
+%       \affaddr{P.O. Box 5000}\\
+%       \email{lleipuner@researchlabs.org}
+}
+
+\maketitle
+\begin{abstract}
+don't worry about this, we gonna write it at the end
+\end{abstract}
+
+% A category with the (minimum) three required fields
+\category{H.4}{Information Systems Applications}{Miscellaneous}
+%A category including the fourth, optional field follows...
+%\category{D.2.8}{Software Engineering}{Metrics}[complexity measures, performance measures]
+
+\terms{Theory}
+
+\keywords{soft robotics, novilty search, CPPN, HyperNEAT, VoxCAD}
+
+\section{Introduction}
+Motivation, space, small bodies, passive actuation, story of Rosetta/Philae - stupid rigid probe without locomotion, we can do better!
+
+\section{Background}
+\begin{itemize}
+\item gaits at different gravity levels (Ariadna Space Gaits); fixed morphology, rigid body dynamics
+\item soft robots
+\item unshackling evolution paper
+\end{itemize}
+
+\section{Methodology}
+\subsection{VoxCAD simulator}
+
+\subsection{HyperNEAT + CPPN + Novelty}
+behaviours
+
+\subsection{Novelty + Fitness-based}
+
+\subsection{Experimental setup}
+parameters, gravity
+
+\section{Results}
+novelty (+ fitness) better than fitness
+examples of cool creatures
+taxonomy of the evolved creatures at different gravity levels (hoppers, 2-3-4 legs, crawler, tumbleweed) 
+
+\section{Discussion}
+what's the use of this?
+getting inspiration for soft robotic probe / landers (tumbleweed)
+come back to asteroid scenario (passime motion), would it have saved Philae?
+
+\section{Conclusions}
+our setup better than results from "unshackling evoltion"
+methodology is suitable to design diverse gaits of soft robots at various gravity levels
+future work: ensamble of behaviors, very low gravity environments and rotational parameters of small body linked to actuation frequency
+
+\bibliographystyle{abbrv}
+%\bibliography{sigproc}
+
+\end{document}
