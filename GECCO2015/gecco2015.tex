@@ -1,5 +1,7 @@
 \documentclass{sig-alternate}
 
+\usepackage{url}
+
 \begin{document}
 
  \conferenceinfo{GECCO'15,} {July 11-15, 2015, Madrid, Spain.}
@@ -76,8 +78,75 @@ Motivation, space, small bodies, passive actuation, story of Rosetta/Philae - st
 \section{Methodology}
 \subsection{VoxCAD simulator}
 
+Most work to simulate interactions and deformations within and between soft material bodies are mostly focused on the graphical part of the problem~\cite{faloutsos1997dynamic} sacrificing the accuracy of the simulation~\cite{teschner2004versatile}. Three dimensional meshes~\cite{muller2002stable} can represent these bodies including the dynamics of their materials. 
+
+A recent work though, \emph{VoxCad} simulator~\cite{hiller2012dynamic} is focusing mostly on the physics side of the soft material interactions not at the expense of a low frame rate. \emph{VoxCad} is a modeling and analyzing open-source software that can simulate soft material deformations and interactions. In Figure~\ref{fig:VoxCAD} the graphical user interphase of VoxCad software is presented during the simulation of the soft body robot in the simulator.
+
+VoxCad cannot model and simulate three dimensional meshes, yet a lattice is used to represent the 3D workspace where voxels (three dimensional pixels) can be assigned different materials. Materials themselves are passive and cannot actuate without external trigger. In this simulator this external force that can actuate the materials is the temperature of the environment. The main variables of the environment is the base, the amplitude and the period of the temperature. Furthermore, gravity acceleration of the environment can vary. Materials have properties such as the elasticity of the material, density, Poisson's ratio, coefficient of thermal expansion (which determines how materials will be expanded in respect to the environment's temperature), temporal phase in respect to the temperature period, and the ground friction coefficients. Materials can also be mixed together to create a new type of material.
+
+\begin{figure}[t!]
+\centering
+\includegraphics[width=0.4\textwidth]{../Figures/Misc/voxcad.png}
+\caption{VoxCAD (Voxel CAD), a cross-platform open source voxel modeling and analyzing software.}
+\label{fig:VoxCAD}
+\end{figure}
+
+Throughout this thesis, the terms \textit{structure} or \textit{soft robot} will refer to a set of connected voxels (not unconnected parts) within the lattice space. The voxel dimensions are constant through the experiments of this thesis, while the lattice space is variant. Since the voxel dimensions are the same for all settings, the term \textit{resolution} will be referring to the number of voxels in each dimension. Note that different resolutions also refer to different dimensions for the lattice as the voxel size is fixed.  For experimental settings used during the simulations see appendices~\ref{SimulationSettings}, \ref{ExperimentalSettings}. 
+
 \subsection{HyperNEAT + CPPN + Novelty}
-behaviours
+
+
+\subsubsection{CPPN}
+\begin{figure}[t!]
+\centering
+\includegraphics[width=0.15\textwidth]{../Figures/Misc/cppnNetwork.eps}
+\caption{Compositional pattern-producing networks have identical network structure with artificial neural networks while they make use of a canonical set of activation functions.}
+\label{fig:cppnNetwork}
+\end{figure}
+
+
+
+Encoding plays an important role and it is critical to the performance of evolutionary algorithms especially when large problem spaces are present. Research has shown that the genotype-phenotype mapping can affect performance~\cite{komosinski2001comparison} in three dimensional agents, where more complex encoding schemes outperform direct encoding. In addition, geometrical implications of the problem also have some potentially important roles in the encoding. The role of symmetry to the encoding is crucial especially in applications like board games, robot controllers, biped walking, etc.. In these cases, geometric regularities of the encoding can be essential to the performance of the evolutionary method.
+
+\begin{figure}[t!]
+\centering
+\includegraphics[width=0.25\textwidth]{../Figures/Misc/cppnResolution.eps}
+\caption{CPPNs work as a function $f$ that is being queried for the whole n-dimensional Cartesian space in which space the phenotype is mapped, in this case the phenotype is the triangle in a two-dimensional space, figure taken by~\cite{stanley2007compositional}.}
+\label{fig:cppnResolution}
+\end{figure}
+
+\emph{Compositional pattern-producing networks}~\cite{stanley2007compositional} or CPPNs are artificial neural networks with an extended set of activation functions (see Fig.~\ref{fig:cppnNetwork}). Results by this encoding show that regular patterns can be produced in this generative mapping from the genotype to the phenotype space. Like in the previous two dimensional image representation of a phenotype, CPPNs generate phenotypes that can be interpreted as distributions of points in a multidimensional Cartesian space. The genotype (CPPN) can then be queried for each coordinate of the space and gives the phenotype representation of the genotype in multiple resolutions. In the same fashion, images can be constructed using CPPNs, where pixel coordinates are queried to the network and the grayscale or RGB values can be taken by the outputs of these networks. 
+
+
+Figure~\ref{fig:cppnResolution} illustrates how the mapping between the genotype and phenotype is done using generative encoding (CPPNs). A major asset of CPPNs is that they can generalize in all resolutions. Considering the previous figure (see Fig.~\ref{fig:cppnResolution}), the CPPN is queried for all $x,y$ coordinates of the phenotype two dimensional Cartesian space. The step of $x,y$ sampling can be determined by the problem, since the inputs of the CPPN are the normalized coordinates $x,y \in [-1,1]$. Hence, genotypes using this kind of generative encoding can be mapped in every resolution, making this process straighforward to generalize. As the space of the phenotype becomes larger, a generative encoded solution (CPPN) is not affected by the increasing dimensions of the problem, a constraint that heavily affects direct encoding.
+
+\begin{figure}[t!]
+\centering
+\includegraphics[width=0.1\textwidth]{../Figures/Misc/picBreed3.jpg}\quad   
+\includegraphics[width=0.1\textwidth]{../Figures/Misc/picBreed2.jpg}\quad
+\includegraphics[width=0.1\textwidth]{../Figures/Misc/picBreed1.jpg}\\
+\includegraphics[width=0.1\textwidth]{../Figures/Misc/endless2.png}\quad 
+\includegraphics[width=0.1\textwidth]{../Figures/Misc/endless1.png}\quad
+\includegraphics[width=0.1\textwidth]{../Figures/Misc/endless3.png}
+\caption{Compositional pattern-producing networks can encode truly complex images\protect\footnotemark[1] (top) and 3D-structures\protect\footnotemark[2] (bottom).}
+\label{fig:cppnImages}
+\end{figure}
+
+\footnotetext[1]{picbreederSite: \url{http://www.picbreeder.org}}
+\footnotetext[2]{EndlessForms: \url{http://www.endlessforms.com}}
+
+Compositional pattern-producing networks have been used in many applications where symmetry and repetition can produce two or three dimensional artistic structures\footnotemark[2], and drawings\footnotemark[1]~\cite{secretan2008picbreeder}. As these applications require more symmetrical properties than others, not only Cartesian space coordinates are fed into the inputs of these networks, but more inputs biasing the network should be present~\cite{secretan2008picbreeder}. Some example inputs that can be fed into the network as additional inputs are the distance from the center of the space or the distance from the center to one axis. Figure~\ref{fig:cppnImages} illustrates images encoded by CPPNs. Comparing the results with Figure~\ref{fig:directVsIndirectEncoding}, it is understandable why this kind of encoding can capture solutions in problem domains where symmetry is important.
+
+
+
+
+
+
+\subsubsection{Novelty search}
+
+
+
+\subsubsection{Behaviours}
 
 \subsection{Novelty + Fitness-based}
 
@@ -100,6 +169,6 @@ methodology is suitable to design diverse gaits of soft robots at various gravit
 future work: ensamble of behaviors, very low gravity environments and rotational parameters of small body linked to actuation frequency
 
 \bibliographystyle{abbrv}
-%\bibliography{sigproc}
+\bibliography{bibliography}
 
 \end{document}
