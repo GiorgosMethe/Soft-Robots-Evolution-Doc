@@ -2,7 +2,6 @@
 \usepackage{url}
 \usepackage{pgffor}
 \usepackage{subcaption}
-\usepackage{comment}
 \usepackage{graphicx}% http://ctan.org/pkg/graphicx
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 
@@ -36,20 +35,49 @@
 %\textit{Author's Guide to Preparing ACM SIG Proceedings Using
 %\LaTeX$2_\epsilon$\ and BibTeX} at
 %\texttt{www.acm.org/eaddress.htm}}}
-
-\numberofauthors{1}
+\numberofauthors{4}
 \author{
+% You can go ahead and credit any number of authors here,
+% e.g. one 'row of three' or two rows (consisting of one row of three
+% and a second row of one, two or three).
+%
+% The command \alignauthor (no curly braces needed) should
+% precede each author name, affiliation/snail-mail address and
+% e-mail address. Additionally, tag each line of
+% affiliation/address with \affaddr, and tag the
+% e-mail address with \email.
 \alignauthor
-		Georgios Methenitis, Daniel Hennes*, Dario Izzo*, Arnaud Visser**\\
-       \affaddr{Centrum Wiskunde \& Informatica, Amsterdam}\\
-       \affaddr{*European Space Agency}\\
-       \affaddr{**University of Amsterdam}\\
-       \email{georgios.methenitis@cwi.nl, daniel.hennes@esa.int, dario.izzo@esa.int, a.visser@uva.nl}
+Georgios Methenitis\\
+       \affaddr{Centrum Wiskunde \& Informatica}\\
+       \affaddr{Amsterdam, The Netherlands}\\
+       \email{georgios.methenitis@cwi.nl}
+% 2nd. author
+ \alignauthor
+ Daniel Hennes\\
+       \affaddr{Advanced Concepts Team}\\
+       \affaddr{European Space Agency (ESTEC)}\\
+       \affaddr{Noordwijk, The Netherlands}\\
+       \email{Daniel.Hennes@esa.int}
+ % 3rd. author
+\alignauthor
+Dario Izzo\\
+       \affaddr{Advanced Concepts Team}\\
+       \affaddr{European Space Agency (ESTEC)}\\
+       \affaddr{Noordwijk, The Netherlands}\\
+       \email{Dario.Izzo@esa.int}
+ \and  % use '\and' if you need 'another row' of author names
+ % 4th. author
+ \alignauthor 
+Arnoud Visser\\
+       \affaddr{University of Amsterdam}\\
+       \affaddr{Amsterdam, The Netherlands}\\
+       \email{a.visser@uva.nl}
 }
 
 \maketitle
 \begin{abstract}
-Soft robotics is a vivid research field on the science and engineering aspects of soft materials in mobile machines. Recent development in soft robotics and evolutionary optimization have shown the ability to simultaneously evolve the morphology and locomotion of soft robots. Generative encoding coupled with neural evolution of augmented topologies shows promising results. Novelty search, unlike traditional optimization methods does not aim to optimize the objective but instead looks for novelty. Novelty search rewards diversity and leads to a variety of solutions, mimicking natural evolution. Apart from the performance comparison between novelty and fitness based search, this paper shows that new locomotion patterns can be produced by the former while different types of selection algorithms for fitness and novelty based evolution are studied. In addition, a method to combine both is proposed. Finally, the objective-wise performance is tested under variant gravity conditions leading into a taxonomy of possible locomotion strategies given different gravity levels.
+The use of soft robots in future space exploration is still a far fetched possibility, but it is too attractive not to be further researched upon. Soft robots are inherently compliant mechanisms that are well suited for locomotion on rough terrain or human-robot interactions. While obviously dependant on the particular application studied, scientists do not agree on what type of shape or locomotion strategy robots, and thus also soft robots, should have in order to be adapted optimally to an extra-planetary environment. Recent developments in soft robotics and evolutionary optimization showed the possibility to simultaneously evolve the morphology and locomotion strategy of certain type of soft robots. The use of techniques such as generative encoding and neural evolution were key to these findings. In this paper improve further on that methodology introducing the use of a novelty measure during the evolution process. We compare fitness search and novelty search in different gravity level and we consistently find novelty based search to perform as good as or better than a fitness based search, while also delivering a greater variety of designs. We propose a combination of the two techniques using fitness elitism in novelty search to obtain a further improvement. We then use our methodology to evolve the gait and morphology of soft robots at different gravity levels, finding a taxonomy of possible locomotion strategies that are analyzed in the context of space-exploration. 
+
 \end{abstract}
 
 % A category with the (minimum) three required fields
@@ -62,7 +90,9 @@ Soft robotics is a vivid research field on the science and engineering aspects o
 \keywords{soft robotics, novelty search, CPPN, CPPN-NEAT, HyperNEAT, VoxCAD, space exploration}
 
 \section{Introduction}
-Space exploration in regards to unmanned missions for close physical investigation of celestial bodies in our solar system remains a very tough task for space engineering, considering the current level of space technology, where the only power sources are either limited to a certain lifespan or depend on sunlight availability while traditional ways of locomotion are limited and sometimes unable to produce locomotion on different gravity levels. For this reason, gravity conditions play a major role in the design and performance aspects of rigid body robots. For example, the Mars rover~\cite{grotzinger2012mars} (Curiosity) design followed a traditional car-like shape and size, its mobility systems depend on six-wheel system that can drive the rover on Mars' surface. More recently, European Space Agency (ESA) successfully achieved to land a rigid probe on the surface of the comet 67P/Churyumov-Gerasimenko (67P). The probe is believed that bounced twice on the surface of the comet before finally landed in a rough terrain going into hybernation due to insufficient sunlight to power its systems, and the inability to perform any kind of movement. In this paper, we investigate ways to the evolution of the design of soft robotic bodies that can be passively actuated on different levels of gravity. We are interested in applying evolutionary techniques to evolve the morphology of soft robots that can inspire future robotic missions, as well as to build on top of previous work applying a search technique known as \emph{Novelty Search} to the evolution of soft robotic morphology and locomotion strategy.
+Robotic exploration of extraterrestrial bodies is a challenging endeavour requiring the deployment of advanced technological solutions. The Huygens descent on Titan, the exciting landing of Philae on the comet 67P/Churyumov-Gerasimenko, the daily accounts of the three martian rovers Spirit, Opportunity and Curiosity are incredible missions that have gained us a great deal of new knowledge. One major challenge, in all of these missions, is mobility and, indeed, advanced mobility solutions for exoplanetary rovers are the subject of active studies. It is not uncommon, for these advanced concepts, to draw inspiration from biology as its the case of the Mars tumbleweed exploration concept \cite{antol2003low, ylikorpi2004biologically}, the lunar ALI exploration concept \cite{clark2005ali}, or the many legged robots, inspired by insect locomotion, that are being studied by different scholars in the context of exoplanetary exploration. Typically, the locomotion strategy and the body morphology of a rover, though closely related, are not co-designed as they are treated as rather uncoupled entities. In reality, the best design for a rover will depend on the planet gravity, defining the entity of the contact forces to be used for locomotion, and on the complex interplay between gaits and rover body, which defines the stability and the performances of locomotion.
+
+In this paper, we are interested in applying evolutionary techniques to evolve simultaneously the morphology and the gait of soft robots in different gravity environments. Given the extreme complexity of the task and the early research stages of the tools used, we are not interested in the actual final designs evolved, rather in their use to inspire future advanced robotic missions, as well as in improving upon previous work to contribute to the advancement of these techniques.
 
 \subsection{Soft Robots}
 
@@ -225,12 +255,6 @@ Each experiment consists of $10$ runs under the same settings. As in~\cite{chene
 \section{Results}
 Pure novelty search is compared in respect to the goodness measure used in the simulations (displacement of soft robots in body-lengths) to fitness based search. Different behavior types are used to investigate the effects on performance of novelty search method. Elitism is used in a proposed methodology to incorporate fitness information in novelty search. Last, the performance of both methods are investigated for several levels of gravity. Furthermore, evolved locomotion strategies under different gravity conditions show how environmental conditions can affect the evolved morphologies and the locomotion strategies of soft robots.
 
-\begin{comment}
-\subsection{Evolved Morphologies} 
-
-Apart from the performance that the two methods achieved, both of them were successful in evolving effective strategies for the locomotion of the evolved morphologies. Figure~\ref{fig:evolvedMorphologiesFitness} shows three different gait types evolved by fitness based search. All of these morphologies are considered ``good'' in respect to their fitness value, meaning that they achieve to travel up to $\sim 10$ body lengths during the simulation time ($0.4$ sec.). Considering that the lattice resolution used for this experiment was of size $10^3$. The produced low-resolution soft robots cannot be compared with real-life organisms. However, the results are shown that even in such low dimensions life-like locomotion can be evolved. For the fitness based search, soft body morphologies can use their front leg(s) to pull themselves forward, evolve a four-leg locomotion where a nose and a tail are mostly used for stability, push and pull themselves forward, and gallop using both of their legs. Moving from fitness based search to novelty search locomotion strategies do not differ too much since the resolution does not allow the virtual soft robots to explore more locomotion techniques. However, novelty search proves its merits with regards to the morphologies evolved. More complicated structures are now evolved, this can be explained by the fact that novelty search pushes the evolution to investigate new kinds of behaviors resulting to more complex topologies for the networks (CPPNs) that represent the soft robot morphologies. Figure~\ref{fig:evolvedMorphologiesNovelty} presents four champion morphologies and their locomotion strategies. Two-legged galloping soft robots, animal-like locomotion based on four legs, and hopper soft robots are evolved.
-\end{comment}
-
 
 \subsection{Behavior selection} 
 
@@ -356,42 +380,38 @@ Different locomotion strategies can be evolved on different gravity levels produ
 
 \begin{figure}[t!]
 \centering
-\vspace{-0.13cm}
 \begin{subfigure}[b]{0.5\textwidth}
 \centering
 \includegraphics[width=1.0\textwidth]{../Figures/Results/hildebrand1.pdf}
-\caption{Two legged soft robot. Timing of impacts between its legs and the ground.}
+\caption{Two legged soft robot.}
 \end{subfigure}
-\vspace{-0.13cm}
+\vspace{-0.2cm}
 \begin{subfigure}[b]{0.5\textwidth}
 \centering
 \includegraphics[width=1.0\textwidth]{../Figures/Results/hildebrand2.pdf}
-\caption{Four legged soft robot. Timing of impacts between its legs and the ground.}
+\caption{Four legged soft robot.}
 \end{subfigure}
-\vspace{-0.13cm}
-\caption{Hildebrand diagrams of two evolved soft robots for Earth's gravity acceleration.}
+\vspace{-0.2cm}
+\caption{Hildebrand diagrams of two evolved soft robots for Earth's gravity acceleration. Timing of impacts between its legs and the ground.}
 \label{fig:hildebrand}
 \vspace{-15pt}
 \end{figure}
 
 \section{Discussion}
-what's the use of this?
-getting inspiration for soft robotic probe / landers (tumbleweed)
-come back to asteroid scenario (passime motion), would it have saved Philae?
-\begin{comment}
-Experiments under these gravity levels verified that novelty search is indeed performing better than fitness based search in the evolution towards high-velocity soft robots in this setting. In addition, some interesting characteristics of evolved locomotion strategies under variant gravity condition were also observed, adding knowledge and more possibilities when the gait of a soft robot under low or high gravity is considered. With the progress three-dimensional printing is showing, future space missions can benefit from low cost soft robot explorers evolved to produce efficient locomotion. Passive locomotion can add more value to these soft body structures, where environmental variable conditions can actuate certain material types to produce locomotion.
-\end{comment}
+It has been shown how with the use of a predefined set of materials and a generative representation for the morphology of soft robots, efficient locomotion can be achieved under different gravity levels. As it was shown by the evolution of a rolling tumbleweed-like~\cite{antol2003low} soft robot, this work can inspire the robotic design of future comet or planetary exploration robotic missions. Extreme temperature fluctuations especially on Comets can trigger passive actuated materials to perform a designed movement. Although the simulator used cannot simulate extreme variations that happen on Comets, we believe that a form of passive actuated probe-parts could have saved Philae~\cite{glassmeier2007rosetta}, the robotic-probe landed on comet 67P.
 
+
+\section{Future Work}
+Different behavior types defined in this paper in regards to the computation of the novelty measure for a individual behavior. To achieve novelty in the locomotion strategy of an evolved soft robots can be done also by combining two or more behavior metrics, a linear combination of the novelty values in more than one behavior levels can be then used to define the novelty of a soft robot. Hildebrand diagrams as shown in Figure~\ref{fig:hildebrand} (Diagrams are shown for two of the evolved soft robots on Earth) can also be used a different behavior, as they have been used to describe the locomotion pattern of animals or legged robots. Experiments under different levels of gravity and the frequency of the temperature, showed that there is a clear connection between the frequency of the temperature variation and the gravity which was not in the scope of this work. The chromosome of the evolutionary process can also include the frequency of the actuation as an evolved variable which can then be applied to autonomously actuated soft robotics on different gravity levels.
 
 \section{Conclusions}
 For the first time in evolutionary soft robotics a diversity based method such as novelty search was used. Novelty search method outperformed traditional fitness based search in evolving soft robots morphologies under the same objective which was the normalized by body-length displacement of soft robots. Previous work in evolving virtual creatures by novelty search~\cite{lehman2011evolving} used the resulted morphology of the robots created to determine the novelty of an individual. The resulted performance for pure novelty search method was worse than the fitness based. On the contrary, well defined behavior metrics can lead novelty search to outperform traditional fitness based search used in~\cite{cheney2013unshackling}. Novelty search not only improved the performance and the diversity in the behavior space, but also contributed to a larger variety of virtual creatures evolved. Incorporating fitness information in novelty search resulted in a significant performance gain over pure novelty search method. Finally, both techniques were used to evolve soft robots in four variant gravity levels, showing interesting results and the possibility of influencing future robotic designs for planetary exploration.
 
-\subsection{Future Work}
-ensamble of behaviors, very low gravity environments and rotational parameters of small body linked to actuation frequency
+
 
 
 \begingroup
-\setstretch{0.8}
+\setstretch{0.7}
 \bibliographystyle{abbrv}
 \bibliography{bibliography}
 \endgroup
