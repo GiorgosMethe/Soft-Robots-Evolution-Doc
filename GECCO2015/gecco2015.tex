@@ -1,16 +1,16 @@
 \documentclass{sig-alternate}
 \usepackage{url}
 \usepackage{pgffor}
+\usepackage[font=bf]{caption}
 \usepackage{subcaption}
-\usepackage{graphicx}% http://ctan.org/pkg/graphicx
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 \usepackage{bm}
 \usepackage{xcolor}
 
 \setcopyright{acmcopyright}
-\conferenceinfo{GECCO '15,}{July 11--15, 2015, Madrid, Spain}
+\conferenceinfo{GECCO '15,}{July 11 - 15, 2015, Madrid, Spain}
 \isbn{978-1-4503-3472-3/15/07}\acmPrice{\$15.00}
-\doi{http://dx.doi.org/10.1145/2739480.XXXXXXXX}
+\doi{http://dx.doi.org/10.1145/2739480.2754731}
 
 \clubpenalty=10000 
 \widowpenalty = 10000
@@ -62,14 +62,42 @@ Arnoud Visser\\
        \email{a.visser@uva.nl}
 }
 
+\begin{CCSXML}
+<ccs2012>
+<concept>
+<concept_id>10010147.10010178</concept_id>
+<concept_desc>Computing methodologies~Artificial intelligence</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+<concept>
+<concept_id>10010147.10010178.10010205</concept_id>
+<concept_desc>Computing methodologies~Search methodologies</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+<concept>
+<concept_id>10010147.10010178.10010205.10010206</concept_id>
+<concept_desc>Computing methodologies~Heuristic function construction</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+<concept>
+<concept_id>10010147.10010178.10010213</concept_id>
+<concept_desc>Computing methodologies~Control methods</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Computing methodologies~Artificial intelligence}
+\ccsdesc[500]{Computing methodologies~Search methodologies}
+\ccsdesc[500]{Computing methodologies~Heuristic function construction}
+\ccsdesc[500]{Computing methodologies~Control methods}
+
 \maketitle
 \begin{abstract}
 The use of soft robots in future space exploration is still a far-fetched idea, but an attractive one. Soft robots are inherently compliant mechanisms that are well suited for locomotion on rough terrain as often faced in extra-planetary environments. Depending on the particular application and requirements, the best shape (or body morphology) and locomotion strategy for such robots will vary substantially. Recent developments in soft robotics and evolutionary optimization showed the possibility to simultaneously evolve the morphology and locomotion strategy in simulated trials. The use of techniques such as generative encoding and neural evolution were key to these findings. In this paper, we improve further on this methodology by introducing the use of a novelty measure during the evolution process. We compare fitness search and novelty search in different gravity levels and we consistently find novelty--based search to perform as good as or better than a fitness--based search, while also delivering a greater variety of designs. We propose a combination of the two techniques using fitness--elitism in novelty search to obtain a further improvement. We then use our methodology to evolve the gait and morphology of soft robots at different gravity levels, finding a taxonomy of possible locomotion strategies that are analyzed in the context of space-exploration.
 \end{abstract}
 
-\category{I.2.8}{Artificial Intelligence}{Problem Solving, Control Methods, and Search}[Heuristic methods]
-
-%\terms{Algorithms, Experimentation}
+\printccsdesc
 
 \keywords{soft robotics, locomotion, novelty search, CPPN, CPPN-NEAT, VoxCAD, space exploration}
 
@@ -108,7 +136,7 @@ VoxCad~\cite{hiller2012dynamic} is a simulator targeted to mimic the physics of 
 \end{figure}
 
 
-\begin{figure}[b!]
+\begin{figure}[t!]
 \centering
 \includegraphics[width=0.35\textheight]{../Figures/Misc/cppnSoftBot.eps}
 \caption{Each genotype (CPPN) is queried for every coordinate inside the lattice, its outputs determine the presence of a voxel and the type of its material.}
@@ -140,25 +168,25 @@ As outlined in the previous section, the use of soft robot simulator (VoxCad) an
 \includegraphics[width=0.49\textwidth]{../Figures/Behaviors/2d.pdf}
 \caption{Three and two dimensional trajectories of the soft robots.}
 \end{subfigure}
-\begin{subfigure}[b]{0.23\textwidth}
+\begin{subfigure}[t]{0.23\textwidth}
 \centering
 \includegraphics[width=0.5\textwidth]{../Figures/Behaviors/pace.pdf}~
 \includegraphics[width=0.5\textwidth]{../Figures/Behaviors/pacedft.pdf}
 \caption{Pace and discrete Fourier transformation of the the same signal.}
 \end{subfigure}~
-\begin{subfigure}[b]{0.23\textwidth}
+\begin{subfigure}[t]{0.23\textwidth}
 \centering
 \includegraphics[width=0.5\textwidth]{../Figures/Behaviors/vtg.pdf}~
 \includegraphics[width=0.5\textwidth]{../Figures/Behaviors/vtgdft.pdf}
 \caption{Voxels touching the ground and discrete Fourier transformation of the the same signal.}
 \end{subfigure}\\
-\begin{subfigure}[b]{0.23\textwidth}
+\begin{subfigure}[t]{0.23\textwidth}
 \centering
 \includegraphics[width=0.5\textwidth]{../Figures/Behaviors/pr.pdf}~
 \includegraphics[width=0.5\textwidth]{../Figures/Behaviors/prdft.pdf}
 \caption{Maximum pressure and discrete Fourier transformation of the the same signal.}
 \end{subfigure}~
-\begin{subfigure}[b]{0.23\textwidth}
+\begin{subfigure}[t]{0.23\textwidth}
 \centering
 \includegraphics[width=0.5\textwidth]{../Figures/Behaviors/ke.pdf}~
 \includegraphics[width=0.5\textwidth]{../Figures/Behaviors/kedft.pdf}
@@ -236,7 +264,7 @@ Pure novelty search is compared with respect to the fitness measure (displacemen
 Figure~\ref{fig:BehaviorsPerformance} illustrates the performance achieved by novelty search for the $10$ behavior types. In particular, what is shown is the fitness in body-lengths of the champion of the whole evolution for $10$ independent runs for a lattice size $7^3$. Both trajectory--type behaviors achieve the best performance with regards to the fitness measure, with a small difference in favor of 2D over 3D trajectories. The rest of the behavior metrics apart from VTG and DFT-VTG are close as far as the final performance of the evolution is concerned. One reason they fail to meet the trajectories' performance is the fact that although they keep track of cues that can describe the performance of the robot (e.g., displacement and speed), they cannot encode the direction of motion. Soft robots that have a circular trajectory can exhibit fast locomotion, in this case though, the measured displacement from their initial position remains low. Counting the number of voxels of a soft robot that touched the ground at every sampling step of the simulation does not hold any information as to how fast the robot is moving. A fast moving robot that is hopping can have a similar behavior to a hopping robot that stays in the same position. In contrast, the trajectory behavior of these robots would show a large difference.
 
 
-\begin{figure}[b!]
+\begin{figure}[t!]
 \centering
 \includegraphics[width=0.5\textwidth]{../Figures/Results/FitNovRandomDirectSize5.pdf}
 \caption{Comparison of simple genetic algorithm (direct encoding) against novelty-fitness-random search with generative encoding. Best fitness so far averaged over $10$ runs.}
@@ -257,7 +285,7 @@ Figure~\ref{fig:FitNovRandomDirectSize5} presents the results for the small latt
 
 For larger lattices, it is expected that generative encoding will prove its merits over the direct encoding scheme~\cite{cheney2013unshackling,stanley2007compositional}. More complicated morphologies can be produced (morphology space for $10^3$ lattice resolution: $9.3 \times 10^{698}$). Furthermore, the space of behaviors, for instance two-dimensional trajectories, becomes larger since more complex soft robots can achieve higher displacement and more advanced strategies for locomotion. These higher resolution morphologies can achieve life--like locomotion. Figure~\ref{fig:FitvsNovVsDirSize10} illustrates the performance (i.e. best displacement so far) of the four different methods in these higher resolution settings. Results reassure that novelty search achieves higher fitness ($> 1$ body-length) on average against fitness--based search. Nevertheless, the effect is not as strong as in the previous experiment. Both methods succeed to evolve the soft robot structure with the highest fitness found in all experiments ($\sim 14$ body-lengths). Novelty search behaves more constant in evolving individuals with high fitness in all runs, on the other hand most of individual runs of fitness--based search are being trapped in low fitness local optima, trying to optimize specific individuals without trying to explore deeply the fitness landscape like novelty search successfully does. The high difference between random evolution and novelty search proves that seeking novel behaviors in novelty search cannot be considered as a random search. The superiority of generative encoding (i.e. CPPN) over direct encoding can be clearly observed. Regularity in shape morphologies provides advantages that result in more efficient motion.
 
-\begin{figure}[b!]
+\begin{figure}[t!]
 \centering
 \includegraphics[width=0.5\textwidth]{../Figures/Results/CopyFitChampions10.pdf}
 \caption{Best fitness so far, novelty search with and without copying \emph{fit} champions (fitness--elitism), and fitness search, averaged over $10$ runs.}
@@ -294,7 +322,7 @@ On higher gravity levels familiar locomotion strategies emerge. In Figure~\ref{f
 %This adds significance to the novelty search method since fitness--based search did not produce this kind of locomotion strategy. 
 Tumbleweed is also a concept of low-cost exploration that has inspired robot designers for Mars' missions in the past~\cite{antol2003low} and has been already deployed in Antarctica for testing purposes by NASA.
 
-\begin{figure}[b!]
+\begin{figure}[t!]
 \centering
 \begin{subfigure}[b]{0.5\textwidth}
 \centering
@@ -322,7 +350,7 @@ Moving on to higher gravity levels, i.e. on Jupiter, heavier structures can use 
 \foreach \i in {2,3,4,5,6,8,9}{ 
 \includegraphics[width=0.14\textwidth]{../Figures/Robots/moon-nov-g1-2-\i.jpg}\hspace{-0.16cm}
 }
-\caption{\textbf{Lunar's gravity} C-shaped hopper (Novelty search)}
+\caption{Lunar's gravity: C-shaped hopper (Novelty search)}
 \label{fig:gravityRobots1.6-4}
 \end{subfigure}
 \begin{subfigure}[b]{1.0\textwidth}
@@ -330,7 +358,7 @@ Moving on to higher gravity levels, i.e. on Jupiter, heavier structures can use 
 \foreach \i in {1,2,3,4,5,7,8}{ 
 \includegraphics[width=0.14\textwidth]{../Figures/Robots/mars-nov-g3-1-\i.jpg}\hspace{-0.16cm}
 }
-\caption{\textbf{Mars' gravity} 2-legged C-shaped hopper (Novelty search)}
+\caption{Mars' gravity: 2-legged C-shaped hopper (Novelty search)}
 \label{fig:gravityRobots3.7-2}
 \end{subfigure}
 \begin{subfigure}[b]{1.0\textwidth}
@@ -338,7 +366,7 @@ Moving on to higher gravity levels, i.e. on Jupiter, heavier structures can use 
 \foreach \i in {1,2,3,4,5,6,7,8,9,10}{ 
 \includegraphics[width=0.097\textwidth]{../Figures/Robots/grass-fit-g9-2-\i.jpg}\hspace{-0.16cm}
 }
-\caption{\textbf{Earth's gravity} \emph{Top view}, 4-legged animal like locomotion (Fitness search)}
+\caption{Earth's gravity: \emph{Top view}, 4-legged animal like locomotion (Fitness search)}
 \label{fig:gravityRobots9.8-2}
 \end{subfigure}
 \begin{subfigure}[b]{1.0\textwidth}
@@ -346,7 +374,7 @@ Moving on to higher gravity levels, i.e. on Jupiter, heavier structures can use 
 \foreach \i in {1,2,3,4,5,7,8}{ 
 \includegraphics[width=0.14\textwidth]{../Figures/Robots/grass-nov-g9-1-\i.jpg}\hspace{-0.16cm}
 }
-\caption{\textbf{Earth's gravity} Tumbleweed-like locomotion (Novelty search)}
+\caption{Earth's gravity: Tumbleweed-like locomotion (Novelty search)}
 \label{fig:gravityRobots9.8-3}
 \end{subfigure}
 \begin{subfigure}[b]{1.0\textwidth}
@@ -354,7 +382,7 @@ Moving on to higher gravity levels, i.e. on Jupiter, heavier structures can use 
 \foreach \i in {1,2,3,7,8,9,10}{ 
 \includegraphics[width=0.14\textwidth]{../Figures/Robots/gas-nov-g2-1-\i.jpg}\hspace{-0.16cm}
 }
-\caption{\textbf{Jupiter's gravity} (Assuming a stable surface) C-shaped hopper (Novelty search)}
+\caption{Jupiter's gravity (Assuming a stable surface): C-shaped hopper (Novelty search)}
 \label{fig:gravityRobots27.6-3}
 \end{subfigure}
 \caption{Locomotion strategies evolved in variant gravity conditions.}
