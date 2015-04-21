@@ -36,11 +36,11 @@
 % affiliation/address with \affaddr, and tag the
 % e-mail address with \email.
 \alignauthor
-Georgios Methenitis\titlenote{The present work is based on my master's thesis~\cite{methenitis2014evolution}, work conducted under the supervision of both the University of Amsterdam and the European Space Agency (ESTEC).}\\
+Georgios Methenitis\titlenote{The present work is based on the master's thesis~\cite{methenitis2014evolution}, work conducted under the supervision of both the University of Amsterdam and the European Space Agency (ESTEC).}\\
        \affaddr{Centrum Wiskunde \& Informatica}\\
        \affaddr{(CWI)}\\
        \affaddr{Amsterdam, The Netherlands}\\[0.05cm]
-       \email{Georgios.Methenitis@cwi.nl}
+       \email{\hspace{-0.5cm}Georgios.Methenitis@cwi.nl~}
  % 2nd. author
 \alignauthor
 Daniel Hennes\\
@@ -64,11 +64,17 @@ Arnoud Visser\\
        \email{A.Visser@uva.nl}
 }
 
+
 \begin{CCSXML}
 <ccs2012>
 <concept>
 <concept_id>10010147.10010178</concept_id>
 <concept_desc>Computing methodologies~Artificial intelligence</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+<concept>
+<concept_id>10010147.10010178.10010199.10010204.10011814</concept_id>
+<concept_desc>Computing methodologies~Evolutionary robotics</concept_desc>
 <concept_significance>500</concept_significance>
 </concept>
 <concept>
@@ -90,6 +96,7 @@ Arnoud Visser\\
 \end{CCSXML}
 
 \ccsdesc[500]{Computing methodologies~Artificial intelligence}
+\ccsdesc[500]{Computing methodologies~Evolutionary robotics}
 \ccsdesc[500]{Computing methodologies~Search methodologies}
 \ccsdesc[500]{Computing methodologies~Heuristic function construction}
 \ccsdesc[500]{Computing methodologies~Control methods}
@@ -246,6 +253,7 @@ In particular, we introduce elitism in CPPN-NEAT by carrying--over the best indi
 %The way these two elitism functions can be combined together depends on the population size and the problem, while probabilistic methods can also be applied. In the specific setting, both elitism function copy new individuals to the new generation with probability one. Moreover, evolution towards novelty does not get disturbed, at the same time fit individuals have the chance to be optimized further as long as they are the fittest within the species population. 
 
 \begin{figure}[t!]
+\vspace{0.2cm}
 \centering
 \includegraphics[width=0.5\textwidth]{../Figures/Results/BehaviorPerformanceNoveltyOnly.pdf}
 \caption{Distributions of the champion fitness under $10$ variant defined behaviors for novelty search. \textcolor{RoyalBlue}{Blue} are trajectory type behaviors (3D and 2D), \textcolor{ForestGreen}{Green} are 1D signals (Pace, Voxels touching the ground (VTG), Pressure (Pr), and Kinetic energy (KE)). \textcolor{BrickRed}{Red} is the discrete Fourier transformation (DFT-<type>) of the 1D signals.}
@@ -325,16 +333,19 @@ On higher gravity levels familiar locomotion strategies emerge. In Figure~\ref{f
 Tumbleweed is also a concept of low-cost exploration that has inspired robot designers for Mars' missions in the past~\cite{antol2003low} and has been already deployed in Antarctica for testing purposes by NASA.
 
 \begin{figure}[t!]
+\vspace{.5cm}
 \centering
 \begin{subfigure}[b]{0.5\textwidth}
 \centering
 \includegraphics[width=1.0\textwidth]{../Figures/Results/hildebrand1.pdf}
 \caption{Two-legged soft robot.}
+\vspace{.63cm}
 \end{subfigure}
 \begin{subfigure}[b]{0.5\textwidth}
 \centering
 \includegraphics[width=1.0\textwidth]{../Figures/Results/hildebrand2.pdf}
 \caption{Four-legged soft robot.}
+\vspace{.62cm}
 \end{subfigure}
 \caption{Hildebrand diagrams of two evolved soft robots for Earth's gravity acceleration. Timing of impacts between its legs and the ground.}
 \label{fig:hildebrand}
@@ -397,7 +408,7 @@ In all our experiments, both novelty search and fitness search evolved soft bodi
 Some interesting general observations can be made. To start with, low gravity levels seem not to allow for a great variety of gaits. Hopping seems to be the predominant strategy followed by most evolved creatures. Higher gravity levels, instead, allow for more complicated behaviors to emerge and legged locomotion starts to became favorable. At Earth gravity levels, gaits remarkably similar to animal-like motion appear, increasing our confidence in the simulation set-up. Second, the greater variety of creatures evolved using novelty search, allow for rolling tumbleweed-like~\cite{antol2003low} robots, quadruped and biped robots, hoppers as well as odd creatures to emerge. 
 
 Beyond its purely inspirational value, we believe that this methodology, if improved and refined, can be of direct use for the design of soft robotic rovers. Extreme temperature fluctuations, for example on asteroids or comets, could trigger passive actuated materials to perform a designed movement. Although the VoxCad simulator could not be used to simulate the extreme environment of asteroids or comets, it is an interesting idea for further research. The rotation of the celestial body (e.g., with a period as short as a few hours) would then create a cyclic temperature profile having an extreme excursion and thus actuating the soft robot locomotion. This would result, if the soft robot was evolved in such an extreme environment, into a slow crawl of the robot leading to an extremely useful exploratory behavior that could deliver incredible scientific data. %We just have to imagine what would it be like if Philae~\cite{glassmeier2007rosetta}, the robotic-probe landed on comet 67P was just now be slowly crawling around 67P.
-
+\newpage
 \section{Conclusions}
 We introduced the use of a diversity seeking method, novelty search, in evolutionary soft robotics. 
 %Novelty search was found to outperform traditional fitness based search in evolving soft robotic morphologies with respect to the fitness criteria as well as with respect to the diversity criteria. 
