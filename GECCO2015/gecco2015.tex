@@ -36,7 +36,7 @@
 % affiliation/address with \affaddr, and tag the
 % e-mail address with \email.
 \alignauthor
-Georgios Methenitis\titlenote{The present work is based on the master's thesis~\cite{methenitis2014evolution}, work conducted under the supervision of both the University of Amsterdam and the European Space Agency (ESTEC).}\\
+Georgios Methenitis\titlenote{Based on the master's thesis~\cite{methenitis2014evolution}, work conducted under the supervision of both the University of Amsterdam and the Advanced Concepts Team (ESTEC).}\\
        \affaddr{Centrum Wiskunde \& Informatica}\\
        \affaddr{(CWI)}\\
        \affaddr{Amsterdam, The Netherlands}\\[0.05cm]
@@ -83,11 +83,6 @@ Arnoud Visser\\
 <concept_significance>500</concept_significance>
 </concept>
 <concept>
-<concept_id>10010147.10010178.10010205.10010206</concept_id>
-<concept_desc>Computing methodologies~Heuristic function construction</concept_desc>
-<concept_significance>500</concept_significance>
-</concept>
-<concept>
 <concept_id>10010147.10010178.10010213</concept_id>
 <concept_desc>Computing methodologies~Control methods</concept_desc>
 <concept_significance>500</concept_significance>
@@ -98,7 +93,6 @@ Arnoud Visser\\
 \ccsdesc[500]{Computing methodologies~Artificial intelligence}
 \ccsdesc[500]{Computing methodologies~Evolutionary robotics}
 \ccsdesc[500]{Computing methodologies~Search methodologies}
-\ccsdesc[500]{Computing methodologies~Heuristic function construction}
 \ccsdesc[500]{Computing methodologies~Control methods}
 
 \maketitle
@@ -121,7 +115,7 @@ In this paper we build upon previous work~\cite{cheney2013unshackling} first imp
 \includegraphics[width=0.22\textwidth,height=0.12\textheight]{../Figures/Misc/hillerPressureChamber.png}\\[0.1cm]	
 \includegraphics[width=0.22\textwidth,height=0.12\textheight]{../Figures/Misc/ExplodingRobot.jpg}\	
 \includegraphics[width=0.22\textwidth,height=0.12\textheight]{../Figures/Misc/softbot.jpg}\\
-\caption{Soft robots can be actuated through air pressure tubes (top-left), pressure variations (top-right), or internal explosions (bottom-left). Autonomously actuated soft robot~\cite{tolley2014resilient}, it is able to withstand extreme temperatures and variant terrain types (Bottom-right).}
+\caption{Soft robots can be actuated through air pressure tubes (top-left), pressure variations (top-right), or internal explosions (bottom-left). Autonomously actuated soft robot~\cite{tolley2014resilient}, it is able to withstand extreme temperatures and variant terrain types (bottom-right).}
 \label{fig:softRobotsActuation}
 \end{figure}
 
@@ -133,7 +127,7 @@ We start by introducing VoxCad, the open source simulator used throughout this s
 \newpage
 \subsection{VoxCad simulator}
 %Most work to simulate interactions and deformations within and between soft material bodies are focused on the graphical part of the problem~\cite{faloutsos1997dynamic} sacrificing the accuracy of the simulation~\cite{teschner2004versatile}. Three dimensional meshes~\cite{muller2002stable} can represent these bodies including the dynamics of their materials. 
-VoxCad~\cite{hiller2012dynamic} is a simulator targeted to mimic the physics of soft material, while accurately reflecting deformations and interactions. The workspace is represented as a 3D-lattice, where each voxel is of a certain material type. Materials can be actuated (i.e. expansion or contraction) by an external trigger. External actuation is achieved by varying the temperature of the environment and thus exploiting the various material properties. Modifying the material properties results in soft or hard material that either does (active) or does not  react (passive) to temperature ranges.
+VoxCad~\cite{hiller2012dynamic} is a simulator targeted to mimic the physics of soft material, while accurately reflecting deformations and interactions. The workspace is represented as a 3D-lattice, where each voxel is of a certain material type. Materials can be actuated (i.e. expansion or contraction) by an external trigger. External actuation is achieved by varying the temperature of the environment and thus exploiting the various material properties. Modifying the material properties results in soft or hard material that either does (active) or does not  react (passive) to temperature variations.
 %\subsubsection*{Materials}
 %Materials can be \emph{passive} or \emph{active} in respect to their reaction to the temperature changes. Passive materials do not react to temperature changes, while active materials expand and contract in respect to their thermal properties. \textcolor{Red}{Red} and \textcolor{Green}{Green} are the only actuated materials with non-zero and opposite thermal expansion coefficients. The two additional materials represent non-actuated tissue that can be soft (soft tissue) or hard (bones). \textcolor{Cyan}{Cyan} voxels are soft having five times smaller elastic modulus of their material than \textcolor{Blue}{Blue} which have $50$ \texttt{MPa}.
 
@@ -146,6 +140,7 @@ VoxCad~\cite{hiller2012dynamic} is a simulator targeted to mimic the physics of 
 
 
 \begin{figure}[t!]
+\vspace{1cm}
 \centering
 \includegraphics[width=0.35\textheight]{../Figures/Misc/cppnSoftBot.eps}
 \caption{Each genotype (CPPN) is queried for every coordinate inside the lattice, its outputs determine the presence of a voxel and the type of its material.}
@@ -160,7 +155,7 @@ We use the technique of Compositional Pattern-Producing Networks (CPPNs)~\cite{s
 %The proposed input nodes for the three dimensions of the Cartesian space provide the minimum bias to the network outputs. Figure~\ref{fig:cppnDiagram} illustrates the topology of a random CPPN network with the input and output nodes  described earlier. The presence of a voxel in each coordinate of the lattice is determined by a single output of the CPPN, denoted with $p$ while the selection of the material is determined by $n$-outputs.
 \newpage
 \subsection{CPPN-NEAT}
-As CPPNs are artificial neural networks, yet with a richer set of activation function, we can deploy neuro-evolutionary algorithms to evolve these networks. Specifically, we use a technique called NeuroEvolution of Augmenting Topologies (NEAT)~\cite{stanley2002evolving} with minor modifications in order to be applicable to CPPNs, the resulting algorithm is known as CPPN-NEAT~\cite{stanley2007compositional}. During evolution, CPPN-NEAT modifies in addition to the weights also the structure of the network and the activation functions. As such, the number of hidden layers and neurons does not need to be fixed in advance.
+As CPPNs are artificial neural networks, yet with a richer set of activation function, we can deploy neuro-evolutionary algorithms to evolve these networks. Specifically, we use a technique called NeuroEvolution of Augmenting Topologies (NEAT)~\cite{stanley2002evolving} with minor modifications in order to be applicable to CPPNs, the resulting algorithm is known as CPPN-NEAT~\cite{stanley2007compositional}. During evolution, CPPN-NEAT modifies not only the weights, but also the structure of the network and the activation functions. As such, the number of hidden layers and neurons does not need to be fixed in advance.
 %Previous work~\cite{cheney2013unshackling}, showed that this method can indeed evolve the morphologies of the soft robots in the VoxCad simulation environment. 
 %\textit{HyperNEAT}\footnote{HyperNEAT \texttt{v4.0 C++}  by J. Gauci code (url: \url{https://github.com/MisterTea/HyperNEAT})} is used for the implementation of the CPPN-NEAT algorithm.
 
@@ -191,7 +186,7 @@ where $S$ is a sorted set of the closest behaviors and $dist$ is a distance func
 In the context of soft robots, we define a behavior as the way the robot interacts with the environment during a VoxCad simulation run. Every aspect of the soft robot movement that can be observed, can also be used to describe the behavior. 
 % TODO: good point below, but rather for discussion not here, we just made the point that the novelty meassure is the behavior not the morphology!!!
 %Previous work~\cite{lehman2011evolving} in a try to evolve walking three-dimensional virtual creatures used the evolved morphology of the creatures to describe their behavior. Although, comparing the morphology of the evolved soft robots is similar to comparing the chromosome (CPPN) of each individual. Behaviors that describe the morphology of the evolved robots have failed~\cite{lehman2011evolving}, since search is then forcing new types of morphologies without caring about the actual target of the evolution, which was the efficient locomotion. Therefore, only the comparison of the observed behavior in the phenotype level can lead the evolution towards more complex behaviors. 
-It is expected that behaviors that indirectly contain fitness--related information (i.e. displacement) will be more successful in terms of the original fitness function. Figure~\ref{fig:Behaviors} presents all behaviors used for novelty computation during our study, in addition to behaviors that relate to displacement, e.g., trajectories and pace, we also include others that do not have this obvious relation, e.g., number of voxels touching the ground, kinetic energy, and pressure. For all recorded behavior metrics a constant sampling rate ensures that all signals have the same length. Furthermore, the discrete Fourier transformation of one dimensional signals were used to define other behavior types. The dominant frequencies of the pace, voxels touching the ground, pressure, and kinetic energy is expected to be descriptive of the locomotion strategy the evolved soft robot exhibits.
+It is expected that behaviors that indirectly contain fitness--related information (i.e. displacement) will be more successful in terms of the original fitness function. Figure~\ref{fig:Behaviors} presents all behaviors used for novelty computation during our study, in addition to behaviors that relate to displacement, e.g., trajectories and pace, we also include others that do not have this obvious relation, e.g., number of voxels touching the ground, kinetic energy, and pressure. For all recorded behavior metrics a constant sampling rate ensures that all signals have the same length. Furthermore, the discrete Fourier transformation of one dimensional signals was used to define other behavior types. The dominant frequencies of the pace, voxels touching the ground, pressure, and kinetic energy is expected to be descriptive of the locomotion strategies the evolved soft robots exhibit.
 
 
 \begin{figure}[t!]
@@ -206,25 +201,25 @@ It is expected that behaviors that indirectly contain fitness--related informati
 \centering
 \includegraphics[width=0.5\textwidth]{../Figures/Behaviors/pace.pdf}~
 \includegraphics[width=0.5\textwidth]{../Figures/Behaviors/pacedft.pdf}
-\caption{Pace and discrete Fourier transformation of the the same signal.}
+\caption{Pace and discrete Fourier transformation of the same signal.}
 \end{subfigure}~
 \begin{subfigure}[t]{0.23\textwidth}
 \centering
 \includegraphics[width=0.5\textwidth]{../Figures/Behaviors/vtg.pdf}~
 \includegraphics[width=0.5\textwidth]{../Figures/Behaviors/vtgdft.pdf}
-\caption{Voxels touching the ground and discrete Fourier transformation of the the same signal.}
+\caption{Voxels touching the ground and discrete Fourier transformation of the same signal.}
 \end{subfigure}\\
 \begin{subfigure}[t]{0.23\textwidth}
 \centering
 \includegraphics[width=0.5\textwidth]{../Figures/Behaviors/pr.pdf}~
 \includegraphics[width=0.5\textwidth]{../Figures/Behaviors/prdft.pdf}
-\caption{Maximum pressure and discrete Fourier transformation of the the same signal.}
+\caption{Maximum pressure and discrete Fourier transformation of the same signal.}
 \end{subfigure}~
 \begin{subfigure}[t]{0.23\textwidth}
 \centering
 \includegraphics[width=0.5\textwidth]{../Figures/Behaviors/ke.pdf}~
 \includegraphics[width=0.5\textwidth]{../Figures/Behaviors/kedft.pdf}
-\caption{Kinetic energy and discrete Fourier transformation of the the same signal.}
+\caption{Kinetic energy and discrete Fourier transformation of the same signal.}
 \end{subfigure}
 \caption{Observed behaviors of the soft robots used for the sparsity computation in novelty search.}
 \label{fig:Behaviors}
@@ -245,9 +240,7 @@ where $N$ is the number of sampled coordinate points. In the same way we can def
 
 
 \subsection{Fitness--elitism in novelty search}
-While novelty search promotes diversity by rewarding novel individuals, elitism ensures that the best genetic material is passed on from generation to generation.
-%Elitism is the process of passing mutations or copies of the best individuals to the next generation. 
-In particular, we introduce elitism in CPPN-NEAT by carrying--over the best individual of each species so that they can contribute with their beneficial genes later in the evolutionary process. We distinguish between fitness--elitism, where the ``best'' individuals are selected based on the fitness function and novelty--elitism, where the individuals with the highest sparseness are protected from modification. When combining fitness--elitism with novelty search, the fittest individual is carried over to the next generation and serves in the gene pool to possibly spawn novel yet fit individuals thus combining the best of both worlds, process similar to novelty--based multiobjectivization~\cite{mouret2011novelty}. Going forward, we deploy novelty search with and without fitness--elitism to study the effectiveness of this approach.
+While novelty search promotes diversity by rewarding novel individuals, elitism ensures that the best genetic material is passed on from generation to generation. In particular, we introduce elitism in CPPN-NEAT by carrying--over the best individual of each species so that they can contribute with their beneficial genes later in the evolutionary process. We distinguish between fitness--elitism, where the ``best'' individuals are selected based on the fitness function and novelty--elitism, where the individuals with the highest sparseness are protected from modification. When combining fitness--elitism with novelty search, the fittest individual is carried over to the next generation and serves in the gene pool to possibly spawn novel yet fit individuals thus combining the best of both worlds, process similar to novelty--based multiobjectivization~\cite{mouret2011novelty}. Going forward, we deploy novelty search with and without fitness--elitism to study the effectiveness of this approach.
 
 %Novelty search can include elitism in its selection process, and it does that by copying the most novel organisms of the current population of each species to the next while the same function can also be used to copy fit individuals within novelty search method. 
 %The way these two elitism functions can be combined together depends on the population size and the problem, while probabilistic methods can also be applied. In the specific setting, both elitism function copy new individuals to the new generation with probability one. Moreover, evolution towards novelty does not get disturbed, at the same time fit individuals have the chance to be optimized further as long as they are the fittest within the species population. 
@@ -256,13 +249,13 @@ In particular, we introduce elitism in CPPN-NEAT by carrying--over the best indi
 \vspace{0.2cm}
 \centering
 \includegraphics[width=0.5\textwidth]{../Figures/Results/BehaviorPerformanceNoveltyOnly.pdf}
-\caption{Distributions of the champion fitness under $10$ variant defined behaviors for novelty search. \textcolor{RoyalBlue}{Blue} are trajectory type behaviors (3D and 2D), \textcolor{ForestGreen}{Green} are 1D signals (Pace, Voxels touching the ground (VTG), Pressure (Pr), and Kinetic energy (KE)). \textcolor{BrickRed}{Red} is the discrete Fourier transformation (DFT-<type>) of the 1D signals.}
+\caption{Boxplots of the champion fitness under $10$ variant defined behaviors for novelty search. \textcolor{RoyalBlue}{Blue} are trajectory type behaviors (3D and 2D), \textcolor{ForestGreen}{green} are 1D signals (pace, voxels touching the ground (VTG), pressure (Pr), and kinetic energy (KE)). \textcolor{BrickRed}{Red} is the discrete Fourier transformation (DFT-<type>) of the 1D signals.}
 \label{fig:BehaviorsPerformance}
 \end{figure}
 
 \subsection{Experimental setup}
 Each experiment consists of $10$ runs with the following fixed settings. The population size is set to $30$ individuals and the maximum number of generations per run is set to $1000$. Due to the extremely computationally demanding simulations, not all experiments could be carried out using a VoxCad lattice of $10 \times 10 \times 10$, where applicable deviating dimensions are indicated. We use two externally activated materials with non-zero and opposite thermal expansion coefficients, colored \textcolor{Red}{Red} and \textcolor{Green}{Green}. The two additional materials represent non-actuated tissue, representing soft tissue (\textcolor{Cyan}{Cyan} voxels) with a five times smaller elastic modulus of their material than hard tissue (\textcolor{Blue}{Blue} voxels). % which have $50$ \texttt{MPa}.
-For neuro-evoluation we use the HyperNEAT\footnote{HyperNEAT \texttt{v4.0 C++}  by J. Gauci code (url: \small{\url{ https://github.com/MisterTea/HyperNEAT})}} package; all parameter settings of CPPN-NEAT are the same as detailed in~\cite{cheney2013unshackling}. More details about the experimental setup and a wiki page on how to replicate experiments can be found in  the project's public repository\footnote{\small{\url{http://tinyurl.com/Soft-Robots-Novelty-Search}}}.
+For neuro-evoluation we use the HyperNEAT\footnote{HyperNEAT \texttt{v4.0 C++}  by J. Gauci code (url: \small{\url{ https://github.com/MisterTea/HyperNEAT})}} package; all parameter settings of CPPN-NEAT are the same as detailed in~\cite{cheney2013unshackling}. Details about the experimental setup, source code, and a wiki page on how to reproduce experiments can be found in  the project's repository\footnote{\small{\url{http://tinyurl.com/Soft-Robots-Novelty-Search}}}.
 
 
 \section{Results}
@@ -272,7 +265,7 @@ Pure novelty search is compared with respect to the fitness measure (displacemen
 \begin{figure}[t!]
 \centering
 \includegraphics[width=0.5\textwidth]{../Figures/Results/FitNovRandomDirectSize5.pdf}
-\caption{Comparison of simple genetic algorithm (direct encoding) against novelty-fitness-random search with generative encoding. Best fitness so far averaged over $10$ runs.}
+\caption{Comparison of simple genetic algorithm (direct encoding) against novelty-fitness-random search with generative encoding. Best fitness so far averaged over $10$ runs, deviation error is shown by the shaded part.}
 \label{fig:FitNovRandomDirectSize5}
 \end{figure}
 
@@ -287,7 +280,7 @@ To compare the performance achieved by novelty search, its performance is set si
 \begin{figure}[t!]
 \centering
 \includegraphics[width=0.5\textwidth]{../Figures/Results/FitvsNovVsDirSize10.pdf}
-\caption{Comparison of simple genetic algorithm (direct encoding) against novelty-fitness-random search with generative encoding. Best fitness so far averaged over $10$ runs.}
+\caption{Simple genetic algorithm against novelty-fitness-random search with generative encoding. Best fitness so far averaged over $10$ runs.}
 \label{fig:FitvsNovVsDirSize10}
 \end{figure} 
 
