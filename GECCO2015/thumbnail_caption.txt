@@ -1,1 +1,0 @@
-Hopper soft-robot evolved to move on Mar's gravity acceleration using novelty search and a generative encoding.

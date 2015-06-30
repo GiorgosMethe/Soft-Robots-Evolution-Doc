@@ -1,4 +1,7 @@
 \documentclass{sig-alternate}
+\pdfpagewidth=8.5in
+\pdfpageheight=11in
+
 \usepackage{url}
 \usepackage{pgffor}
 \usepackage[font=bf]{caption}
@@ -102,7 +105,7 @@ The use of soft robots in future space exploration is still a far-fetched idea, 
 
 \printccsdesc
 
-\keywords{soft robotics, locomotion, novelty search, CPPN, CPPN-NEAT, VoxCAD, space exploration}
+\keywords{Soft Robotics; Locomotion; Novelty Search; CPPN; CPPN-NEAT; VoxCAD; Space Exploration}
 
 \section{Introduction}
 Robotic exploration of extraterrestrial bodies is a challenging endeavour that requires the deployment of advanced technological solutions. The Huygens descent on Titan, the landing of Philae on the comet 67P/Churyumov-Gerasimenko or the daily accounts of the three martian rovers Spirit, Opportunity and Curiosity are incredible achievements that were made possible by our ever increasing technological capabilities. One challenge, in all of these missions, is that of mobility. Advanced mobility solutions for exoplanetary rovers are the subject of active research. It is not uncommon in this research field to find ideas drawing inspiration from biology. For example, this was the case for the Mars tumbleweed exploration concept \cite{antol2003low, ylikorpi2004biologically}, the lunar ALI exploration concept \cite{clark2005ali}, or the many legged robots, inspired by insect locomotion, that are being studied in the context of exoplanetary exploration. The locomotion strategy and the body morphology of these robots, though closely related, were not co-designed and were treated as rather uncoupled entities. In this work, we are interested in investigating the possibility to simultaneously design the morphology and the gait of robots as to adapt their locomotion to different extraterrestrial environments defined by different terrain types and gravity strengths. The effects of gravity, slopes, and stiffness on the gaits evolved by a quadruped robot in dynamic walking and running was researched in~\cite{papadopoulos2013ariadna, kontolatisquadruped}. Hildebrand gait diagrams~\cite{Hildebrand1989-HILVLA} were employed to analyze gaits and prove their stability under varying planetary conditions. The robot morphology, though, was kept fixed and only the leg lengths and the controller were subject to optimization. The simultaneous optimization of gaits and morphology, using evolutionary techniques is, though, possible. In the work of Sims~\cite{sims1994evolving} a generative (or indirect) encoding was used to enable the evolution of virtual creatures adapted for jumping, walking or swimming. The idea has been a source of inspiration for a large number of later works and recently, the practical possibility to evolve soft material robots~\cite{hiller2012automatic} able to produce locomotion has been proved. The evolution of soft structures in a virtual environment was later also studied in~\cite{cheney2013unshackling} where a powerful generative encoding, CPPNs~\cite{stanley2007compositional}, was used to generate soft voxel-formed three dimensional structures, coupled with the use of NEAT algorithm which ensures the increasing complexity of the networks produced.  
@@ -111,12 +114,13 @@ In this paper we build upon previous work~\cite{cheney2013unshackling} first imp
 
 \begin{figure}[t!]
 \centering
-\includegraphics[width=0.22\textwidth,height=0.12\textheight]{../Figures/Misc/soft_robotics_figure.png}\		
-\includegraphics[width=0.22\textwidth,height=0.12\textheight]{../Figures/Misc/hillerPressureChamber.png}\\[0.1cm]	
-\includegraphics[width=0.22\textwidth,height=0.12\textheight]{../Figures/Misc/ExplodingRobot.jpg}\	
-\includegraphics[width=0.22\textwidth,height=0.12\textheight]{../Figures/Misc/softbot.jpg}\\
+\includegraphics[width=0.23\textwidth,height=0.12\textheight]{../Figures/Misc/soft_robotics_figure.png}\	
+\includegraphics[width=0.23\textwidth,height=0.12\textheight]{../Figures/Misc/hillerPressureChamber.png}\\[0.05cm]	
+\includegraphics[width=0.23\textwidth,height=0.12\textheight]{../Figures/Misc/ExplodingRobot.jpg}\	
+\includegraphics[width=0.23\textwidth,height=0.12\textheight]{../Figures/Misc/softbot.jpg}\\
 \caption{Soft robots can be actuated through air pressure tubes (top-left), pressure variations (top-right), or internal explosions (bottom-left). Autonomously actuated soft robot~\cite{tolley2014resilient}, it is able to withstand extreme temperatures and variant terrain types (bottom-right).}
 \label{fig:softRobotsActuation}
+\vspace{0.2cm}
 \end{figure}
 
 
@@ -186,7 +190,7 @@ where $S$ is a sorted set of the closest behaviors and $dist$ is a distance func
 In the context of soft robots, we define a behavior as the way the robot interacts with the environment during a VoxCad simulation run. Every aspect of the soft robot movement that can be observed, can also be used to describe the behavior. 
 % TODO: good point below, but rather for discussion not here, we just made the point that the novelty meassure is the behavior not the morphology!!!
 %Previous work~\cite{lehman2011evolving} in a try to evolve walking three-dimensional virtual creatures used the evolved morphology of the creatures to describe their behavior. Although, comparing the morphology of the evolved soft robots is similar to comparing the chromosome (CPPN) of each individual. Behaviors that describe the morphology of the evolved robots have failed~\cite{lehman2011evolving}, since search is then forcing new types of morphologies without caring about the actual target of the evolution, which was the efficient locomotion. Therefore, only the comparison of the observed behavior in the phenotype level can lead the evolution towards more complex behaviors. 
-It is expected that behaviors that indirectly contain fitness--related information (i.e. displacement) will be more successful in terms of the original fitness function. Figure~\ref{fig:Behaviors} presents all behaviors used for novelty computation during our study, in addition to behaviors that relate to displacement, e.g., trajectories and pace, we also include others that do not have this obvious relation, e.g., number of voxels touching the ground, kinetic energy, and pressure. For all recorded behavior metrics a constant sampling rate ensures that all signals have the same length. Furthermore, the discrete Fourier transformation of one dimensional signals was used to define other behavior types. The dominant frequencies of the pace, voxels touching the ground, pressure, and kinetic energy is expected to be descriptive of the locomotion strategies the evolved soft robots exhibit.
+It is expected that behaviors that indirectly contain fitness--related information (i.e. displacement) will be more successful in terms of the original fitness function. Figure~\ref{fig:Behaviors} presents all behaviors used for novelty computation during our study, in addition to behaviors that relate to displacement, e.g., trajectories and pace, we also include others that do not have this obvious relation, e.g., number of voxels touching the ground, kinetic energy, and pressure. For all recorded behavior metrics a constant sampling rate ensures that all signals have the same length. Furthermore, the discrete Fourier transformation of one dimensional signals was used to define other behavior types. The dominant frequencies of the pace, voxels touching the ground, pressure, and kinetic energy are expected to be descriptive of the locomotion strategies the evolved soft robots exhibit.
 
 
 \begin{figure}[t!]
@@ -309,17 +313,17 @@ The reason that novelty search is considered such a revolutionary search method 
 \label{fig:gravityConditions}
 \end{figure}
 
-Gravity conditions heavily affect the evolution of soft robots in our set-up. The interaction between the robot body and the environment biases the selection towards chromosomes that are able to produce robot bodies that efficiently interact with the terrain at the considered gravity strength. We experiment with both methods discussed, novelty and fitness--based search. For the novelty search method we select the two dimensional trajectories of the soft bodies as the behavior metric defining the novelty of each individual. Figure~\ref{fig:gravityConditions} presents the performance of novelty and fitness--based search for four different gravity levels using a lattice size $7^3$.
+Gravity conditions heavily affect the evolution of soft robots in our set-up. The interaction between the robot body and the environment biases the selection towards chromosomes that are able to produce robot bodies that efficiently interact with the terrain at the considered gravity strength. We experiment with both methods discussed, novelty and fitness--based search, presenting some interesting resulted body morphologies and locomotion strategies evolved for specific gravity accelerations using a large lattice size ($10^3$). For the novelty search method we select the two dimensional trajectories of the soft bodies as the behavior metric defining the novelty of each individual. Due to the computational time demand of the simulations especially in lower gravity accelerations (longer simulation trials are needed to observe the locomotion strategy of hopping soft robots), a lower lattice size is used to approximate the performance of both methods under different gravity strengths. Figure~\ref{fig:gravityConditions} presents the performance of novelty and fitness--based search for four different gravity levels using a lattice size $7^3$.
 
-\subsubsection*{Soft robots on Lunar's Gravity}
+\subsubsection*{Soft robots on Lunar's gravity}
 
-Locomotion strategies evolved under Lunar gravity showed that only hopping gaits can produce effective locomotion. Low gravity makes it difficult for the soft body structures to grip on the ground surface and evolve different strategies than hopping. The morphology of each hopper differs. A C-shaped hopper soft robot (see Fig.~\ref{fig:gravityRobots1.6-4}) evolved in these settings.
+Locomotion strategies evolved under Lunar gravity showed that only hopping gaits can produce effective locomotion. Low gravity makes it challenging for the soft body structures to grip on the ground surface and evolve different strategies than hopping. The morphology of each hopper differs. A C-shaped hopper soft robot (see Fig.~\ref{fig:gravityRobots1.6-4}) evolved in these settings. Additional experiments showed that lower actuation frequencies for the soft materials contribute in the evolution of stable locomotion strategies, while higher frequencies cannot produce decent motion for the soft bodies.
 
-\subsubsection*{Soft robots on Mars' Gravity}
+\subsubsection*{Soft robots on Mars' gravity}
 
-The locomotion effectiveness on Mars is higher when compared to Lunar, higher gravity acceleration makes it possible for the virtual soft robots to evolve other kind of gaits using legged bodies (see Fig.~\ref{fig:gravityRobots3.7-2}). Note that the C-shaped hopper soft robot mostly uses passive materials apart from its upper body where all the active material are located. Its upper part alone generates enough motion to hop efficiently. What is observed in the morphologies evolved at lower gravity levels is that the use of a lower number of active voxels can still produce decent locomotion.
+The locomotion effectiveness on Mars is higher when compared to Lunar, the higher gravity acceleration makes it possible for the virtual soft robots to evolve other kind of gaits using legged bodies (see Fig.~\ref{fig:gravityRobots3.7-2}). Note that the C-shaped hopper soft robot mostly uses passive materials apart from its upper body where all the active material are located. Its upper part alone generates enough motion to hop efficiently. What is observed in the morphologies evolved at lower gravity levels is that the use of a lower number of active voxels can still produce decent locomotion. Apart from hopping strategies, other motion behaviors were observed including legged soft robots.
 
-\subsubsection*{Soft robots on Earth's Gravity}
+\subsubsection*{Soft robots on Earth's gravity}
 
 On higher gravity levels familiar locomotion strategies emerge. In Figure~\ref{fig:hildebrand} we show the Hildebrand diagram for two of the creatures evolved under Earth gravity, where we note characteristics remarkably similar to biped and quadruped locomotion used by animals on Earth. Interesting animal-like gaits are visualized in Fig.~\ref{fig:gravityRobots9.8-2}. These results suggest an encouraging connection between our set-up and the locomotion strategies of living organisms evolved on Earth for thousands of years. Tumbleweed-like locomotion (see Fig.~\ref{fig:gravityRobots9.8-3}) has also emerged at this gravity level under novelty search, producing rolling soft robots that can locomote efficiently. 
 %This adds significance to the novelty search method since fitness--based search did not produce this kind of locomotion strategy. 
@@ -340,14 +344,9 @@ Tumbleweed is also a concept of low-cost exploration that has inspired robot des
 \caption{Four-legged soft robot.}
 \vspace{.62cm}
 \end{subfigure}
-\caption{Hildebrand diagrams of two evolved soft robots for Earth's gravity acceleration. Timing of impacts between its legs and the ground.}
+\caption{Hildebrand diagrams of two evolved soft robots for Earth's gravity acceleration. Timing of impacts between legs and the ground.}
 \label{fig:hildebrand}
 \end{figure}
-
-
-\subsubsection*{Soft robots on Jupiter's Gravity}
-
-Moving on to higher gravity levels, i.e. on Jupiter, heavier structures can use galloping as a strategy for their locomotion. Galloping is again considered to be an effective way of moving in such a high gravity, whereas thicker legs are evolved to withstand the high gravitational force. Push-pull worm-like locomotion can also produce decent velocities for soft robots. Finally, hoppers have also evolved in this setting (performing short hops), while using more actuated materials (see Fig.~\ref{fig:gravityRobots27.6-3}).
 
 \begin{figure*}[t!]
 \centering
@@ -356,7 +355,7 @@ Moving on to higher gravity levels, i.e. on Jupiter, heavier structures can use 
 \foreach \i in {2,3,4,5,6,8,9}{ 
 \includegraphics[width=0.14\textwidth]{../Figures/Robots/moon-nov-g1-2-\i.jpg}\hspace{-0.16cm}
 }
-\caption{Lunar's gravity: C-shaped hopper (Novelty search)}
+\caption{Lunar's gravity: C-shaped hopper (novelty search)}
 \label{fig:gravityRobots1.6-4}
 \end{subfigure}
 \begin{subfigure}[b]{1.0\textwidth}
@@ -364,7 +363,7 @@ Moving on to higher gravity levels, i.e. on Jupiter, heavier structures can use 
 \foreach \i in {1,2,3,4,5,7,8}{ 
 \includegraphics[width=0.14\textwidth]{../Figures/Robots/mars-nov-g3-1-\i.jpg}\hspace{-0.16cm}
 }
-\caption{Mars' gravity: 2-legged C-shaped hopper (Novelty search)}
+\caption{Mars' gravity: 2-legged C-shaped hopper (novelty search)}
 \label{fig:gravityRobots3.7-2}
 \end{subfigure}
 \begin{subfigure}[b]{1.0\textwidth}
@@ -372,7 +371,7 @@ Moving on to higher gravity levels, i.e. on Jupiter, heavier structures can use 
 \foreach \i in {1,2,3,4,5,6,7,8,9,10}{ 
 \includegraphics[width=0.097\textwidth]{../Figures/Robots/grass-fit-g9-2-\i.jpg}\hspace{-0.16cm}
 }
-\caption{Earth's gravity: \emph{Top view}, 4-legged animal like locomotion (Fitness search)}
+\caption{Earth's gravity: \emph{Top view}, 4-legged animal like locomotion (fitness search)}
 \label{fig:gravityRobots9.8-2}
 \end{subfigure}
 \begin{subfigure}[b]{1.0\textwidth}
@@ -380,7 +379,7 @@ Moving on to higher gravity levels, i.e. on Jupiter, heavier structures can use 
 \foreach \i in {1,2,3,4,5,7,8}{ 
 \includegraphics[width=0.14\textwidth]{../Figures/Robots/grass-nov-g9-1-\i.jpg}\hspace{-0.16cm}
 }
-\caption{Earth's gravity: Tumbleweed-like locomotion (Novelty search)}
+\caption{Earth's gravity: Tumbleweed-like locomotion (novelty search)}
 \label{fig:gravityRobots9.8-3}
 \end{subfigure}
 \begin{subfigure}[b]{1.0\textwidth}
@@ -388,12 +387,17 @@ Moving on to higher gravity levels, i.e. on Jupiter, heavier structures can use 
 \foreach \i in {1,2,3,7,8,9,10}{ 
 \includegraphics[width=0.14\textwidth]{../Figures/Robots/gas-nov-g2-1-\i.jpg}\hspace{-0.16cm}
 }
-\caption{Jupiter's gravity (Assuming a stable surface): C-shaped hopper (Novelty search)}
+\caption{Jupiter's gravity (Assuming a stable surface): C-shaped hopper (novelty search)}
 \label{fig:gravityRobots27.6-3}
 \end{subfigure}
 \caption{Locomotion strategies evolved in variant gravity conditions.}
 \label{fig:gravityRobots1.6}
 \end{figure*}
+
+
+\subsubsection*{Soft robots on Jupiter's gravity}
+
+Moving on to higher gravity levels, i.e. on Jupiter (assuming a stable surface), heavier structures can use galloping as a strategy for their locomotion. Galloping is again considered to be an effective way of moving in such a high gravity, whereas thicker legs are evolved to withstand the high gravitational force. Push-pull worm-like locomotion can also produce decent velocities for soft robots. Finally, hoppers have also evolved in this setting (performing short hops), while using more actuated materials (see Fig.~\ref{fig:gravityRobots27.6-3}) than the hopping soft robots presented earlier for lower gravity accelerations.
 
 \section{Discussion and Outlook}
 In all our experiments, both novelty search and fitness search evolved soft bodies able to efficiently move in the considered environment. However, the performance with regard to the fitness defined (i.e. displacement of the body in body-lengths) was equal or higher for novelty search in all experiments. One would expect novelty to deliver more diversity, at the cost of a lower fitness function; novelty does not know about fitness and a method well targeted to improve fitness is likely to deliver better results. This was not the case and we found that the creatures evolved with novelty are also able to move faster than the ones that were evolved to move fast. Previous work~\cite{lehman2011evolving} in a try to evolve walking three dimensional virtual creatures used the evolved morphology of the creatures to describe their behavior. Although, comparing the morphology of the evolved soft robots is similar to comparing the chromosome (CPPN) of each individual. Behaviors that describe the morphology of the evolved robots have failed~\cite{lehman2011evolving}, since search is then forcing new types of morphologies without caring about the actual target of the evolution, which was the efficient locomotion. Therefore, only the comparison of the observed behavior in the phenotype level can lead the evolution towards more complex behaviors. 
@@ -401,7 +405,7 @@ In all our experiments, both novelty search and fitness search evolved soft bodi
 Some interesting general observations can be made. To start with, low gravity levels seem not to allow for a great variety of gaits. Hopping seems to be the predominant strategy followed by most evolved creatures. Higher gravity levels, instead, allow for more complicated behaviors to emerge and legged locomotion starts to became favorable. At Earth gravity levels, gaits remarkably similar to animal-like motion appear, increasing our confidence in the simulation set-up. Second, the greater variety of creatures evolved using novelty search, allow for rolling tumbleweed-like~\cite{antol2003low} robots, quadruped and biped robots, hoppers as well as odd creatures to emerge. 
 
 Beyond its purely inspirational value, we believe that this methodology, if improved and refined, can be of direct use for the design of soft robotic rovers. Extreme temperature fluctuations, for example on asteroids or comets, could trigger passive actuated materials to perform a designed movement. Although the VoxCad simulator could not be used to simulate the extreme environment of asteroids or comets, it is an interesting idea for further research. The rotation of the celestial body (e.g., with a period as short as a few hours) would then create a cyclic temperature profile having an extreme excursion and thus actuating the soft robot locomotion. This would result, if the soft robot was evolved in such an extreme environment, into a slow crawl of the robot leading to an extremely useful exploratory behavior that could deliver incredible scientific data. %We just have to imagine what would it be like if Philae~\cite{glassmeier2007rosetta}, the robotic-probe landed on comet 67P was just now be slowly crawling around 67P.
-\newpage
+
 \section{Conclusions}
 We introduced the use of a diversity seeking method, novelty search, in evolutionary soft robotics. 
 %Novelty search was found to outperform traditional fitness based search in evolving soft robotic morphologies with respect to the fitness criteria as well as with respect to the diversity criteria. 
@@ -409,8 +413,8 @@ We introduced the use of a diversity seeking method, novelty search, in evolutio
 %The resulted performance for pure novelty search method was worse than the fitness--based. 
 We found that well defined behavior metrics can lead novelty search to outperform traditional fitness--based search. Novelty search not only improved the performance and the diversity in the fitness space, but also contributed to a larger variety of morphologies. Finally, both techniques were used to evolve soft robots in four different gravity levels, showing interesting results and the possibility of influencing future robotic designs for planetary exploration.
 
+
 \bibliographystyle{unsrt}
-\balance
-\bibliography{bibliography}
+\balance\bibliography{bibliography}\vspace{1.1cm}
 
 \end{document}
