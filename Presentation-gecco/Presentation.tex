@@ -48,7 +48,6 @@
 \rule{\textwidth}{1pt}\\
 {\Large Novelty Search for Soft Robotic\\ Space Exploration}\\[0.2cm] % Thesis title
 \rule{\textwidth}{0.5pt}\\ \vspace{0.4cm}
-{\scriptsize \emph{ Authors:}}\\
 Georgios Methenitis, CWI\\
 Daniel Hennes,  ESA-ESTEC\\
 Dario Izzo, ESA-ESTEC\\
@@ -86,11 +85,12 @@ Arnaud Visser, UvA
 \setbeamercolor{subsection in sidebar shaded}{fg=white}
 \setbeamercolor{title}{fg=white}
 \setbeamercolor{titlelike}{fg=white}
+\setbeamercolor{block body}{bg=white}
 \begin{frame}{Soft Robotic Space Exploration}
 \vspace{0.1cm}
 \textcolor{white}{Exploration of extraterrestrial bodies}
 \begin{itemize}
-\item \textcolor{white}{One challenge, mobility}
+\item \textcolor{white}{One challenge: mobility}
 \item \textcolor{white}{Find ideas inspired by\\ biology}
 \item \textcolor{white}{Locomotion strategy and\\ morphology rarely connected}
 \end{itemize}
@@ -99,13 +99,14 @@ Arnaud Visser, UvA
 \begin{itemize}
 \item \textcolor{white}{Inspired by nature}
 \item \textcolor{white}{Gravity-independent}
-\item \textcolor{white}{No restrictions in locomotion strategy}
+\item \textcolor{white}{No restriction in locomotion strategy}
 \end{itemize}
 \vspace{0.2cm}
 \begin{block}{Soft Robots can have passive or active actuation}
-\includegraphics[width=0.24\textwidth,height=0.20\textheight]{../Figures/Misc/ExplodingRobot.jpg}\	
-\includegraphics[width=0.24\textwidth,height=0.20\textheight]{../Figures/Misc/softbot.jpg}\
-\includegraphics[width=0.24\textwidth,height=0.20\textheight]{../Figures/Misc/soft_robotics_figure.png}\		
+\vspace{0.05cm}
+\includegraphics[width=0.24\textwidth,height=0.20\textheight]{../Figures/Misc/ExplodingRobot.jpg}\hspace{0.05cm}	
+\includegraphics[width=0.24\textwidth,height=0.20\textheight]{../Figures/Misc/softbot.jpg}\hspace{0.05cm}	
+\includegraphics[width=0.24\textwidth,height=0.20\textheight]{../Figures/Misc/soft_robotics_figure.png}\hspace{0.05cm}			
 \includegraphics[width=0.24\textwidth,height=0.20\textheight]{../Figures/Misc/hillerPressureChamber.png}
 \end{block}
 \begin{center}
@@ -140,7 +141,7 @@ Possible solution space:
 {
 \setbeamercolor{block body}{bg=white}
 
-\begin{frame}{Evolution {\scriptsize of Soft Robots by Novelty Search}}
+\begin{frame}{Evolution {\scriptsize of Soft Robots}}
 \begin{block}{Evolutionary algorithms}
 \begin{center}
 \includegraphics[width=1.0\textwidth]{../Figures/Misc/Evolution.eps}
@@ -151,7 +152,7 @@ Possible solution space:
 \begin{frame}{Encoding Schemes}
 \begin{columns}[T] % align columns
 \begin{column}{.49\textwidth}
-\begin{block}{Direct Encoding}
+\begin{block}{Direct}
 \begin{center}
 \includegraphics[width=0.7\textwidth]{../Figures/Misc/direct.jpg}
 \end{center}
@@ -161,7 +162,7 @@ $\underbrace{010101\ldots111101}_\text{number of pixels}$
 \end{column}%
 \hfill%
 \begin{column}{.49\textwidth}
-\begin{block}{Generative Encoding}
+\begin{block}{Generative}
 \begin{center}
 \includegraphics[width=0.7\textwidth]{../Figures/Misc/picBreed1.jpg}
 \end{center}
@@ -188,8 +189,8 @@ $f(\underbrace{x\   ,\  y}_\text{coords.}) = \text{pixel value}$
 \end{itemize}
 \end{frame}
 
-\begin{frame}{NeuroEvolution of Augmented Topologies (NEAT)~\footfullcite{stanley2002evolving}}
-\begin{block}{Some key points of this method are:}
+\begin{frame}{NeuroEvolution of Augmented Topologies~\footfullcite{stanley2002evolving}}
+\begin{block}{Key points:}
 \begin{itemize}
 \item Evolving neural network topologies along with weights
 \item Crossover between different topologies
@@ -202,8 +203,8 @@ $f(\underbrace{x\   ,\  y}_\text{coords.}) = \text{pixel value}$
 \end{block}
 \end{frame}
 
-\begin{frame}{NeuroEvolution of Augmented Topologies (NEAT)}
-\begin{block}{Some key points of this method are:}
+\begin{frame}{NeuroEvolution of Augmented Topologies}
+\begin{block}{Key points:}
 \begin{itemize}
 \item Evolving neural network topologies along with weights
 \item Crossover between different topologies
@@ -216,8 +217,8 @@ $f(\underbrace{x\   ,\  y}_\text{coords.}) = \text{pixel value}$
 \end{block}
 \end{frame}
 
-\begin{frame}{NeuroEvolution of Augmented Topologies (NEAT)}
-\begin{block}{Some key points of this method are:}
+\begin{frame}{NeuroEvolution of Augmented Topologies}
+\begin{block}{Key points:}
 \begin{itemize}
 \item Evolving neural network topologies along with weights
 \item Crossover between different topologies
@@ -309,7 +310,7 @@ $f(\underbrace{x\   ,\  y}_\text{coords.}) = \text{pixel value}$
 %\end{frame}
 
 \begin{frame}{{\scriptsize Evolution of Soft Robots by} Novelty Search~\footfullcite{lehman2011abandoning}}
-\begin{block}{What is novelty search:}
+\begin{block}{What is novelty search?}
 \begin{itemize}
 \item Traditionally fitness measures how good an individual is.
 \item Objective function can prevent evolution reaching the target.
@@ -318,7 +319,7 @@ $f(\underbrace{x\   ,\  y}_\text{coords.}) = \text{pixel value}$
 \item Try finding novelty in behavior space
 \end{itemize}
 \end{block}
-\begin{block}{How to define novelty: Sparsity}
+\begin{block}{Sparsity}
 \begin{equation*}
 s(x) = \cfrac{1}{k} \sum_{i=0}^k dist(x, b_i)
 \end{equation*}
@@ -353,7 +354,6 @@ s(x) = \cfrac{1}{k} \sum_{i=0}^k dist(x, b_i)
 \includegraphics[width=0.3\textwidth,height=0.25\textheight]{../Figures/Misc/unshacklingEvolutionFigure1.png}\	\	\	
 \includegraphics[width=0.3\textwidth,height=0.25\textheight]{../Figures/Misc/unshacklingEvolutionFigure2.png}\	\	\	
 \includegraphics[width=0.3\textwidth,height=0.25\textheight]{../Figures/Misc/unshacklingEvolutionFigure3.png}\\[0.8cm]
-\textit{Evolution of soft robots by novelty search}
 \end{frame}
 
 
@@ -617,24 +617,24 @@ Simple genetic algorithm fails to produce locomotion.
 \end{frame}
 \end{comment}
 
-\begin{frame}{Experimental phase}
-\begin{block}{Experiments:}
-\begin{itemize}
-\item Population size: $30$, Max. generations: $1000$
-\item For lattice size/resolution: $5^3$, $7^3$, $10^3$
-\item $10$ different behavior metrics
-\item $4$ variant gravity levels
-\item For both fitness and novelty search
-\end{itemize}
-\end{block}
-\begin{block}{Held at:}
-\begin{itemize}
-\item $2$ $\times$ Servers ($16$-core \& $8$-core)
-\item $2$ $\times$ Desktops ($4$-core)
-\end{itemize}
-\end{block}
-\alert{$\sim 22.500$ hours of CPU time (single-thread)}
-\end{frame}
+%\begin{frame}{Experimental phase}
+%\begin{block}{Experiments:}
+%\begin{itemize}
+%\item Population size: $30$, Max. generations: $1000$
+%\item For lattice size/resolution: $5^3$, $7^3$, $10^3$
+%\item $10$ different behavior metrics
+%\item $4$ variant gravity levels
+%\item For both fitness and novelty search
+%\end{itemize}
+%\end{block}
+%\begin{block}{Held at:}
+%\begin{itemize}
+%\item $2$ $\times$ Servers ($16$-core \& $8$-core)
+%\item $2$ $\times$ Desktops ($4$-core)
+%\end{itemize}
+%\end{block}
+%\alert{$\sim 22.500$ hours of CPU time (single-thread)}
+%\end{frame}
 
 
 
@@ -679,53 +679,50 @@ Simple genetic algorithm fails to produce locomotion.
 \end{block}
 \end{frame}
 
+\begin{frame}{Behavior Selection}
+\begin{block}{Novelty search, 10 different behavior metrics}
+\centering
+\includegraphics[width=1.0\textwidth]{../Figures/Results/BehaviorPerformanceNoveltyOnly.pdf}
+\end{block}
+\end{frame}
+
 \begin{frame}{Increased Performance}
-\begin{block}{Best fitness so far, low-res. $5^3$}
+\begin{block}{Best fitness so far, low-resolution}
 \centering
 \includegraphics[width=0.95\textwidth]{../Figures/Results/FitNovRandomDirectSize5.pdf}
 \end{block}
 \end{frame}
 
 \begin{frame}{Increased Performance}
-\begin{block}{Best fitness so far, high-res. $10^3$}
+\begin{block}{Best fitness so far, high-resolution}
 \centering
 \includegraphics[width=0.95\textwidth]{../Figures/Results/FitvsNovVsDirSize10.pdf}
 \end{block}
 \end{frame}
 
-\begin{frame}{Population Comparison}
-\begin{block}{Best fitness so far Vs. Generation best fitness, med-res. $7^3$}
-\centering
-\includegraphics[width=0.95\textwidth]{../Figures/Results/AvgGenerChampNoveltyFitnessSize7.pdf}
-\end{block}
-\end{frame}
-
-\begin{frame}{Behavior Selection}
-\begin{block}{Novelty with 10-behavior metrics Vs. Fitness search, med-res. $7^3$}
-\centering
-\includegraphics[width=1.0\textwidth]{../Figures/Results/BehaviorsPerformance.pdf}
-\end{block}
-\end{frame}
+%\begin{frame}{Population Comparison}
+%\begin{block}{Best fitness so far Vs. Generation best fitness, med-res. $7^3$}
+%\centering
+%\includegraphics[width=0.95\textwidth]{../Figures/Results/AvgGenerChampNoveltyFitnessSize7.pdf}
+%\end{block}
+%\end{frame}
 
 
-\begin{frame}{Incorporating fitness information into Novelty Search}
+\begin{frame}{Incorporating fitness into Novelty Search}
 \begin{center}
 \includegraphics[width=\textwidth]{../Figures/Misc/EvolutionNoveltyFitnessElitism.eps}
 \end{center}
-\begin{itemize}
-\item Keeping properties of novelty search
-\end{itemize}
 \end{frame}
 
 \begin{frame}{Fitness Elitism in Novelty Search}
-\begin{block}{Best fitness so far, high-res. $10^3$}
+\begin{block}{Best fitness so far, high-resolution}
 \centering
 \includegraphics[width=0.95\textwidth]{../Figures/Results/CopyFitChampions10.pdf}
 \end{block}
 \end{frame}
 
 \begin{frame}{Evolving Soft-Robots for Outer Space}
-\begin{block}{Displacement achieved in variant gravity levels, med-res. $7^3$}
+\begin{block}{Displacement achieved in variant gravity levels}
 \centering
 \includegraphics[width=0.8\textwidth]{../Figures/Results/GravityExperiment.pdf}
 \end{block}
@@ -740,24 +737,48 @@ Simple genetic algorithm fails to produce locomotion.
 
 
 \section{Conclusion}
-
+{
+\usebackgroundtemplate{\putat{0}{-275}{\includegraphics[width=1.3\paperwidth,height=\paperheight]{../Figures/Misc/philae-lander.jpg}}}
+\setbeamercolor{alerted text}{fg=white}
+\setbeamercolor{background canvas}{fg=white}
+\setbeamercolor{frametitle}{fg=white}
+\setbeamercolor{item projected}{fg=white}
+\setbeamercolor{normal text}{fg=white}
+\setbeamercolor{section in sidebar}{fg=white}
+\setbeamercolor{section in sidebar shaded}{fg=white}
+\setbeamercolor{separation line}{fg=white}
+\setbeamercolor{sidebar}{fg=white}
+\setbeamercolor{structure}{fg=white}
+\setbeamercolor{subsection in sidebar}{fg=white}
+\setbeamercolor{subsection in sidebar shaded}{fg=white}
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{titlelike}{fg=white}
+\setbeamercolor{block body}{bg=white}
 \begin{frame}{Conclusion}
 \begin{itemize}
-\item Novelty search performs better in respect to fitness
-\item Increased performance on different settings
-\item Performance is not much affected by the behavior metric
-\item Fitness elitism further improves performance
-\item[+] Co-evolution of materials alongside morphology
-\item[+] Develop methods to combine both searches
+\item \textcolor{white}{Novelty search performs better in respect to fitness}
+\item \textcolor{white}{Increased performance on different settings}
+\item \textcolor{white}{Performance is not much affected by the behavior metric}
+\item \textcolor{white}{Fitness elitism further improves performance}\vspace{0.5cm}
+\item[+] \textcolor{white}{Co-evolution of materials alongside morphology}
+\item[+] \textcolor{white}{Develop methods to combine both searches}
+\item[+] \textcolor{white}{Combinatorial behavior metrics}
 \end{itemize}
 \end{frame}
+}
 
 {
-\usebackgroundtemplate{\putat{0}{-275}{\includegraphics[width=\paperwidth]{../Figures/Misc/000084.jpg}}}
+\usebackgroundtemplate{\putat{0}{-275}{\includegraphics[width=\paperwidth]{../Figures/Robots/moon-nov-g1-2-9.jpg}}}
 
 \begin{frame}[plain]
+\putat{0}{-12}{\includegraphics[width=0.2\paperwidth]{../Figures/Misc/ACT_logo.eps}}
+\putat{-22}{45}{\includegraphics[width=0.2\paperwidth]{../Figures/Misc/CWIlogo.png}}
+\putat{50}{56}{\includegraphics[height=.07\textwidth]{../Figures/Misc/University_of_Amsterdam_logo.pdf}}
+\putat{-25}{-115}{\includegraphics[width=0.25\paperwidth]{../Figures/Misc/nRYZnfGL.png}}
+
 \begin{center}
-{\Huge Thank you!}
+\vspace{0.3cm}
+{\Huge Thank you!~~~~~~~~~~~~~}
 \end{center}
 \end{frame}
 
